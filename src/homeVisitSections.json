@@ -1,0 +1,1527 @@
+[
+	{
+		"name": "No income source",
+		"dataElements": [
+			{ "name": "ES: No income source-1b. IGA", "id": "bcy3h5FAEiv" },
+			{
+				"name": "ES: No income source-1c. Business skills",
+				"id": "cDzrgpjm9gu"
+			},
+			{
+				"name": "ES: No income source-1d. Apprenticeship/vocational skills",
+				"id": "lvuDoQm6Kpn"
+			},
+			{
+				"name": "ES: No income source-1e. Start kit /Capital/Cash Transfers",
+				"id": "F2R5k70ULyE"
+			},
+			{
+				"name": "ES: No income source-1f. Referral ES Services",
+				"id": "YizeJ4Tx55z"
+			},
+
+			{
+				"name": "ES: No income source-12-Sensitization and information giving",
+				"id": "pIL0yfzm38O"
+			}
+		],
+		"id": "RlgRk1Jf0bb"
+	},
+	{
+		"name": "Inadequate/ basic material needs",
+		"dataElements": [
+			{
+				"name": "ES: Inadequate/ basic material needs-1b. IGA",
+				"id": "TsSDOo8GRpo"
+			},
+			{
+				"name": "ES: Inadequate/ basic material needs-1c. Business skills",
+				"id": "w81yrBfcqGh"
+			},
+			{
+				"name": "ES: Inadequate/ basic material needs-1d. Apprenticeship/vocational skills",
+				"id": "uRSaXol5kP0"
+			},
+			{
+				"name": "ES: Inadequate/ basic material needs-1e. Start kit /Capital/Cash Transfers",
+				"id": "owHYEDRnKkB"
+			},
+			{
+				"name": "ES: Inadequate/ basic material needs-1f. Referral ES Services",
+				"id": "YjF5FKBR5vR"
+			},
+
+			{
+				"name": "ES: Inadequate/ basic material needs-12-Sensitization and information giving",
+				"id": "DhdrSocA1TK"
+			}
+		],
+		"id": "DWURPgRMFAc"
+	},
+	{
+		"name": "Difficulties in meeting essential expenditures",
+		"dataElements": [
+			{
+				"name": "ES: Difficulties in meeting essential expenditures-1b. IGA",
+				"id": "djFCHraiHXF"
+			},
+			{
+				"name": "ES: Difficulties in meeting essential expenditures-1c. Business skills",
+				"id": "uuAGgyguSUt"
+			},
+			{
+				"name": "ES: Difficulties in meeting essential expenditures-1d. Apprenticeship/vocational skills",
+				"id": "SmdDW9AeIeJ"
+			},
+			{
+				"name": "ES: Difficulties in meeting essential expenditures-1e. Start kit /Capital/Cash Transfers",
+				"id": "E3GpGffkWaa"
+			},
+			{
+				"name": "ES: Difficulties in meeting essential expenditures-1f. Referral ES Services",
+				"id": "ZPqOVLFSsVM"
+			},
+
+			{
+				"name": "ES: Difficulties in meeting essential expenditures-12. Sensitization and information giving",
+				"id": "AbzttX3v2yc"
+			}
+		],
+		"id": "SCBDsRlmy8w"
+	},
+	{
+		"name": "Not saving/ in saving group",
+		"dataElements": [
+			{
+				"name": "ES: Not saving/ in saving group-1b. IGA",
+				"id": "pVZaJXdOmSi"
+			},
+			{
+				"name": "ES: Not saving/ in saving group-1c. Business skills",
+				"id": "AJBEXIjazDg"
+			},
+			{
+				"name": "ES: Not saving/ in saving group-1d. Apprenticeship/vocational skills",
+				"id": "RBVqW6yy6px"
+			},
+			{
+				"name": "ES: Not saving/ in saving group-1e. Start kit /Capital/Cash Transfers",
+				"id": "QdKH0hmHHUs"
+			},
+			{
+				"name": "ES: Not saving/ in saving group-1f. Referral ES Services",
+				"id": "XF4JJuj08ot"
+			},
+
+			{
+				"name": "ES: Not saving/ in saving group-12. Sensitization and information giving",
+				"id": "cssSxvqlMed"
+			}
+		],
+		"id": "xNPO6iTv3Cl"
+	},
+	{
+		"name": "No IGA/ IGA mgt challenges",
+		"dataElements": [
+			{
+				"name": "ES: No IGA/ IGA mgt challenges-1b. IGA",
+				"id": "bKechMqlzoY"
+			},
+			{
+				"name": "ES: No IGA/ IGA mgt challenges-1c. Business skills",
+				"id": "Y1Rl6fUxiXV"
+			},
+			{
+				"name": "ES: No IGA/ IGA mgt challenges-1d. Apprenticeship/vocational skills",
+				"id": "sIZgnCRi707"
+			},
+			{
+				"name": "ES: No IGA/ IGA mgt challenges-1e. Start kit /Capital/Cash Transfers",
+				"id": "lDTolsdjmQ1"
+			},
+			{
+				"name": "ES: No IGA/ IGA mgt challenges-1f. Referral ES Services",
+				"id": "mGtqkfAXx3w"
+			},
+			{
+				"name": "ES: No IGA/ IGA mgt challenges-12. Sensitization and information giving",
+				"id": "QnHYA7niSHY"
+			}
+		],
+		"id": "wzAgHBOv3XU"
+	},
+	{
+		"name": "Output market access challenges",
+		"dataElements": [
+			{
+				"name": "ES: Output market access challenges-1b. IGA",
+				"id": "ezYS54uRWnh"
+			},
+			{
+				"name": "ES: Output market access challenges-1c. Business skills",
+				"id": "L5mua1Mjgso"
+			},
+			{
+				"name": "ES: Output market access challenges-1d. Apprenticeship/vocational skills",
+				"id": "NIby3xrNSDi"
+			},
+			{
+				"name": "ES: Output market access challenges-1e. Start kit /Capital/Cash Transfers",
+				"id": "D4W0Kyer7aJ"
+			},
+			{
+				"name": "ES: Output market access challenges-1f. Referral ES Services",
+				"id": "THRq4wQNAYj"
+			},
+			{
+				"name": "ES: Output market access challenges-12-Sensitization and information giving",
+				"id": "wd2JU4EAylM"
+			}
+		],
+		"id": "cTewuG1cG4d"
+	},
+	{
+		"name": "Out of school youth",
+		"dataElements": [
+			{ "name": "ES: Out of school youth-1b. IGA", "id": "E4j9Xk5xD1A" },
+			{
+				"name": "ES: Out of school youth-1c. Business skills",
+				"id": "k4tTSSdt3bM"
+			},
+			{
+				"name": "ES: Out of school youth-1d. Apprenticeship/vocational skills",
+				"id": "XXXNR9bySFa"
+			},
+			{
+				"name": "ES: Out of school youth-1e. Start kit /Capital/Cash Transfers",
+				"id": "p1Hu2sl7kjO"
+			},
+			{
+				"name": "ES: Out of school youth-1f. Referral ES Services",
+				"id": "grzrdMvXXC4"
+			},
+			{
+				"name": "ES: Out of school youth-12-Sensitization and information giving",
+				"id": "v5LBsKU35RX"
+			}
+		],
+		"id": "drnTerymuRn"
+	},
+	{
+		"name": "Start-up capital/ toolkit",
+		"dataElements": [
+			{
+				"name": "ES: Start-up capital/ toolkit-1b. IGA",
+				"id": "aVoIDl5Jugx"
+			},
+			{
+				"name": "ES: Start-up capital/ toolkit-1c. Business skills",
+				"id": "cddnrmydjV3"
+			},
+			{
+				"name": "ES: Start-up capital/ toolkit-1d. Apprenticeship/vocational skills",
+				"id": "lxvlRRD4wvG"
+			},
+			{
+				"name": "ES: Start-up capital/ toolkit-1e. Start kit /Capital/Cash Transfers",
+				"id": "f66F6apWlpM"
+			},
+			{
+				"name": "ES: Start-up capital/ toolkit-1f. Referral ES Services",
+				"id": "tDDZuiAWl2G"
+			},
+			{
+				"name": "ES: Start-up capital/ toolkit-12-Sensitization and information giving",
+				"id": "DbLcpA4630r"
+			}
+		],
+		"id": "IJ62KdaOPfH"
+	},
+	{
+		"name": "FOOD SECURITY & NUTRITION",
+		"dataElements": [],
+		"id": "GW6fRKm3GgC"
+	},
+	{
+		"name": "Inadequate/ lack of enough food",
+		"dataElements": [
+			{
+				"name": "FS: Inadequate/ lack of enough food-2a. Agricultural and farming inputs",
+				"id": "lR0av5FVXrM"
+			},
+			{
+				"name": "FS: Inadequate/ lack of enough food-2b. Agric advisory service",
+				"id": "R9sLOPh4rvo"
+			},
+			{
+				"name": "FS: Inadequate/ lack of enough food-2c. Nutrition education/counselling",
+				"id": "pO2HaA815eS"
+			},
+			{
+				"name": "FS: Inadequate/ lack of enough food-2d. Food/supplements assistant",
+				"id": "fWPZ54pFEf7"
+			},
+			{
+				"name": "FS: Inadequate/ lack of enough food-2e. Referral FSN services",
+				"id": "TBS9oVRyd88"
+			},
+			{
+				"name": "FS: Inadequate/ lack of enough food-2e1. Input markets through vouchers ",
+				"id": "sPzsTkUzj73"
+			},
+			{
+				"name": "FS: Inadequate/ lack of enough food-2e2. Output markets ",
+				"id": "lWvm9DRWiGJ"
+			},
+			{
+				"name": "FS: Inadequate/ lack of enough food-12-Sensitization and information giving",
+				"id": "L7oe5D7vlDj"
+			}
+		],
+		"id": "yiLBL1G6oAH"
+	},
+	{
+		"name": "Lack of farming inputs",
+		"dataElements": [
+			{
+				"name": "FS-Lack of farming inputs-2a. Agricultural and farming inputs",
+				"id": "W1BGlC1OtTu"
+			},
+			{
+				"name": "FS-Lack of farming inputs-2b. Agric advisory service",
+				"id": "uSFFWSRwLfz"
+			},
+			{
+				"name": "FS-Lack of farming inputs-2e. Referral FSN services",
+				"id": "aFcdLucT50S"
+			},
+			{
+				"name": "FS: Lack of farming inputs (Nutrition education/counselling)-12-Sensitization and information giving",
+				"id": "uoLomXW1nTu"
+			}
+		],
+		"id": "sIyiDhFjOqe"
+	},
+	{
+		"name": "Poor agronomic practices",
+		"dataElements": [
+			{
+				"name": "FS: Poor agronomic practices-2b. Agric advisory service",
+				"id": "Apq9oZy3tN2"
+			},
+			{
+				"name": "FS: Poor agronomic practices-1f. Referral ES Services",
+				"id": "IxipDM7qG4m"
+			},
+			{
+				"name": "FS: Poor agronomic practices-12-Sensitization and information giving",
+				"id": "HyAoFOhEueY"
+			}
+		],
+		"id": "jA14Osly5L0"
+	},
+	{
+		"name": "Poor post-harvest handling",
+		"dataElements": [
+			{
+				"name": "FS: Poor post-harvest handling-2b. Agric advisory service",
+				"id": "PWObO6CYTOA"
+			},
+			{
+				"name": "FS: Poor post-harvest handling-2e2. Output markets ",
+				"id": "sXaWeoWNIYE"
+			},
+			{
+				"name": "FS: Poor post-harvest handling-1f. Referral ES Services",
+				"id": "P73QWF0em1v"
+			},
+			{
+				"name": "FS: Poor post-harvest handling-12-Sensitization and information giving",
+				"id": "UeqnDPFlDgu"
+			}
+		],
+		"id": "wLP7bFiKA6l"
+	},
+	{
+		"name": "Limited nutritional knowledge",
+		"dataElements": [
+			{
+				"name": "FS: Limited nutritional knowledge-2c. Nutrition education/counselling",
+				"id": "mSruDFpElU1"
+			},
+			{
+				"name": "FS-Limited nutrition knowledge-1f. Referral ES Services",
+				"id": "FMGCaksUZHy"
+			},
+			{
+				"name": "FS: Limited nutritional knowledge-12-Sensitization and information giving",
+				"id": "RfucJTfk8qj"
+			},
+			{ "name": "HVT: Nutrition Status (G, Y, R)", "id": "a3x9L2p3N6u" }
+		],
+		"id": "uZ6BaZYBYp5"
+	},
+	{
+		"name": "Malnourishment",
+		"dataElements": [
+			{
+				"name": "FS: Malnutrition-2d. Food/supplements assistant",
+				"id": "azHuHKC9nGU"
+			},
+			{
+				"name": "FS: Malnutrition-2e. Referral FSN services",
+				"id": "TDUAZZWb75S"
+			},
+			{
+				"name": "FS: Malnutrition-12-Sensitization and information giving",
+				"id": "uCcUxJtJIcl"
+			}
+		],
+		"id": "R2vWL6SHTfC"
+	},
+	{
+		"name": "Education",
+		"dataElements": [
+			{ "name": "HVT: Enrolled in school (Y/N)", "id": "OsOZF4e4yh5" },
+			{ "name": "HVT: Class", "id": "YnaZ8wepSjh" }
+		],
+		"id": "d6m2LRGqJnn"
+	},
+	{
+		"name": "Irregular school attendance",
+		"dataElements": [
+			{
+				"name": "ED-Irregular school attendance-4e. Provided with school fees",
+				"id": "cKdecGMnNnz"
+			},
+			{
+				"name": "ED-Irregular school attendance-4f. Provided with school material",
+				"id": "x6qjZOXRElL"
+			},
+			{
+				"name": "ED-Irregular school attendance-4g. Referral to education support",
+				"id": "FIrs4a75Eq0"
+			},
+			{
+				"name": "ED-Irregular school attendance-12-Sensitization and information giving",
+				"id": "HTuHMlc9EKf"
+			}
+		],
+		"id": "P3O0xjULVYp"
+	},
+	{
+		"name": "Did not progress/transition to Next Class/ Level",
+		"dataElements": [
+			{
+				"name": "ED-Did not progress/transition to Next Class/ Level-4e. Provided with school fees",
+				"id": "N6vri2eGvIr"
+			},
+			{
+				"name": "ED-Did not progress/transition to Next Class/ Level-4f. Provided with school material",
+				"id": "hn3a5FQCtkT"
+			},
+			{
+				"name": "ED-Did not progress/transition to Next Class/ Level-4g. Referral to education support",
+				"id": "Oh76VZNMzkx"
+			},
+			{
+				"name": "ED-Did not progress/transition to Next Class/ Level-12-Sensitization and information giving",
+				"id": "MksTVctiVbW"
+			}
+		],
+		"id": "OZ8JrlP19sF"
+	},
+	{
+		"name": "Dropped out of School",
+		"dataElements": [
+			{
+				"name": "ED-Dropped out of School-4c. OVC enrolled in school",
+				"id": "l94Z4KHC0FD"
+			},
+			{
+				"name": "ED-Dropped out of School-4d. OVC regularly attending school",
+				"id": "D0ck6Nvefbx"
+			},
+			{
+				"name": "ED-Dropped out of School-4e. Provided with school fees",
+				"id": "Np1E6nDdbNQ"
+			},
+			{
+				"name": "ED-Dropped out of School-4f. Provided with school material",
+				"id": "OoBgArxswBi"
+			},
+			{
+				"name": "ED-Dropped out of School-12-Sensitization and information giving",
+				"id": "UCdT7PsYIFK"
+			}
+		],
+		"id": "hfbziM7MCrg"
+	},
+	{
+		"name": "MHPSS & BASIC CARE",
+		"dataElements": [{ "name": "BC-Mental Health (E/P)", "id": "sFgpQOWdusS" }],
+		"id": "wQODTwL4NDt"
+	},
+	{
+		"name": "Depression",
+		"dataElements": [
+			{
+				"name": "BC-Depression(counselling)-5a. Counselling service",
+				"id": "tSlvgS2pOpS"
+			},
+			{
+				"name": "BC-Depression(counselling)-5b. Palliative care for HIV positive",
+				"id": "UczKlfWbTDC"
+			},
+			{
+				"name": "BC-Depression(counselling)-5f. Recreation activities",
+				"id": "mJwaHMDpojd"
+			},
+			{
+				"name": "BC-Depression(counselling)-5g. Referral for psychosocial support services",
+				"id": "NoCEuWQdnCZ"
+			},
+			{
+				"name": "BC-Depression(counselling)-12-Sensitization and information giving",
+				"id": "MHrPxitL3aU"
+			}
+		],
+		"id": "LJGiKFo7n1p"
+	},
+	{
+		"name": "Stress & Anxiety",
+		"dataElements": [
+			{
+				"name": "BC-Stress & Anxiety-5a. Counselling service",
+				"id": "QnH19OWdn9c"
+			},
+			{
+				"name": "BC-Stress & Anxiety-5b. Palliative care for HIV positive",
+				"id": "VM6fyX9Z7wa"
+			},
+			{
+				"name": "BC-Stress & Anxiety-5g. Referral for psychosocial support services",
+				"id": "nQGGjjcfRp4"
+			},
+			{
+				"name": "BC-Stress & Anxiety-5f. Recreation activities",
+				"id": "Fhy6lpaXDQA"
+			},
+			{
+				"name": "BC-Stress & Anxiety-12-Sensitization and information giving",
+				"id": "Uj9diUGBs18"
+			}
+		],
+		"id": "RU8SUNv3ckX"
+	},
+	{
+		"name": "Alcohol & drug use disorder",
+		"dataElements": [
+			{
+				"name": "BC-Alcohol & drug use disorder-5a. Counselling service",
+				"id": "MATAEq9LNv6"
+			},
+			{
+				"name": "BC-Alcohol & drug use disorder-5f. Recreation activities",
+				"id": "xLFJZAqAWml"
+			},
+			{
+				"name": "BC-Alcohol & drug use disorder-5g. Referral for psychosocial support services",
+				"id": "xUt4iGuFeba"
+			},
+			{
+				"name": "BC-Alcohol & drug use disorder-12-Sensitization and information giving",
+				"id": "ngysMHjQzRo"
+			}
+		],
+		"id": "jculShm9Kkp"
+	},
+	{
+		"name": "Stigma & Isolation",
+		"dataElements": [
+			{
+				"name": "BC-Stigma & Isolation-5a. Counselling service",
+				"id": "x8pZA6sigEl"
+			},
+			{
+				"name": "BC-Stigma & Isolation-5f. Recreation activities",
+				"id": "SwMSUqoX29E"
+			},
+			{
+				"name": "BC-Stigma & Isolation-5g. Referral for psychosocial support services",
+				"id": "lUPazLzr5RK"
+			},
+			{
+				"name": "BC-Stigma & Isolation-12-Sensitization and information giving",
+				"id": "PwfxnPYia1q"
+			}
+		],
+		"id": "BxwqnaLc4ci"
+	},
+	{
+		"name": "Chronic illness and elderly caregiver",
+		"dataElements": [
+			{
+				"name": "BC-Chronic illness-5a. Counselling service",
+				"id": "dixzkS2rTr8"
+			},
+			{
+				"name": "BC-Chronic illness-5b. Palliative care for HIV positive",
+				"id": "sdnQPoRB9wL"
+			},
+			{
+				"name": "BC-Chronic illness-5d. Provided with basic needs",
+				"id": "oqgfkAw6MQr"
+			},
+			{
+				"name": "BC-Chronic illness-5e. Will and memory book writing",
+				"id": "as9t4IWFo18"
+			},
+			{
+				"name": "BC-Chronic illness-12-Sensitization and information giving",
+				"id": "u232sNjJyd8"
+			}
+		],
+		"id": "ObF9qvlTOSt"
+	},
+	{
+		"name": "Disabled",
+		"dataElements": [
+			{ "name": "BC-Disabled-5a. Counselling service", "id": "o3TMaBaufzJ" },
+			{
+				"name": "BC-Disabled-5c. Assistive devices for the disabled",
+				"id": "ctxofPwv89O"
+			},
+			{
+				"name": "BC-Disabled-5g. Referral for psychosocial support services",
+				"id": "efOpwzCLQbs"
+			},
+			{
+				"name": "BC-Disabled-12-Sensitization and information giving",
+				"id": "hjkPS7F8Bs5"
+			}
+		],
+		"id": "gHQhxQ1Kp4b"
+	},
+	{
+		"name": "HEALTH",
+		"dataElements": [
+			{ "name": "Current HIV status (+/-/DK)", "id": "vBqh2aiuHOV" }
+		],
+		"id": "XjOykwKi1ML"
+	},
+	{
+		"name": "Action for those with unknown HIV status",
+		"dataElements": [
+			{
+				"name": "DK-Action for those with unknown HIV status-7a1. Known HIV Positive",
+				"id": "QLZWKPruc97"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7a2. Known HIV Negative",
+				"id": "jaI7hfpTTzB"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7a3. Unknown/Inconclusive",
+				"id": "zQSAedw7u7c"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7b. HIV Risk Assessment done",
+				"id": "srDb9tQEA6k"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7c. Child at HIV Risk",
+				"id": "wXQ2JS4Pxzl"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7d1. Caregiver refused to disclose",
+				"id": "ZtCcWAEhi17"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7d2. HIV Results Not Yet Out",
+				"id": "bzAO4Xbzx24"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7d3. Still Convincing Caregiver to take child for HIV Test",
+				"id": "IC5BRGStkSh"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7d4. Other Specify",
+				"id": "fRptyiB1Hjg"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7e1. Linked for HTS",
+				"id": "PEhTitztPIs"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7f1. Newly Tested for HIV",
+				"id": "CRm8ZSRWpnI"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7g1. Newly Tested HIV Positive",
+				"id": "ejsX8X3c6En"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-7g2.Newly Tested HIV Negative",
+				"id": "ljvRUFbQTtz"
+			},
+			{
+				"name": "DK-Action for those with unknown HIV status-12-Sensitization and information giving",
+				"id": "jo02VO05Hh1"
+			}
+		],
+		"id": "RaP3ThVNpMr"
+	},
+	{
+		"name": "ART & Adherence",
+		"dataElements": [
+			{ "name": "HVT: If HIV+, on ART? (Y/N)", "id": "wn75HEYLZcm" },
+			{
+				"name": "HVT: If on ART, Keeping Appointments? (Y/N)",
+				"id": "ZMKFnS9oZIe"
+			},
+			{ "name": "HVT: Adherence level  (G, F, P) ", "id": "yD7b6eqojxk" }
+		],
+		"id": "ZfSNO5akutD"
+	},
+	{
+		"name": "Action for missed appointment(s) ",
+		"dataElements": [
+			{
+				"name": "MA-Actions for Missed Appointment-3d1. Home drug delivery",
+				"id": "lnBCWIkifEW"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-3d2. Linked to DSDM (MMD)",
+				"id": "UlGVB1Za2e6"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-3d3. Provided transport",
+				"id": "xdxz9xJ7USt"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-3d4. Disclosure support",
+				"id": "rSO31KPBa22"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-3d5. Appointment reminding",
+				"id": "M3csIquN0lC"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-3d6. Linked to peer support",
+				"id": "seM7VlEfaVl"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-3d7. Attachment to CoRPs",
+				"id": "Nm6ccOrQlXW"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-3d8. Home based counselling",
+				"id": "rdTvCyDsP7v"
+			},
+			{
+				"name": "MA-Actions for Missed Appointment-12-Sensitization and information giving",
+				"id": "pLoagwClpZC"
+			}
+		],
+		"id": "fU7X83Ct8zF"
+	},
+	{
+		"name": "Actions for poor adherence",
+		"dataElements": [
+			{
+				"name": "PH-Action for poor Adherence-3d11. Food and nutrition support",
+				"id": "JIqcRUXX8np"
+			},
+			{
+				"name": "PH-Action for poor Adherence-3d12. Attachment to CoRPs",
+				"id": "mCxdn8HSVbn"
+			},
+			{
+				"name": "PH-Action for poor Adherence-3d13. Home based counselling",
+				"id": "d36ew0WewuL"
+			},
+			{
+				"name": "PH-Action for poor Adherence-3d14. Linked to peer support ",
+				"id": "gHIkvuGQU3J"
+			},
+			{
+				"name": "PH-Action for poor Adherence-3d15. Disclosure support",
+				"id": "oaWuzmJI55k"
+			},
+			{
+				"name": "PH-Action for poor Adherence-3d16. Reminder support",
+				"id": "cHmeBAOFXOB"
+			},
+			{
+				"name": "PH-Action for poor Adherence-3d17. Caregiver/ Adolescent HIV care and treatment literacy ",
+				"id": "F6dQ1A72dZD"
+			},
+			{
+				"name": "PH-Action for poor Adherence-12-Sensitization and information giving",
+				"id": "shpDhNPS54W"
+			}
+		],
+		"id": "xYD63yv7Dl4"
+	},
+	{
+		"name": "HIV+ with No Viral load yet eligible",
+		"dataElements": [
+			{
+				"name": "VL-Actions for HIV+ with no Viral Load yet eligible-8f1. Counselling & referral for VLT",
+				"id": "jVvvgtWiITT"
+			},
+			{
+				"name": "VL-Actions for HIV+ with no Viral Load yet eligible-8f2. Provided transport",
+				"id": "gLj768y0v9Y"
+			},
+			{
+				"name": "VL-Actions for HIV+ with no Viral Load yet eligible-8f3. Home-based bleeding",
+				"id": "a2StDPH0T0A"
+			},
+			{
+				"name": "VL-Actions for HIV+ with no Viral Load yet eligible-12-Sensitization and information giving",
+				"id": "bDP84oWqmAd"
+			}
+		],
+		"id": "dRG7WEt3Vjo"
+	},
+	{
+		"name": "Unsuppressed VL   CLHIV/caregiver",
+		"dataElements": [
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d1. Home drug delivery",
+				"id": "ye9H3Bz0BRW"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d11. Food and nutrition support",
+				"id": "f6a6rtTcPOP"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d12. Attachment to CoRPs",
+				"id": "bVJ6kjus9QI"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d13. Home based counselling",
+				"id": "PE3Q3Z376Sd"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d14. Linked to peer support ",
+				"id": "kFZALWekZRw"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d15. Disclosure support",
+				"id": "f7c9HPbVDGE"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d16. Reminder support",
+				"id": "wDSplqmuGkE"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d17. Caregiver/ Adolescent HIV care and treatment literacy",
+				"id": "w0sD5QMKbMe"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d2. Linked to DSDM (MMD)",
+				"id": "AKd0FB51xCK"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-3d3. Provided transport",
+				"id": "EG851ch1rWZ"
+			},
+			{
+				"name": "US-Unsuppressed VL CLHIV/caregiver-12-Sensitization and information giving",
+				"id": "qISFIP4Df6R"
+			}
+		],
+		"id": "ZuxtUZR1cO1"
+	},
+	{
+		"name": "Non-Disclosure of HIV/ART Status",
+		"dataElements": [
+			{
+				"name": "ND-Non-Disclosure of HIV/ART Status-3d20. Pre-disclosure counselling",
+				"id": "KQIXKWRaWAn"
+			},
+			{
+				"name": "ND-Non-Disclosure of HIV/ART Status-3d21. Disclosure counselling",
+				"id": "Ozhhx5kqvFo"
+			},
+			{
+				"name": "ND-Non-Disclosure of HIV/ART Status-3d22. Post-disclosure counselling",
+				"id": "lcLrfWup4jJ"
+			},
+			{
+				"name": "ND-Non-Disclosure of HIV/ART Status-12-Sensitization and information giving",
+				"id": "A4sfodNawYV"
+			}
+		],
+		"id": "ce3AQYScARV"
+	},
+	{
+		"name": "At Risk of TB",
+		"dataElements": [{ "name": "HV At risk of TB", "id": "AkRgxxT3ieD" }],
+		"id": "dPBZVnMre5S"
+	},
+	{
+		"name": "Limited HIV prevention knowledge",
+		"dataElements": [
+			{
+				"name": "LH-Limited HIV prevention knowledge-9c. Provided VMMC/SMC",
+				"id": "R5ekqgunDq1"
+			},
+			{
+				"name": "LH-Limited HIV prevention knowledge-9e. Provided Condoms",
+				"id": "ucTls5HXyN3"
+			},
+			{
+				"name": "LH-Limited HIV prevention knowledge-9f. Provided with Self -awareness Knowledge",
+				"id": "WheJwufMW87"
+			},
+			{
+				"name": "LH-Limited HIV prevention knowledge-9g. Referral for HIV Prevention Services",
+				"id": "BAG9q8r5pE0"
+			},
+			{
+				"name": "LH-Limited HIV prevention knowledge-9h. Linked to DREAMS ",
+				"id": "vp0G1ZinnIk"
+			},
+			{
+				"name": "LH-Limited HIV prevention knowledge-12-Sensitization and information giving",
+				"id": "KBFmrSAROjO"
+			}
+		],
+		"id": "P2FmCGGZ9WJ"
+	},
+	{
+		"name": "EMTCT  (HIV +VE mothers)",
+		"dataElements": [
+			{
+				"name": "EM-EMTCT  (HIV +VE mothers)-9a. Provided eMTCT Services",
+				"id": "AhUJLs4CGMI"
+			},
+			{
+				"name": "EM-EMTCT  (HIV +VE mothers)-9f. Provided with Self -awareness Knowledge",
+				"id": "HF7l5x4f3az"
+			},
+			{
+				"name": "EM-EMTCT  (HIV +VE mothers)-12-Sensitization and information giving",
+				"id": "GYxWuJCvCtc"
+			}
+		],
+		"id": "hwzwC18yXkZ"
+	},
+	{
+		"name": "Family Planning services",
+		"dataElements": [
+			{
+				"name": "FP-Family Planning services-3c. Supported to access health care services",
+				"id": "oJfyYYOgbqs"
+			},
+			{
+				"name": "FP-Family Planning services-3g. Referred for HWSS Services",
+				"id": "wUGLrnw0SV6"
+			},
+			{
+				"name": "FP-Family Planning services-12-Sensitization and information giving",
+				"id": "q2Pop0z4hrt"
+			},
+			{
+				"name": "HVT: Immunization status (Yes, No, Partially)",
+				"id": "RMl0p06BQ9j"
+			}
+		],
+		"id": "fg6ezDjSrC4"
+	},
+	{
+		"name": "Poor general hygiene & sanitation (WASH)",
+		"dataElements": [
+			{
+				"name": "PG-Poor general hygiene & sanitation (WASH)-3b. Provided with shelter",
+				"id": "YnBFwDPxWkA"
+			},
+			{
+				"name": "PG-Poor general hygiene & sanitation (WASH)-3c. Supported to access health care services",
+				"id": "ge9HfHODhky"
+			},
+			{
+				"name": "PG-Poor general hygiene & sanitation (WASH)-3f. Provided with Insecticide Treated Net",
+				"id": "Cnjs7y3Rvi0"
+			},
+			{
+				"name": "PG-Poor general hygiene & sanitation (WASH)-12-Sensitization and information giving",
+				"id": "kVisFm4hqa1"
+			}
+		],
+		"id": "kRLvRElkBMc"
+	},
+	{
+		"name": "No Mosquito Net",
+		"dataElements": [
+			{
+				"name": "NM-No Mosquito Net-3c. Supported to access health care services",
+				"id": "TUA2bObeNSp"
+			},
+			{
+				"name": "NM-No Mosquito Net-3e. Health Information Services",
+				"id": "JHkA7KKPXFz"
+			},
+			{
+				"name": "NM-No Mosquito Net-3f. Provided with Insecticide Treated Net",
+				"id": "qNp1oRUKxB1"
+			},
+			{
+				"name": "NM-No Mosquito Net-3g. Referred for HWSS Services",
+				"id": "jpsnZDowwuP"
+			},
+			{
+				"name": "NM-No Mosquito Net-12-Sensitization and information giving",
+				"id": "sC6Em7tHcLB"
+			}
+		],
+		"id": "RP5mt07uFyi"
+	},
+	{
+		"name": "Lack of clean & safe water",
+		"dataElements": [
+			{
+				"name": "LC-Lack of clean &safe water-3a. Assisted to access safe water",
+				"id": "t5ruFth9fR8"
+			},
+			{
+				"name": "LC-Lack of clean &safe water-3g. Referred for HWSS Services",
+				"id": "vgytI3Fy4eO"
+			},
+			{
+				"name": "LC-Lack of clean &safe water-12-Sensitization and information giving",
+				"id": "YylRfk3iKiJ"
+			}
+		],
+		"id": "GhuR57tSkFp"
+	},
+	{
+		"name": "Lack latrine",
+		"dataElements": [
+			{
+				"name": "LL-Lack latrine-3e. Health Information Services",
+				"id": "amaCMIvRteg"
+			},
+			{
+				"name": "LL-Lack latrine-3g. Referred for HWSS Services",
+				"id": "P4a4a6BYTsY"
+			},
+			{
+				"name": "LL-Lack latrine-12-Sensitization and information giving",
+				"id": "e1uS7v9nbKW"
+			}
+		],
+		"id": "gFl9MMkhHsL"
+	},
+	{
+		"name": "Inadequate/ poor shelter",
+		"dataElements": [
+			{
+				"name": "IP-Inadequate/ poor shelter-3b. Provided with shelter",
+				"id": "UYQjgvzCMBZ"
+			},
+			{
+				"name": "IP-Inadequate/ poor shelter-3g. Referred for HWSS Services",
+				"id": "vL6BTcvLFVX"
+			},
+			{
+				"name": "IP-Inadequate/ poor shelter-12-Sensitization and information giving",
+				"id": "TMfxOkHvgJt"
+			}
+		],
+		"id": "cC5pr6E7rdJ"
+	},
+	{
+		"name": "COVID 19 information",
+		"dataElements": [
+			{
+				"name": "CO-COVID 19 information-3c. Supported to access health care services",
+				"id": "C4Na8YydLIM"
+			},
+			{
+				"name": "CO-COVID 19 information-3e. Health Information Services",
+				"id": "P1uoG1r4NJc"
+			},
+			{
+				"name": "CO-COVID 19 information-3g. Referred for HWSS Services",
+				"id": "xdRIFUZAUlN"
+			},
+			{
+				"name": "CO-COVID 19 information-12-Sensitization and information giving",
+				"id": "s4nVMznUGUX"
+			}
+		],
+		"id": "pRmqIxwwWiz"
+	},
+	{
+		"name": "IPV related to HIV status disclosure",
+		"dataElements": [
+			{
+				"name": "GB-IPV related to HIV status disclosure-10a. Provided Legal Support for GBV",
+				"id": "d8d52oyjouy"
+			},
+			{
+				"name": "GB-IPV related to HIV status disclosure-10b.Provide GBV Counselling",
+				"id": "fU9JasieC5b"
+			},
+			{
+				"name": "GB-IPV related to HIV status disclosure-10c.Withdrawn from GBV affected Household",
+				"id": "hFjerhDyBKS"
+			},
+			{
+				"name": "GB-IPV related to HIV status disclosure-10d. Provided with basic needs",
+				"id": "XCvSBlgksT0"
+			},
+			{
+				"name": "GB-IPV related to HIV status disclosure-10e. Provided Perlatives",
+				"id": "QAmU3eQcj4j"
+			},
+			{
+				"name": "GB-IPV related to HIV status disclosure-10f. Recreation activities",
+				"id": "ycYzqNr0vl5"
+			},
+			{
+				"name": "GB-IPV related to HIV status disclosure-10g. Referral for psychosocial support services",
+				"id": "NT5y7WQQcvG"
+			},
+			{
+				"name": "GB-IPV related to HIV status disclosure-12-Sensitization and information giving",
+				"id": "tfuyHZc81z8"
+			}
+		],
+		"id": "m9nUfs9XYt6"
+	},
+	{
+		"name": "Physical abuse ",
+		"dataElements": [
+			{
+				"name": "GB-Physical abuse-10a. Provided Legal Support for GBV",
+				"id": "c8SFOQxWyOm"
+			},
+			{
+				"name": "GB-Physical abuse-10b.Provide GBV Counselling",
+				"id": "zOkZh3kDLTZ"
+			},
+			{
+				"name": "GB-Physical abuse-10c.Withdrawn from GBV affected Household",
+				"id": "SlVjFqZKz3U"
+			},
+			{
+				"name": "GB-Physical abuse-10d. Provided with basic needs",
+				"id": "RSYM3WHKVqT"
+			},
+			{
+				"name": "GB-Physical abuse-10e. Provided Perlatives",
+				"id": "wpkk9H2ZiDi"
+			},
+			{
+				"name": "GB-Physical abuse-10f. Recreation activities",
+				"id": "WP3Jdhog1tQ"
+			},
+			{
+				"name": "GB-Physical abuse-10g. Referral for psychosocial support services",
+				"id": "C74BUBGLwNP"
+			},
+			{
+				"name": "GB-Physical abuse-12-Sensitization and information giving",
+				"id": "Fwu5MCBQkrQ"
+			}
+		],
+		"id": "lgkwQnpuo31"
+	},
+	{
+		"name": "Emotional abuse",
+		"dataElements": [
+			{
+				"name": "GB-Emotional abuse-10a. Provided Legal Support for GBV",
+				"id": "SiwjAG5Z7n1"
+			},
+			{
+				"name": "GB-Emotional abuse-10b.Provide GBV Counselling",
+				"id": "mq0VUxyrvQ8"
+			},
+			{
+				"name": "GB-Emotional abuse-10c.Withdrawn from GBV affected Household",
+				"id": "UXoUP6m5x3n"
+			},
+			{
+				"name": "GB-Emotional abuse-10d. Provided with basic needs",
+				"id": "Pv5x5K8nysq"
+			},
+			{
+				"name": "GB-Emotional abuse-10e. Provided Perlatives",
+				"id": "NKeCrNSwWI8"
+			},
+			{
+				"name": "GB-Emotional abuse-10f. Recreation activities",
+				"id": "MpmKR1jTGPa"
+			},
+			{
+				"name": "GB-Emotional abuse-10g. Referral for psychosocial support services",
+				"id": "GLHrhAoGIjA"
+			},
+			{
+				"name": "GB-Emotional abuse-12-Sensitization and information giving",
+				"id": "DaIJDBnFIGQ"
+			}
+		],
+		"id": "J2mmLt23Omz"
+	},
+	{
+		"name": "Sexual abuse",
+		"dataElements": [
+			{
+				"name": "GB-Sexual abuse-10a. Provided Legal Support for GBV",
+				"id": "zDvcGqjmSQr"
+			},
+			{
+				"name": "GB-Sexual abuse-10b.Provide GBV Counselling",
+				"id": "cONYrx9udsm"
+			},
+			{
+				"name": "GB-Sexual abuse-10c.Withdrawn from GBV affected Household",
+				"id": "ruSwtO1J9CV"
+			},
+			{
+				"name": "GB-Sexual abuse-10d. Provided with basic needs",
+				"id": "dMvIT2yhzIR"
+			},
+			{
+				"name": "GB-Sexual abuse-10e. Provided Perlatives",
+				"id": "jrH62qjPmVm"
+			},
+			{
+				"name": "GB-Sexual abuse-10f. Recreation activities",
+				"id": "Az2vyIEXkmE"
+			},
+			{
+				"name": "GB-Sexual abuse-10g. Referral for psychosocial support services",
+				"id": "una6BJZTmSq"
+			},
+			{
+				"name": "GB-Sexual abuse-12-Sensitization and information giving",
+				"id": "Byqy2x4IC8J"
+			}
+		],
+		"id": "JSeh2A9mTG1"
+	},
+	{
+		"name": "Needs post violence medical care",
+		"dataElements": [
+			{
+				"name": "GB-Needs post violence medical care-10a. Provided Legal Support for GBV",
+				"id": "leOn4N7Irta"
+			},
+			{
+				"name": "GB-Needs post violence medical care-10b.Provide GBV Counselling",
+				"id": "MD3GSP14fYj"
+			},
+			{
+				"name": "GB-Needs post violence medical care-10c.Withdrawn from GBV affected Household",
+				"id": "eEm981b9iAT"
+			},
+			{
+				"name": "GB-Needs post violence medical care-10d. Provided with basic needs",
+				"id": "fyQaqkQIXAq"
+			},
+			{
+				"name": "GB-Needs post violence medical care-10e. Provided Perlatives",
+				"id": "LwNL7CLpb7N"
+			},
+			{
+				"name": "GB-Needs post violence medical care-10f. Recreation activities",
+				"id": "WHZO2MYCVuA"
+			},
+			{
+				"name": "GB-Needs post violence medical care-10g. Referral for psychosocial support services",
+				"id": "UD9iyCnelHK"
+			},
+			{
+				"name": "GB-Needs post violence medical care-12-Sensitization and information giving",
+				"id": "d6S3dar5jWZ"
+			}
+		],
+		"id": "jj4YhgTwdUD"
+	},
+	{
+		"name": "Rape ",
+		"dataElements": [
+			{
+				"name": "GB-Rape-10a. Provided Legal Support for GBV",
+				"id": "vRxHFjnbnwf"
+			},
+			{ "name": "GB-Rape-10b.Provide GBV Counselling", "id": "TDSWPqmHrGC" },
+			{
+				"name": "GB-Rape-10c.Withdrawn from GBV affected Household",
+				"id": "sjmGNT2QGYU"
+			},
+			{
+				"name": "GB-Rape-10d. Provided with basic needs",
+				"id": "eGfIisC9M9g"
+			},
+			{ "name": "GB-Rape-10e. Provided Perlatives", "id": "ZrQdbNd6NhM" },
+			{ "name": "GB-Rape-10f. Recreation activities", "id": "QCuWnztP0pi" },
+			{
+				"name": "GB-Rape-10g. Referral for psychosocial support services",
+				"id": "q1xrAPFU43u"
+			},
+			{
+				"name": "GB-Rape-12-Sensitization and information giving",
+				"id": "HNx72j76pnx"
+			}
+		],
+		"id": "hJgkOiaDYla"
+	},
+	{
+		"name": "Defilement",
+		"dataElements": [
+			{
+				"name": "GB-Defilement-10a. Provided Legal Support for GBV",
+				"id": "srAJAZLBf9h"
+			},
+			{
+				"name": "GB-Defilement-10b.Provide GBV Counselling",
+				"id": "OKjeVKQkwCh"
+			},
+			{
+				"name": "GB-Defilement-10c.Withdrawn from GBV affected Household",
+				"id": "labqQpjQIVS"
+			},
+			{
+				"name": "GB-Defilement-10d. Provided with basic needs",
+				"id": "NIelSVuSrvQ"
+			},
+			{
+				"name": "GB-Defilement-10e. Provided Perlatives",
+				"id": "u29e6rSsqBD"
+			},
+			{
+				"name": "GB-Defilement-10f. Recreation activities",
+				"id": "obkZ4AVkPf3"
+			},
+			{
+				"name": "GB-Defilement-10g. Referral for psychosocial support services",
+				"id": "Kpd8g8VdFr8"
+			},
+			{
+				"name": "GB-Defilement-12-Sensitization and information giving",
+				"id": "mv5c9U6H4d9"
+			}
+		],
+		"id": "yw2cswHWdqP"
+	},
+	{
+		"name": "Child marriage",
+		"dataElements": [
+			{
+				"name": "GB-Child marriage-10a. Provided Legal Support for GBV",
+				"id": "dvQHNVbEGPb"
+			},
+			{
+				"name": "GB-Child marriage-10b.Provide GBV Counselling",
+				"id": "wWSbceM7ZYc"
+			},
+			{
+				"name": "GB-Child marriage-10c.Withdrawn from GBV affected Household",
+				"id": "tuW0QehIxbD"
+			},
+			{
+				"name": "GB-Child marriage-10d. Provided with basic needs",
+				"id": "GkZv3TbBPnn"
+			},
+			{
+				"name": "GB-Child marriage-10e. Provided Perlatives",
+				"id": "PCm86iEbeHg"
+			},
+			{
+				"name": "GB-Child marriage-10f. Recreation activities",
+				"id": "Rd2RkCviwMb"
+			},
+			{
+				"name": "GB-Child marriage-10g. Referral for psychosocial support services",
+				"id": "LKjIk5tlcD9"
+			},
+			{
+				"name": "GB-Child marriage-12-Sensitization and information giving",
+				"id": "qWlv5jmj5xu"
+			}
+		],
+		"id": "n6HiE2XcdM1"
+	},
+	{
+		"name": "Child Pregnancy",
+		"dataElements": [
+			{
+				"name": "GB-Child Pregnancy-10a. Provided Legal Support for GBV",
+				"id": "KmxUqMzSSWT"
+			},
+			{
+				"name": "GB-Child Pregnancy-10b.Provide GBV Counselling",
+				"id": "DYDG5a4mTBJ"
+			},
+			{
+				"name": "GB-Child Pregnancy-10c.Withdrawn from GBV affected Household",
+				"id": "XOnEhSTi1YZ"
+			},
+			{
+				"name": "GB-Child Pregnancy-10d. Provided with basic needs",
+				"id": "hYY3ot7ZaKl"
+			},
+			{
+				"name": "GB-Child Pregnancy-10e. Provided Perlatives",
+				"id": "dQxaXQs8M19"
+			},
+			{
+				"name": "GB-Child Pregnancy-10f. Recreation activities",
+				"id": "GR5cDUAEvxK"
+			},
+			{
+				"name": "GB-Child Pregnancy-10g. Referral for psychosocial support services",
+				"id": "X6ugu5dSmlc"
+			},
+			{
+				"name": "GB-Child Pregnancy-12-Sensitization and information giving",
+				"id": "YwISL5jAN6K"
+			}
+		],
+		"id": "xLADvBr2HgA"
+	},
+	{
+		"name": "CP knowledge gaps",
+		"dataElements": [
+			{
+				"name": "GP-CP knowledge gaps-6c. Participation in community sensitization on child protection",
+				"id": "ZekYkAu0olk"
+			},
+			{
+				"name": "GP-CP knowledge gaps-6j. Referred for child protection services",
+				"id": "dT7weXodePx"
+			},
+			{
+				"name": "GP-CP knowledge gaps-12-Sensitization and information giving",
+				"id": "HleyWLT30Rr"
+			}
+		],
+		"id": "wiklnpkbuYc"
+	},
+	{
+		"name": "Inadequate Parenting skills",
+		"dataElements": [
+			{
+				"name": "CP-Inadequate Parenting skills-6b. Child re-integrated with family",
+				"id": "Ef9jKdJk9No"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-6c. Participation in community sensitization on child protection",
+				"id": "rsywcqeAWeD"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-6d. Adoption",
+				"id": "ZYGINCuNAvy"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-6g. Fostering",
+				"id": "mdInxl645uY"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-6i. Received Parenting Training",
+				"id": "FTvLP1jSnqT"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-6i1) Linked for parenting training ",
+				"id": "OkrEyXM2Mnh"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-6j. Referred for child protection services",
+				"id": "cBhtQd5Bd0j"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-6k. Withdrawn from child labour",
+				"id": "gfgGXNAAQHe"
+			},
+			{
+				"name": "CP-Inadequate Parenting skills-12-Sensitization and information giving",
+				"id": "gT67vyCjAlS"
+			}
+		],
+		"id": "UefB1vs1yM0"
+	},
+	{
+		"name": "Engaged in child labour",
+		"dataElements": [
+			{
+				"name": "CP-Engaged in child labour-6e. Withdrawn from child labour",
+				"id": "siC6lGt6qOs"
+			},
+			{
+				"name": "CP-Engaged in child labour-6f. Assisted to handle Child abuse or neglect case",
+				"id": "y8Pq26t7CyW"
+			},
+			{
+				"name": "CP-Engaged in child labour-6j. Referred for child protection services",
+				"id": "bdbbfnaJbRU"
+			},
+			{
+				"name": "CP-Engaged in child labour-12-Sensitization and information giving",
+				"id": "zgYnmrUlwvb"
+			}
+		],
+		"id": "tQjqk27EDy7"
+	},
+	{
+		"name": "Lack birth certificate ",
+		"dataElements": [
+			{
+				"name": "CP-Lack birth certificate-6h. Assisted to register Birth",
+				"id": "sdoMZC7cD9S"
+			},
+			{
+				"name": "CP-Lack birth certificate-6j. Referred for child protection services",
+				"id": "A3S78tt4KPX"
+			},
+			{
+				"name": "CP-Lack birth certificate-12-Sensitization and information giving",
+				"id": "mQFKcNwfJlW"
+			}
+		],
+		"id": "aUnqxAltHOf"
+	},
+	{
+		"name": "Denial of basic needs",
+		"dataElements": [
+			{
+				"name": "CP-Denial of basic needs-6a. Legal support for GBV victims",
+				"id": "zlDhryIk7OU"
+			},
+			{
+				"name": "CP-Denial of basic needs-6c. Participation in community sensitization on child protection",
+				"id": "vQeVaiEJfmM"
+			},
+			{
+				"name": "CP-Denial of basic needs-10d. Provided with basic needs",
+				"id": "ORCzvst8msI"
+			},
+			{
+				"name": "CP-Denial of basic needs-6f. Assisted to handle Child abuse or neglect case",
+				"id": "AfkLGLnEft4"
+			},
+			{
+				"name": "CP-Denial of basic needs-6i. Received Parenting Training",
+				"id": "xRxFcns3aew"
+			},
+			{
+				"name": "CP-Denial of basic needs-6j. Referred for child protection services",
+				"id": "YXXjoAVc4oF"
+			},
+			{
+				"name": "CP-Denial of basic needs-12-Sensitization and information giving",
+				"id": "iIQMfRchN5q"
+			}
+		],
+		"id": "QazEvUk7dWc"
+	}
+]
