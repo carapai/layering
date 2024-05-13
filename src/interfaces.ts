@@ -102,3 +102,10 @@ export interface ProgramOwner {
     program: string;
     trackedEntityInstance: string;
 }
+
+export interface OrgUnit {
+    id: string;
+    path: string;
+    name: string;
+    parent: { name: string; parent: { name: string } };
+}

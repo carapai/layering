@@ -1,14 +1,25 @@
 import dayjs, { Dayjs } from "dayjs";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isBetween from "dayjs/plugin/isBetween";
-import { every, groupBy, has, maxBy, minBy, orderBy, uniq } from "lodash";
+import {
+    chunk,
+    every,
+    fromPairs,
+    groupBy,
+    has,
+    maxBy,
+    minBy,
+    orderBy,
+    uniq,
+} from "lodash";
 import {
     QueryDslQueryContainer,
     SearchRequest,
 } from "@elastic/elasticsearch/lib/api/types";
-import { client } from "./elasticsearch";
+import { client, indexBulk } from "./elasticsearch";
 
 import homeVisitSections from "./homeVisitSections.json";
+import { OrgUnit } from "./interfaces";
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isBetween);
@@ -115,7 +126,7 @@ export const scroll3 = async (
     let query: SearchRequest = {
         index: index.toLowerCase(),
         query: search,
-        size: 1000,
+        size: 100,
     };
     const scrollSearch = client.helpers.scrollSearch(query);
     for await (const result of scrollSearch) {
@@ -1017,4 +1028,148 @@ export const getSectionDataElements = (sectionId: string) => {
     const section = homeVisitSections.find((a) => a.id === sectionId);
     if (section) return section.dataElements.map((a) => a.id);
     return [];
+};
+
+export const processOrganisations = (organisationUnits: Array<OrgUnit>) => {
+    return fromPairs(
+        organisationUnits.map((unit) => {
+            return [
+                unit.id,
+                {
+                    subCounty: unit.parent ? unit.parent.name : "",
+                    district: unit.parent
+                        ? unit.parent.parent
+                            ? unit.parent.parent.name
+                            : ""
+                        : "",
+                    orgUnitName: unit.name,
+                    ...fromPairs(
+                        String(unit.path)
+                            .split("/")
+                            .slice(1)
+                            .map((v, i) => {
+                                return [`level${i + 1}`, v];
+                            })
+                    ),
+                },
+            ];
+        })
+    );
+};
+
+export const flattenInstances = (
+    trackedEntityInstances: Array<any>,
+    processedUnits: Record<string, any>
+) => {
+    let instances = [];
+    let calculatedEvents = [];
+    for (const {
+        trackedEntityInstance,
+        orgUnit,
+        attributes,
+        enrollments,
+        inactive,
+        deleted,
+        relationships,
+    } of trackedEntityInstances) {
+        const units = processedUnits[orgUnit];
+        const processedAttributes = fromPairs(
+            attributes.map(({ attribute, value }: any) => [attribute, value])
+        );
+        const allRelations = fromPairs(
+            relationships.map((rel: any) => {
+                return [
+                    rel["relationshipType"],
+                    rel.from.trackedEntityInstance.trackedEntityInstance,
+                ];
+            })
+        );
+        if (enrollments.length > 0) {
+            for (const {
+                events,
+                program,
+                orgUnitName,
+                enrollmentDate,
+                incidentDate,
+            } of enrollments) {
+                {
+                    const instance = {
+                        trackedEntityInstance,
+                        id: trackedEntityInstance,
+                        orgUnit,
+                        ...processedAttributes,
+                        ...allRelations,
+                        ...units,
+                        inactive,
+                        deleted,
+                        enrollmentDate,
+                        incidentDate,
+                        orgUnitName,
+                        program,
+                    };
+                    instances.push(instance);
+                    if (events.length > 0) {
+                        for (const {
+                            dataValues,
+                            dueDate,
+                            eventDate,
+                            event,
+                            deleted,
+                            notes,
+                            relationships,
+                            geometry,
+                            ...eventDetails
+                        } of events) {
+                            if (eventDetails.status !== "SCHEDULE") {
+                                calculatedEvents.push({
+                                    id: event,
+                                    orgUnitName,
+                                    enrollmentDate,
+                                    incidentDate,
+                                    dueDate,
+                                    eventDate,
+                                    deleted,
+                                    event,
+                                    ...units,
+                                    ...fromPairs(
+                                        dataValues.map(
+                                            ({ dataElement, value }: any) => [
+                                                dataElement,
+                                                value,
+                                            ]
+                                        )
+                                    ),
+                                    ...eventDetails,
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return { calculatedEvents, instances };
+};
+
+export const insertData = async ({
+    instances,
+    calculatedEvents,
+    program,
+}: {
+    instances: any[];
+    calculatedEvents: any[];
+    program: string;
+}) => {
+    const foundEvents = groupBy(calculatedEvents, "programStage");
+    console.log(instances, calculatedEvents);
+    const requests = Object.entries(foundEvents).flatMap(([stage, events]) => {
+        return chunk(events, 250).map((c) => indexBulk(stage.toLowerCase(), c));
+    });
+    await Promise.all([
+        ...chunk(instances, 250).map((c) =>
+            indexBulk(program.toLowerCase(), c)
+        ),
+        ...requests,
+    ]);
 };

@@ -42,12 +42,13 @@ import {
     scroll,
     scroll3,
 } from "./utils";
+import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
 
 dayjs.extend(isoWeek);
 dayjs.extend(quarterOfYear);
 dayjs.extend(advancedFormat);
 
-export const myQueue = new Queue("query", {
+export const myQueue = new Queue<QueryDslQueryContainer>("query", {
     connection,
 });
 
@@ -447,9 +448,6 @@ const generateLayering = (options: {
             const firstHVAT = baselineEvent(HVATAssessments);
             const firstHomeVisit = baselineEvent(homeVisitsB4Quarter);
             const currentSchoolMapping = latestEvent(schoolMappingsB4Quarter);
-            // const currentSchoolMonitoring = latestEvent(
-            //     schoolMonitoringB4Quarter
-            // );
 
             const previousViralLoads = eventsBeforePeriod(
                 viralLoads,
@@ -460,8 +458,11 @@ const generateLayering = (options: {
                 quarterStart
             );
 
-            const { eventDate } = currentHVAT;
+            let eventDate = "";
 
+            if (currentHVAT) {
+                eventDate = currentHVAT.eventDate;
+            }
             const newlyEnrolled = dayjs(enrollmentDate).isBetween(
                 quarterStart,
                 quarterEnd
@@ -1288,45 +1289,34 @@ const generateLayering = (options: {
     return layering;
 };
 
-const worker = new Worker(
+const worker = new Worker<QueryDslQueryContainer>(
     "query",
     async (job) => {
         // try {
-        await scroll3(
-            "RDEklSXCD4C".toLowerCase(),
-            {
-                terms: {
-                    "trackedEntityInstance.keyword": [
-                        "CiXwfCr8NC7",
-                        "gEhoO5fED9W",
-                    ],
-                },
-            },
-            async (documents) => {
-                const allData = await fetchData(documents);
-                const layering = generateLayering({
-                    ...allData,
-                    periods: [
-                        dayjs().subtract(12, "quarters"),
-                        dayjs().subtract(11, "quarters"),
-                        dayjs().subtract(10, "quarters"),
-                        dayjs().subtract(9, "quarters"),
-                        dayjs().subtract(8, "quarters"),
-                        dayjs().subtract(7, "quarters"),
-                        dayjs().subtract(6, "quarters"),
-                        dayjs().subtract(5, "quarters"),
-                        dayjs().subtract(4, "quarters"),
-                        dayjs().subtract(3, "quarters"),
-                        dayjs().subtract(2, "quarters"),
-                        dayjs().subtract(1, "quarters"),
-                        dayjs(),
-                    ],
-                    trackedEntityInstances: documents,
-                });
+        await scroll3("RDEklSXCD4C", job.data, async (documents) => {
+            const allData = await fetchData(documents);
+            const layering = generateLayering({
+                ...allData,
+                periods: [
+                    // dayjs().subtract(12, "quarters"),
+                    // dayjs().subtract(11, "quarters"),
+                    // dayjs().subtract(10, "quarters"),
+                    // dayjs().subtract(9, "quarters"),
+                    // dayjs().subtract(8, "quarters"),
+                    // dayjs().subtract(7, "quarters"),
+                    // dayjs().subtract(6, "quarters"),
+                    // dayjs().subtract(5, "quarters"),
+                    dayjs().subtract(4, "quarters"),
+                    dayjs().subtract(3, "quarters"),
+                    dayjs().subtract(2, "quarters"),
+                    dayjs().subtract(1, "quarters"),
+                    dayjs(),
+                ],
+                trackedEntityInstances: documents,
+            });
 
-                await indexBulk("layering", layering);
-            }
-        );
+            await indexBulk("layering", layering);
+        });
         // } catch (error: any) {
         //     console.log(error?.message);
         // }
