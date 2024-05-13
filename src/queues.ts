@@ -3,49 +3,45 @@ import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
 import quarterOfYear from "dayjs/plugin/quarterOfYear";
-import { Dictionary, fromPairs, orderBy, uniq, uniqBy } from "lodash";
+import { Dictionary, fromPairs, orderBy, uniq } from "lodash";
 import { indexBulk } from "./elasticsearch";
+import { connection } from "./redis";
 import {
+    anyEventWithAnyOfTheValue,
+    anyEventWithDE,
+    anyEventWithDataElement,
+    anyService,
     baselineEvent,
     calculateQuarter,
-    currentEvent,
     deHasAnyValue,
     eventsBeforePeriod,
+    eventsHasDataElements,
     eventsWithinPeriod,
+    fetchGroupActivities4Instances,
     findAnyEventValue,
     findStatus,
-    firstEvent,
     getAttribute,
     getAttributes,
-    getCurrentViralLoad,
     getDataElement,
     getEconomicStatus,
     getHEIInformation,
     getHIVStatus,
+    getIsNotAtRisk,
     getMultiAttributes,
     getNewlyPositive,
+    getNewlyTestedAndOnArt,
+    getNewlyTestedPositive,
     getRiskAssessment,
+    getSectionDataElements,
+    getUnknownStatus,
     hivInformation,
     isAtSchool,
     latestEvent,
+    missedAppointmentInfo,
+    monthsSinceViralTest,
     scroll,
     scroll3,
-    anyEventWithAnyOfTheValue,
-    eventsHasDataElements,
-    anyEventWithDE,
-    anyEventWithDataElement,
-    newlyTestedPositive,
-    getIsNotAtRisk,
-    getUnknownStatus,
-    getNewlyTestedPositive,
-    getNewlyTestedAndOnArt,
-    monthsSinceViralTest,
-    missedAppointmentInfo,
-    fetchGroupActivities4Instances,
-    anyService,
-    getSectionDataElements,
 } from "./utils";
-import { connection } from "./redis";
 
 dayjs.extend(isoWeek);
 dayjs.extend(quarterOfYear);

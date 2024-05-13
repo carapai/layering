@@ -1,11 +1,9 @@
 import axios from "axios";
 import { Queue, Worker } from "bullmq";
-// import { Workbook, stream } from "exceljs";
 import { utils, writeFile } from "xlsx";
 import { fromPairs, groupBy } from "lodash";
 import { RootObject, TrackedEntityInstance } from "./interfaces";
 import { connection } from "./redis";
-
 import { dataElements, programStages } from "./dataElements";
 
 const processedElements = fromPairs(

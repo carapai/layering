@@ -4,6 +4,7 @@
         "jsx": "react-jsx",
         "jsxImportSource": "hono/jsx",
         "esModuleInterop": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "outDir": "./dist"
     }
 }
