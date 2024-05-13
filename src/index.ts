@@ -8,6 +8,8 @@ import { generateXLS } from "./generateExcel";
 import { myQueue } from "./layeringQueue";
 import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
 import { dhis2Queue } from "./dhis2Queue";
+import axios from "axios";
+import { client } from "./elasticsearch";
 
 const app = new Hono();
 
@@ -83,6 +85,60 @@ app.post("/tei", async (c) => {
     const job = await downloadQueue.add("download", body);
     return c.json(job);
 });
+
+app.post(
+    "/reset",
+    zValidator(
+        "json",
+        z.object({
+            url: z.string(),
+            username: z.string(),
+            password: z.string(),
+        })
+    ),
+    async (c) => {
+        const { url, username, password } = c.req.valid("json");
+        const api = axios.create({
+            baseURL: url,
+            auth: { username: username, password: password },
+        });
+        const {
+            data: { programs },
+        } = await api.get<{ programs: Array<{ id: string }> }>(
+            "programs.json",
+            { params: { fields: "id", paging: false } }
+        );
+        const {
+            data: { programStages },
+        } = await api.get<{ programStages: Array<{ id: string }> }>(
+            "programStages.json",
+            { params: { fields: "id", paging: false } }
+        );
+
+        const all = programs
+            .concat(programStages)
+            .map(({ id }) => String(id).toLowerCase());
+
+        for (const index of [...all, "layering", "layering2"].join(",")) {
+            try {
+                await client.indices.delete({ index });
+            } catch (error) {
+                console.log(error);
+            }
+            try {
+                await client.indices.create({
+                    index,
+                    settings: {
+                        "index.mapping.total_fields.limit": "10000",
+                    },
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        return c.json({ response: "Done" });
+    }
+);
 
 const port = 3001;
 console.log(`Server is running on port ${port}`);
