@@ -5,12 +5,14 @@
     },
     "dependencies": {
         "@elastic/elasticsearch": "^8.13.1",
+        "@hono/node-server": "^1.11.1",
         "@hono/zod-validator": "^0.2.1",
         "axios": "^1.6.8",
         "bullmq": "^5.7.6",
         "dayjs": "^1.11.11",
         "exceljs": "^4.4.0",
         "hono": "^4.2.9",
+        "ioredis": "^5.4.1",
         "lodash": "^4.17.21",
         "xlsx": "^0.18.5",
         "zod": "^3.23.8"
