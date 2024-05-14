@@ -1,19 +1,22 @@
+import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
 import { serve } from "@hono/node-server";
 import { zValidator } from "@hono/zod-validator";
+import axios from "axios";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { trimTrailingSlash } from "hono/trailing-slash";
 import { z } from "zod";
+import { dhis2Queue } from "./dhis2Queue";
 import { downloadQueue } from "./downloadQueue";
+import { client } from "./elasticsearch";
 import { generateXLS } from "./generateExcel";
 import { myQueue } from "./layeringQueue";
-import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
-import { dhis2Queue } from "./dhis2Queue";
-import axios from "axios";
-import { client } from "./elasticsearch";
 
 const app = new Hono();
 
 app.use("/*", cors());
+// app.use(appendTrailingSlash());
+app.use(trimTrailingSlash());
 
 app.post(
     "/",
