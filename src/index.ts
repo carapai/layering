@@ -122,7 +122,8 @@ app.post(
             .concat(programStages)
             .map(({ id }) => String(id).toLowerCase());
 
-        for (const index of [...all, "layering", "layering2"].join(",")) {
+        for (const index of [...all, "layering", "layering2"]) {
+            console.log(`Working on ${index}`);
             try {
                 await client.indices.delete({ index });
             } catch (error) {
@@ -139,7 +140,7 @@ app.post(
                 console.log(error);
             }
         }
-        return c.json({ response: "Done" });
+        return c.json(all);
     }
 );
 
