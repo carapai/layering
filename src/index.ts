@@ -8,7 +8,6 @@ import { trimTrailingSlash } from "hono/trailing-slash";
 import { z } from "zod";
 import { dhis2Queue } from "./dhis2Queue";
 import { downloadQueue } from "./downloadQueue";
-import { client } from "./elasticsearch";
 import { generateXLS } from "./generateExcel";
 import { myQueue } from "./layeringQueue";
 
@@ -43,19 +42,23 @@ app.post(
     }
 );
 
-app.post(
+app.get(
     "/download",
     zValidator(
-        "json",
+        "query",
         z.object({
             period: z.string(),
-            selectedOrgUnits: z.string().array(),
+            selectedOrgUnits: z.string(),
             code: z.string().optional(),
         })
     ),
     async (c) => {
-        const options = c.req.valid("json");
-        const buffer = await generateXLS(options);
+        const options = c.req.query();
+        const buffer = await generateXLS({
+            selectedOrgUnits: options.selectedOrgUnits.split(","),
+            period: options.period,
+            code: options.code,
+        });
         return c.body(buffer, 200, {
             "Content-Type": "application/vnd.ms-excel",
             "Content-Disposition": "attachment; filename=data.xlsx",
@@ -122,25 +125,31 @@ app.post(
             .concat(programStages)
             .map(({ id }) => String(id).toLowerCase());
 
-        for (const index of [...all, "layering", "layering2"]) {
-            console.log(`Working on ${index}`);
-            try {
-                await client.indices.delete({ index });
-            } catch (error) {
-                console.log(error);
-            }
-            try {
-                await client.indices.create({
-                    index,
-                    settings: {
-                        "index.mapping.total_fields.limit": "10000",
-                    },
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        return c.json(all);
+        const links = all
+            .concat("layering", "layering2")
+            .map((a) => `curl -X PUT localhost:9200/${a}?pretty`);
+
+        // console.log(links);
+
+        // for (const index of [...all, "layering", "layering2"]) {
+        //     console.log(`Working on ${index}`);
+        //     try {
+        //         await client.indices.delete({ index });
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        //     try {
+        //         await client.indices.create({
+        //             index,
+        //             settings: {
+        //                 "index.mapping.total_fields.limit": "10000",
+        //             },
+        //         });
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // }
+        return c.json(links);
     }
 );
 
