@@ -10,11 +10,11 @@ import { dhis2Queue } from "./dhis2Queue";
 import { downloadQueue } from "./downloadQueue";
 import { generateXLS } from "./generateExcel";
 import { myQueue } from "./layeringQueue";
+import { client } from "./elasticsearch";
 
 const app = new Hono();
 
 app.use("/*", cors());
-// app.use(appendTrailingSlash());
 app.use(trimTrailingSlash());
 
 app.post(
@@ -90,6 +90,11 @@ app.post("/tei", async (c) => {
     const body = await c.req.json();
     const job = await downloadQueue.add("download", body);
     return c.json(job);
+});
+app.post("/sql", async (c) => {
+    const query = await c.req.json();
+    const data = await client.sql.query(query);
+    return c.json(data);
 });
 
 app.post(

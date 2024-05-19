@@ -10,6 +10,7 @@ import {
     maxBy,
     minBy,
     orderBy,
+    sum,
     uniq,
 } from "lodash";
 import {
@@ -1162,7 +1163,6 @@ export const insertData = async ({
     program: string;
 }) => {
     const foundEvents = groupBy(calculatedEvents, "programStage");
-    console.log(instances, calculatedEvents);
     const requests = Object.entries(foundEvents).flatMap(([stage, events]) => {
         return chunk(events, 250).map((c) => indexBulk(stage.toLowerCase(), c));
     });
@@ -1172,4 +1172,162 @@ export const insertData = async ({
         ),
         ...requests,
     ]);
+};
+
+export const convertBoolToYesNo = (value: "true" | "false") => {
+    if (value === "true") return "Y";
+    if (value === "false") return "N";
+    return "";
+};
+export const convertBoolToNum = (value: "true" | "false") => {
+    if (value === "true") return "1";
+    if (value === "false") return "0";
+    return "";
+};
+
+export const getGraduationInfo = (
+    mostRecentGraduation: any,
+    quarterEnd: Dayjs
+) => {
+    let preGraduated = 0;
+    let fullyGraduated = 0;
+    if (mostRecentGraduation) {
+        const graduation = specificDataElement(
+            "XPJtNCSNCdR",
+            mostRecentGraduation
+        );
+        if (graduation === "1") {
+            preGraduated = 1;
+        }
+        const monthsSinceGraduation = quarterEnd.diff(
+            dayjs(mostRecentGraduation.eventDate),
+            "months"
+        );
+
+        if (monthsSinceGraduation >= 6 && preGraduated === 1) {
+            fullyGraduated = 1;
+        }
+    }
+
+    return { preGraduated, fullyGraduated };
+};
+
+export const getOVCInfo = ({
+    newlyEnrolled,
+    quarter,
+    servedInPreviousQuarter,
+    age,
+    hivStatus,
+    risks,
+    riskFactor,
+    notAtRisk,
+    notAtRiskAdult,
+    ovcVL,
+}: {
+    newlyEnrolled: boolean;
+    quarter: number;
+    servedInPreviousQuarter: number;
+    age: number;
+    notAtRisk: number;
+    notAtRiskAdult: number;
+    ovcVL: number | string;
+    hivStatus: string;
+    riskFactor: string;
+    risks: any;
+}) => {
+    let OVC_SERV = 0;
+    let OVC_ENROL = 0;
+    if (newlyEnrolled && quarter === 1) {
+        OVC_SERV = 1;
+    } else if (quarter === 1 && servedInPreviousQuarter === 1) {
+        OVC_SERV = 1;
+    } else {
+        OVC_SERV = 0;
+    }
+
+    if ((age < 18 && ovcVL === 1) || (ovcVL === "1" && OVC_SERV === 1)) {
+        OVC_ENROL = 1;
+    } else if (age < 18 && hivStatus === "+") {
+        OVC_ENROL = 0;
+    }
+    let OVC_SERV_SUBPOP = risks[riskFactor] || riskFactor;
+    const OVC_HIV_STAT =
+        hivStatus === "+" ||
+        hivStatus === "-" ||
+        ([0, 3, 6].indexOf(notAtRisk) !== -1 &&
+            [0, 3, 6].indexOf(notAtRiskAdult) !== -1 &&
+            hivStatus === "DK")
+            ? 1
+            : 0;
+
+    return { OVC_ENROL, OVC_HIV_STAT, OVC_SERV, OVC_SERV_SUBPOP };
+};
+
+export const findAssetOwnership = (filtered: any[], quarterEnd: Dayjs) => {
+    let assetOwnership = "Not Reassessed";
+
+    const hVatsBeforePeriod = eventsBeforePeriod(filtered, quarterEnd);
+    if (hVatsBeforePeriod.length > 1) {
+        const elements = [
+            "uhO8M5K9qIi",
+            "CeugEZj51eF",
+            "kSAAkvdbkhM",
+            "cErI5PKyAHU",
+            "OCpvfRcuwvz",
+            "aEAF4v9lelU",
+            "ncI6C5uZMfy",
+            "wC0fo1gmoOy",
+        ];
+        const [current, previous] = hVatsBeforePeriod.slice(-2);
+        const currentAssets = sum(elements.map((e) => Number(current[e] || 0)));
+        const previousAssets = sum(
+            elements.map((e) => Number(previous[e] || 0))
+        );
+        if (currentAssets > previousAssets) {
+            assetOwnership = "Improved";
+        } else if (currentAssets < previousAssets) {
+            assetOwnership = "Regressed";
+        } else if (currentAssets === previousAssets) {
+            assetOwnership = "Stationary";
+        }
+    }
+
+    return assetOwnership;
+};
+
+export const getGraduationStatus = ({
+    memberStatus,
+    OVC_SERV,
+    servedInPreviousQuarter,
+    quarter,
+    newlyEnrolled,
+}: {
+    memberStatus: string;
+    OVC_SERV: number;
+    servedInPreviousQuarter: number;
+    quarter: number;
+    newlyEnrolled: boolean;
+}) => {
+    let exitedWithGraduation = "";
+    if (
+        memberStatus === "Active" &&
+        OVC_SERV === 0 &&
+        servedInPreviousQuarter === 0 &&
+        quarter === 0 &&
+        newlyEnrolled
+    ) {
+        exitedWithGraduation = "Not served in both qtrs";
+    } else if (OVC_SERV === 0 && quarter === 0 && memberStatus === "Active") {
+        exitedWithGraduation = "Not served current qtr";
+    } else if (
+        OVC_SERV === 0 &&
+        servedInPreviousQuarter === 0 &&
+        memberStatus === "Active"
+    ) {
+        exitedWithGraduation = "Not served previous qtr";
+    } else if (OVC_SERV === 0 && memberStatus === "No Home Visit") {
+        exitedWithGraduation = "Not served in both qtrs";
+    } else if (OVC_SERV === 0) {
+        exitedWithGraduation = memberStatus;
+    }
 };

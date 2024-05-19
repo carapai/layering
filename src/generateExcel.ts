@@ -1,7 +1,8 @@
-import { Workbook, Worksheet } from "exceljs";
+import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
+import { Workbook } from "exceljs";
 import { COLUMNS } from "./columns";
 import { client } from "./elasticsearch";
-import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
+import { fromPairs } from "lodash";
 export async function generateXLS({
     period,
     selectedOrgUnits,
@@ -71,9 +72,13 @@ export async function generateXLS({
             },
         ];
     }
-    worksheet.addRow(COLUMNS.map(({ name }) => name));
+
+    worksheet.columns = COLUMNS.map(({ display, id }) => ({
+        header: display,
+        key: id,
+    }));
     const scrollSearch = client.helpers.scrollSearch({
-        index: "layering".toLowerCase(),
+        index: "layering",
         query: {
             bool: {
                 must,
@@ -81,10 +86,12 @@ export async function generateXLS({
         },
         size: 1000,
     });
+    let page = 0;
     for await (const result of scrollSearch) {
+        console.log(`Adding page ${page++}`);
         worksheet.addRows(
             result.documents.map((a: any) =>
-                COLUMNS.map(({ id }) => a[id] || " EST")
+                fromPairs(COLUMNS.map(({ id, display }) => [id, a[id] || ""]))
             )
         );
     }

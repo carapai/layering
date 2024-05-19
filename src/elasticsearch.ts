@@ -1,31 +1,23 @@
 import { Client } from "@elastic/elasticsearch";
 import { BulkResponse } from "@elastic/elasticsearch/lib/api/types";
+import { sum } from "lodash";
 
 export const client = new Client({ node: "http://localhost:9200" });
 
 const processBulkInserts = (inserted: BulkResponse) => {
-    console.log(inserted.items.length, inserted.errors);
-    // const total = inserted.items.filter(
-    //     (i: any) => i.index.error === undefined
-    // ).length;
+    const total = inserted.items.filter((i) => i.index?.status === 200).length;
 
-    // const allErrors = inserted.flatMap(({ items }: any) =>
-    //     items
-    //         .filter((i: any) => i.index.error !== undefined)
-    //         .map(({ index: { error } }: any) => error)
-    // );
+    const allErrors = inserted.items.flatMap(({ index }) => {
+        if (index?.error?.caused_by) return index?.error?.caused_by;
+        return [];
+    });
 
-    // const errors = sum(
-    //     inserted.map(
-    //         ({ items }) =>
-    //             items.filter((i: any) => i.index.error !== undefined).length
-    //     )
-    // );
-    // return {
-    //     totalSuccess: `Total:${total}`,
-    //     totalErrors: `Errors:${errors}`,
-    //     errors: allErrors,
-    // };
+    const errors = sum(
+        inserted.items.filter(({ index }) => index?.error !== undefined)
+    );
+    console.log(`Total:${total}`);
+    console.log(`Errors:${errors}`);
+    console.log(allErrors);
 };
 
 export const indexBulk = async (index: string, data: any[]) => {

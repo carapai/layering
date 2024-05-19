@@ -42,6 +42,7 @@ const worker = new Worker<
             auth: { username: username, password: password },
         });
         try {
+            console.log("Fetching organisation units");
             const {
                 data: { organisationUnits },
             } = await api.get<{
@@ -58,10 +59,12 @@ const worker = new Worker<
                 let params: Record<string, any> = {
                     ...others,
                     page,
+                    program,
                 };
                 if (pageCount === 1) {
                     params = { ...params, totalPages: true };
                 }
+                console.log(`Fetching data for page ${page} of ${pageCount}`);
                 const {
                     data: { trackedEntityInstances, ...rest },
                 } = await api.get<{
@@ -79,6 +82,7 @@ const worker = new Worker<
                         trackedEntityInstances,
                         processedUnits
                     );
+                    console.log(`Indexing data for ${page} of ${pageCount}`);
                     await insertData({ instances, calculatedEvents, program });
                 }
                 page = page + 1;
