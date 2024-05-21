@@ -344,8 +344,7 @@ const generateLayering = (options: {
                 : {}
             : {};
 
-        const allPreviousLayering =
-            previousLayering[trackedEntityInstance] || {};
+        let allPreviousLayering = previousLayering[trackedEntityInstance] || {};
 
         const dob = N1nMqKtYKvI;
         let currentLayer = {
@@ -1348,10 +1347,6 @@ const generateLayering = (options: {
                 ["ctxofPwv89O", "FnYsJk15LW0"]
             );
             const corePSS = psychosocialSupport === 1 ? 1 : 0;
-            const servedInPreviousQuarter = allPreviousLayering[previousQuarter]
-                ? allPreviousLayering[previousQuarter]["quarter"]
-                : 0;
-
             const { fullyGraduated, preGraduated } = getGraduationInfo(
                 mostRecentGraduation,
                 quarterEnd
@@ -1365,9 +1360,13 @@ const generateLayering = (options: {
                 coreNutrition,
                 corePSS,
             ]);
-
-            console.log(quarter);
-
+            allPreviousLayering = {
+                ...allPreviousLayering,
+                [qtr]: { quarter, fullyGraduated },
+            };
+            const servedInPreviousQuarter = allPreviousLayering[previousQuarter]
+                ? allPreviousLayering[previousQuarter]["quarter"]
+                : 0;
             const { OVC_ENROL, OVC_HIV_STAT, OVC_SERV, OVC_SERV_SUBPOP } =
                 getOVCInfo({
                     newlyEnrolled,
@@ -1381,6 +1380,7 @@ const generateLayering = (options: {
                     risks,
                     riskFactor,
                 });
+            console.log(OVC_SERV);
 
             let On_ART_HVAT: string = "";
 
