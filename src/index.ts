@@ -54,12 +54,12 @@ app.get(
     ),
     async (c) => {
         const options = c.req.query();
-        const buffer = await generateXLS({
+        await generateXLS({
             selectedOrgUnits: options.selectedOrgUnits.split(","),
             period: options.period,
             code: options.code,
         });
-        return c.body(buffer, 200, {
+        return c.body(null, 200, {
             "Content-Type": "application/vnd.ms-excel",
             "Content-Disposition": "attachment; filename=data.xlsx",
         });

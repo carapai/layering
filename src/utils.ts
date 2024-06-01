@@ -1078,12 +1078,14 @@ export const flattenInstances = (
             attributes.map(({ attribute, value }: any) => [attribute, value])
         );
         const allRelations = fromPairs(
-            relationships.map((rel: any) => {
-                return [
-                    rel["relationshipType"],
-                    rel.from.trackedEntityInstance.trackedEntityInstance,
-                ];
-            })
+            relationships
+                .map((rel: any) => {
+                    return [
+                        rel["relationshipType"],
+                        rel.from?.trackedEntityInstance?.trackedEntityInstance,
+                    ];
+                })
+                .filter((a: any) => a[1] !== undefined)
         );
         if (enrollments.length > 0) {
             for (const {

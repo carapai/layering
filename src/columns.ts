@@ -5,7 +5,7 @@ export const COLUMNS: Array<{
 }> = [
     { selected: true, display: "Beneficiary ID", id: "beneficiaryId" },
     { selected: true, display: "HouseHold Code", id: "householdCode" },
-    { selected: true, display: "Enrollment Date", id: "householdCode" },
+    { selected: true, display: "Enrollment Date", id: "enrollmentDate" },
     { selected: true, display: "Type(Comprehensive, Prevention)", id: "type" },
     { selected: true, display: "District/City", id: "district" },
     { selected: true, display: "Subcounty", id: "subCounty" },
@@ -38,6 +38,11 @@ export const COLUMNS: Array<{
         id: "economicStatus",
     },
     { selected: true, display: "Household status", id: "householdStatus" },
+    {
+        selected: true,
+        display: "Household Reason for Exit",
+        id: "householdExitReason",
+    },
     { selected: true, display: "Member status", id: "memberStatus" },
     { selected: true, display: "Reasons for Exit", id: "reasonForExit" },
     {
@@ -468,6 +473,11 @@ export const COLUMNS: Array<{
         selected: true,
         display: "Served_in_Previous Quarter",
         id: "servedInPreviousQuarter",
+    },
+    {
+        selected: true,
+        display: "Served_in_Current Quarter",
+        id: "quarter",
     },
     {
         selected: true,

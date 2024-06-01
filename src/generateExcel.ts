@@ -1,5 +1,5 @@
 import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
-import { Workbook } from "exceljs";
+import { Workbook, stream } from "exceljs";
 import { COLUMNS } from "./columns";
 import { client } from "./elasticsearch";
 import { fromPairs } from "lodash";
@@ -12,7 +12,12 @@ export async function generateXLS({
     selectedOrgUnits: string[];
     code?: string;
 }) {
-    const workbook = new Workbook();
+    const options = {
+        filename: "layering.xlsx",
+        useStyles: true,
+        useSharedStrings: true,
+    };
+    const workbook = new stream.xlsx.WorkbookWriter(options);
     const worksheet = workbook.addWorksheet("Layering");
     let must: QueryDslQueryContainer[] = [
         {
@@ -77,7 +82,7 @@ export async function generateXLS({
         header: display,
         key: id,
     }));
-    const scrollSearch = client.helpers.scrollSearch({
+    const scrollSearch = client.helpers.scrollSearch<any, any>({
         index: "layering",
         query: {
             bool: {
@@ -89,12 +94,11 @@ export async function generateXLS({
     let page = 0;
     for await (const result of scrollSearch) {
         console.log(`Adding page ${page++}`);
-        worksheet.addRows(
-            result.documents.map((a: any) =>
-                fromPairs(COLUMNS.map(({ id, display }) => [id, a[id] || ""]))
-            )
-        );
+        for (const a of result.documents) {
+            worksheet
+                .addRow(fromPairs(COLUMNS.map(({ id }) => [id, a[id] || ""])))
+                .commit();
+        }
     }
-    const buffer = workbook.xlsx.writeBuffer();
-    return buffer;
+    await workbook.commit();
 }

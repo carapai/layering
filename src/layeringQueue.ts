@@ -512,6 +512,7 @@ const generateLayering = (options: {
 
             const baselineRiskFactor = firstHomeVisit?.["rQBaynepqjy"] ?? "";
             const reasonForExit = currentHomeVisit?.["yiKbqQvYunj"] ?? "";
+            const householdExitReason = currentHomeVisit?.["Xy3kS6Jgd08"] ?? "";
             const VSLASavings = currentDirectBeneficiary?.["H5vsW6LYFhy"] ?? "";
             const VSLABorrowing =
                 currentDirectBeneficiary?.["s4w6hTytt5h"] ?? "";
@@ -1313,17 +1314,6 @@ const generateLayering = (options: {
                 kitchenGarden,
                 nutritionalFoodSupplement,
             ]);
-            const psychosocialSupport = eventsHasDataElements(
-                homeVisitsDuringQuarter,
-                [
-                    "MATAEq9LNv6",
-                    "dixzkS2rTr8",
-                    "tSlvgS2pOpS",
-                    "o3TMaBaufzJ",
-                    "x8pZA6sigEl",
-                    "QnH19OWdn9c",
-                ]
-            );
 
             const recreationActivities = eventsHasDataElements(
                 homeVisitsDuringQuarter,
@@ -1346,7 +1336,6 @@ const generateLayering = (options: {
                 homeVisitsDuringQuarter,
                 ["ctxofPwv89O", "FnYsJk15LW0"]
             );
-            const corePSS = psychosocialSupport === 1 ? 1 : 0;
             const { fullyGraduated, preGraduated } = getGraduationInfo(
                 mostRecentGraduation,
                 quarterEnd
@@ -1358,8 +1347,12 @@ const generateLayering = (options: {
                 coreHealth,
                 coreChildProtection,
                 coreNutrition,
-                corePSS,
             ]);
+
+            const psychosocialSupport = quarter;
+
+            const corePSS = psychosocialSupport === 1 ? 1 : 0;
+
             allPreviousLayering = {
                 ...allPreviousLayering,
                 [qtr]: { quarter, fullyGraduated },
@@ -1607,6 +1600,7 @@ const generateLayering = (options: {
                 willWriting,
                 NMNInstructor: homeVisitor,
                 paraSocialWorker: homeVisitorContact,
+                householdExitReason,
             });
         }
     }
