@@ -678,21 +678,21 @@ export const isAtSchool = (
 ) => {
     if (age >= 6 && age <= 17) {
         if (homeVisitValue) {
-            return homeVisitValue;
+            return convertBoolToYesNo(homeVisitValue);
         }
 
-        if (enrollmentValue === "Y") {
-            return "N";
-        }
-        if (enrollmentValue === "N") {
+        if (enrollmentValue === "Yes") {
             return "Y";
+        }
+        if (enrollmentValue === "No") {
+            return "N";
         }
     } else if (enrollmentValue) {
-        if (enrollmentValue === "Y") {
-            return "N";
-        }
-        if (enrollmentValue === "N") {
+        if (enrollmentValue === "Yes") {
             return "Y";
+        }
+        if (enrollmentValue === "No") {
+            return "N";
         }
     }
     return "NA";

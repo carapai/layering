@@ -1049,23 +1049,6 @@ const generateLayering = (options: {
                 igaRegisteringSuccess,
                 outputMarkets,
             ]);
-
-            const enrolledInSchoolHomeVisit = getAttribute(
-                "OsOZF4e4yh5",
-                currentHomeVisit
-            );
-
-            const enrolledInSchoolSchoolMapping = getAttribute(
-                "sMW7nyVNwge",
-                currentSchoolMapping
-            );
-            // const enrolledAtSchool =
-            //     (enrolledInSchoolHomeVisit === "true" ||
-            //         enrolledInSchoolSchoolMapping === "true") &&
-            //     age >= 6 &&
-            //     age <= 20
-            //         ? "Yes"
-            //         : "No";
             const currentSchool = getAttribute(
                 "EYTmVQPfoh4",
                 currentSchoolMapping
