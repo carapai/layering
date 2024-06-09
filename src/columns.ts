@@ -48,7 +48,7 @@ export const COLUMNS: Array<{
     {
         selected: true,
         display: "Currently Enrolled in School (Y/N)",
-        id: "enrolledAtSchool",
+        id: "enrolledInSchool",
     },
     { selected: true, display: "Newly enrolled", id: "newlyEnrolledText" },
     { selected: true, display: "HIV_Status(+, /,?,  //+)", id: "hivStatus" },
@@ -85,7 +85,11 @@ export const COLUMNS: Array<{
     { selected: true, display: "ART_No_VL", id: "artNo" },
     { selected: true, display: "Facility", id: "facility" },
     { selected: true, display: "Date of ART initiation", id: "artStartDate" },
-    { selected: true, display: "Client member status ", id: "memberStatus" },
+    {
+        selected: true,
+        display: "Client member status ",
+        id: "clientMemberStatus2",
+    },
     { selected: true, display: "Regimen", id: "regimen" },
     {
         selected: true,
@@ -471,13 +475,13 @@ export const COLUMNS: Array<{
     { selected: true, display: "3 or More CPAS", id: "CPas" },
     {
         selected: true,
-        display: "Served_in_Previous Quarter",
+        display: "Served in Previous Quarter",
         id: "servedInPreviousQuarter",
     },
     {
         selected: true,
-        display: "Served_in_Current Quarter",
-        id: "quarter",
+        display: "Served in Current Quarter",
+        id: "servedInCurrentQuarter",
     },
     {
         selected: true,

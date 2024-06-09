@@ -647,8 +647,10 @@ export const deHasAnyValue = (de: string, values: any[]) => {
 
 export const findStatus = (
     homeVisitsBe4Quarter: any[],
+    currentHomeVisit: any,
     hasEnrollment: boolean
 ) => {
+    const clientMemberStatus = currentHomeVisit?.["RVwtjzZO8qG"] ?? "";
     let memberStatus = "No Home Visit";
     let householdStatus = "Not Enrolled";
     if (findAnyEventValue(homeVisitsBe4Quarter, "tM67MBdox3O") === "true") {
@@ -666,7 +668,7 @@ export const findStatus = (
         householdStatus = "Active";
     }
 
-    return { memberStatus, householdStatus };
+    return { memberStatus, householdStatus, clientMemberStatus };
 };
 
 export const isAtSchool = (
@@ -679,18 +681,18 @@ export const isAtSchool = (
             return homeVisitValue;
         }
 
-        if (enrollmentValue === "Yes") {
-            return "No";
+        if (enrollmentValue === "Y") {
+            return "N";
         }
-        if (enrollmentValue === "No") {
-            return "Yes";
+        if (enrollmentValue === "N") {
+            return "Y";
         }
     } else if (enrollmentValue) {
-        if (enrollmentValue === "Yes") {
-            return "No";
+        if (enrollmentValue === "Y") {
+            return "N";
         }
-        if (enrollmentValue === "No") {
-            return "Yes";
+        if (enrollmentValue === "N") {
+            return "Y";
         }
     }
     return "NA";
@@ -723,7 +725,7 @@ export const hivInformation = ({
     let VLSuppressed;
     if (hivStatus === "+") {
         if (artStartDate) {
-            const daysOnArt = quarterEnd.diff(dayjs(artStartDate), "days");
+            const daysOnArt = quarterEnd.diff(dayjs(artStartDate), "months");
             if (daysOnArt >= 6) {
                 ovcEligible = 1;
             } else if (lastViralLoadDate) {
@@ -876,6 +878,8 @@ export const getUnknownStatus = ({
         }
     }
 };
+
+// TODO add before art start date
 
 export const monthsSinceViralTest = (
     comparisonDate: dayjs.Dayjs,

@@ -353,7 +353,6 @@ const generateLayering = (options: {
             e0zEpTw7IH6,
             tHCT4RKXoiU,
             enrollmentDate,
-            nDUbdM2FjyP,
             type: "Comprehensive",
             district,
             subCounty,
@@ -425,16 +424,16 @@ const generateLayering = (options: {
                 quarterEnd
             );
 
-            const referralsDuringYear = eventsWithinPeriod(
-                referrals,
-                financialQStart,
-                financialQEnd
-            );
+            // const referralsDuringYear = eventsWithinPeriod(
+            //     referrals,
+            //     financialQStart,
+            //     financialQEnd
+            // );
 
-            const riskAssessmentsDuringYear = eventsWithinPeriod(
+            const riskAssessmentsDuringQuarter = eventsWithinPeriod(
                 hivRiskAssessments,
-                financialQStart,
-                financialQEnd
+                quarterStart,
+                quarterEnd
             );
 
             const referralsDuringQuarter = eventsWithinPeriod(
@@ -473,9 +472,9 @@ const generateLayering = (options: {
             const currentDirectBeneficiary = latestEvent(
                 directBeneficiariesB4Quarter
             );
-            const currentReferral = latestEvent(referralsDuringYear);
+            const currentReferral = latestEvent(referralsDuringQuarter);
             const currentRiskAssessment = latestEvent(
-                riskAssessmentsDuringYear
+                riskAssessmentsDuringQuarter
             );
             const currentHVAT = latestEvent(HVATAssessments);
             const firstHVAT = baselineEvent(HVATAssessments);
@@ -501,17 +500,19 @@ const generateLayering = (options: {
                 quarterEnd
             );
 
-            let riskFactor =
-                findAnyEventValue(homeVisitsB4Quarter, "rQBaynepqjy") ||
-                nDUbdM2FjyP;
-
+            let riskFactor = findAnyEventValue(
+                homeVisitsB4Quarter,
+                "rQBaynepqjy"
+            );
             const otherRiskFactor = findAnyEventValue(
                 homeVisitsB4Quarter,
                 "V7oko4Tm3N8"
             );
 
-            const baselineRiskFactor = firstHomeVisit?.["rQBaynepqjy"] ?? "";
+            const baselineRiskFactor =
+                nDUbdM2FjyP || firstHomeVisit?.["rQBaynepqjy"];
             const reasonForExit = currentHomeVisit?.["yiKbqQvYunj"] ?? "";
+            const reasonForVisit = currentHomeVisit?.["t7kVwlLVBns"] ?? "";
             const householdExitReason = currentHomeVisit?.["Xy3kS6Jgd08"] ?? "";
             const VSLASavings = currentDirectBeneficiary?.["H5vsW6LYFhy"] ?? "";
             const VSLABorrowing =
@@ -581,7 +582,7 @@ const generateLayering = (options: {
                 artStartDate,
                 financialQuarterStart: financialQStart,
                 financialQuarterEnd: financialQEnd,
-                referralsDuringYear,
+                referralsDuringYear: referralsDuringQuarter,
                 hivStatus,
             });
 
@@ -621,7 +622,7 @@ const generateLayering = (options: {
                 currentReferral
             );
             const unknownOther = findAnyEventValue(
-                riskAssessmentsDuringYear,
+                riskAssessmentsDuringQuarter,
                 "cTV8aMqnVbe"
             );
             const linked = deHasAnyValue(serviceProvided, [
@@ -641,8 +642,13 @@ const generateLayering = (options: {
             const OVC_TST_REFER =
                 serviceProvided === "HCT/ Tested for HIV" ? 1 : 0;
             const OVC_TST_REPORT = hivResult && OVC_TST_REFER === 1 ? 1 : 0;
-            const { memberStatus, householdStatus } = findStatus(
+            const {
+                memberStatus,
+                householdStatus,
+                clientMemberStatus: clientMemberStatus2,
+            } = findStatus(
                 homeVisitsB4Quarter,
+                currentHomeVisit,
                 hasEnrollment
             );
 
@@ -1044,9 +1050,22 @@ const generateLayering = (options: {
                 outputMarkets,
             ]);
 
-            const enrolledAtSchool = convertBoolToYesNo(
-                getAttribute("sMW7nyVNwge", currentSchoolMapping)
+            const enrolledInSchoolHomeVisit = getAttribute(
+                "OsOZF4e4yh5",
+                currentHomeVisit
             );
+
+            const enrolledInSchoolSchoolMapping = getAttribute(
+                "sMW7nyVNwge",
+                currentSchoolMapping
+            );
+            // const enrolledAtSchool =
+            //     (enrolledInSchoolHomeVisit === "true" ||
+            //         enrolledInSchoolSchoolMapping === "true") &&
+            //     age >= 6 &&
+            //     age <= 20
+            //         ? "Yes"
+            //         : "No";
             const currentSchool = getAttribute(
                 "EYTmVQPfoh4",
                 currentSchoolMapping
@@ -1373,7 +1392,6 @@ const generateLayering = (options: {
                     risks,
                     riskFactor,
                 });
-            console.log(OVC_SERV);
 
             let On_ART_HVAT: string = "";
 
@@ -1419,7 +1437,6 @@ const generateLayering = (options: {
                 vocationalApprenticeship,
                 governmentSocialProtection,
                 homeVisitor,
-                enrolledAtSchool,
                 currentSchool,
                 currentClass,
                 monitoringAtSchool,
@@ -1551,6 +1568,7 @@ const generateLayering = (options: {
                 corePSS,
                 preGraduated,
                 fullyGraduated,
+                servedInCurrentQuarter: quarter,
                 servedInPreviousQuarter,
                 graduated: "",
                 OVC_SERV,
@@ -1601,6 +1619,8 @@ const generateLayering = (options: {
                 NMNInstructor: homeVisitor,
                 paraSocialWorker: homeVisitorContact,
                 householdExitReason,
+                clientMemberStatus2,
+                reasonForVisit,
             });
         }
     }
