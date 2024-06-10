@@ -19,6 +19,7 @@ export const COLUMNS: Array<{
     { selected: true, display: "Age", id: "age" },
     { selected: true, display: "Age Group", id: "ageGroup" },
     { selected: true, display: "Sex", id: "sex" },
+    { selected: true, display: "Reason for visit", id: "reasonForVisit" },
     { selected: true, display: "Current Weight", id: "weight" },
     {
         selected: true,

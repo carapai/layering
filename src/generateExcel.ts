@@ -1,8 +1,9 @@
 import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
-import { Workbook, stream } from "exceljs";
+import { stream } from "exceljs";
+import { fromPairs } from "lodash";
+import path from "path";
 import { COLUMNS } from "./columns";
 import { client } from "./elasticsearch";
-import { fromPairs } from "lodash";
 export async function generateXLS({
     period,
     selectedOrgUnits,
@@ -13,7 +14,7 @@ export async function generateXLS({
     code?: string;
 }) {
     const options = {
-        filename: "layering.xlsx",
+        filename: path.join(__dirname, "..", "static", "layering.xlsx"),
         useStyles: true,
         useSharedStrings: true,
     };
@@ -93,7 +94,6 @@ export async function generateXLS({
     });
     let page = 0;
     for await (const result of scrollSearch) {
-        console.log(`Adding page ${page++}`);
         for (const a of result.documents) {
             worksheet
                 .addRow(fromPairs(COLUMNS.map(({ id }) => [id, a[id] || ""])))
@@ -101,4 +101,5 @@ export async function generateXLS({
         }
     }
     await workbook.commit();
+    return { done: "" };
 }

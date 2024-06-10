@@ -1,4 +1,6 @@
+import fs from "fs";
 import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
+import { serveStatic } from "@hono/node-server/serve-static";
 import { serve } from "@hono/node-server";
 import { zValidator } from "@hono/zod-validator";
 import axios from "axios";
@@ -16,6 +18,7 @@ const app = new Hono();
 
 app.use("/*", cors());
 app.use(trimTrailingSlash());
+app.use("/static/*", serveStatic({ root: "./" }));
 
 app.post(
     "/",
@@ -54,15 +57,12 @@ app.get(
     ),
     async (c) => {
         const options = c.req.query();
-        await generateXLS({
+        const response = await generateXLS({
             selectedOrgUnits: options.selectedOrgUnits.split(","),
             period: options.period,
             code: options.code,
         });
-        return c.body(null, 200, {
-            "Content-Type": "application/vnd.ms-excel",
-            "Content-Disposition": "attachment; filename=data.xlsx",
-        });
+        return c.json(response);
     }
 );
 
