@@ -509,8 +509,6 @@ const generateLayering = (options: {
             const VSLABorrowing =
                 currentDirectBeneficiary?.["s4w6hTytt5h"] ?? "";
 
-            console.log("VSLASavings", baselineViralLoad);
-
             const artStartDate = getAttribute("epmIBD8gh7G", baselineViralLoad);
 
             const [
@@ -1645,6 +1643,5 @@ worker.on("completed", (job) => {
 });
 
 worker.on("failed", (job, err) => {
-    console.log(err);
     console.log(`${job?.id} has failed with ${err.message}`);
 });
