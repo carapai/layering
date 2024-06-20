@@ -209,7 +209,10 @@ export const getAttributes = (
     attributes: string[],
     event?: { [key: string]: any }
 ) => {
-    return attributes.map((a) => getAttribute(a, event));
+    if (attributes) {
+        return attributes.map((a) => getAttribute(a, event));
+    }
+    return [];
 };
 export const getMultiAttributes = (attributes: string[], events: any[]) => {
     return attributes.map((a) => findAnyEventValue(events, a));
