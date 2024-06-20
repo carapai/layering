@@ -94,6 +94,7 @@ export async function generateXLS({
     });
     let page = 0;
     for await (const result of scrollSearch) {
+        console.log(`Adding page ${++page}`);
         for (const a of result.documents) {
             worksheet
                 .addRow(fromPairs(COLUMNS.map(({ id }) => [id, a[id] || ""])))

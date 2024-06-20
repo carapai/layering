@@ -7,6 +7,7 @@ import {
     fromPairs,
     groupBy,
     has,
+    isEmpty,
     maxBy,
     minBy,
     orderBy,
@@ -190,11 +191,16 @@ export const anyEventWithDE = (events: any[], dataElement: string) => {
 };
 
 export const findAnyEventValue = (events: any[], dataElement: string) => {
-    const event = orderBy(events, ["eventDate"], ["desc"]).find(
-        ({ [dataElement]: de }) => de !== null && de !== undefined
-    );
-    if (event) {
-        return event[dataElement];
+    const foundEvent = orderBy(events, ["eventDate"], ["asc"]).reduce(function (
+        acc,
+        x
+    ) {
+        for (var key in x) acc[key] = x[key];
+        return acc;
+    },
+    {});
+    if (!isEmpty(foundEvent)) {
+        return foundEvent[dataElement];
     }
     return "";
 };
@@ -244,13 +250,13 @@ export const getHEIInformation = (heiData: any[]) => {
 
     let pcr = "";
 
-    if (hivTestResults) {
+    if (hivTestResults || hivTestDueDate) {
         pcr = "4";
-    } else if (thirdPCRResults) {
+    } else if (thirdPCRResults || dateThirdPCRDone) {
         pcr = "3";
-    } else if (secondPCRResults) {
+    } else if (secondPCRResults || dateSecondPCRDone) {
         pcr = "2";
-    } else if (firstPCRResults) {
+    } else if (firstPCRResults || dateFirstPCRDone) {
         pcr = "1";
     }
     return {
@@ -1078,7 +1084,7 @@ export const flattenInstances = (
         relationships,
     } of trackedEntityInstances) {
         const units = processedUnits[orgUnit];
-        const processedAttributes = fromPairs(
+        let processedAttributes = fromPairs(
             attributes.map(({ attribute, value }: any) => [attribute, value])
         );
         const allRelations = fromPairs(
@@ -1098,57 +1104,65 @@ export const flattenInstances = (
                 orgUnitName,
                 enrollmentDate,
                 incidentDate,
+                attributes,
             } of enrollments) {
-                {
-                    const instance = {
-                        trackedEntityInstance,
-                        id: trackedEntityInstance,
-                        orgUnit,
-                        ...processedAttributes,
-                        ...allRelations,
-                        ...units,
-                        inactive,
+                processedAttributes = {
+                    ...processedAttributes,
+                    ...fromPairs(
+                        attributes.map(({ attribute, value }: any) => [
+                            attribute,
+                            value,
+                        ])
+                    ),
+                };
+                const instance = {
+                    trackedEntityInstance,
+                    id: trackedEntityInstance,
+                    orgUnit,
+                    ...processedAttributes,
+                    ...allRelations,
+                    ...units,
+                    inactive,
+                    deleted,
+                    enrollmentDate,
+                    incidentDate,
+                    orgUnitName,
+                    program,
+                };
+                instances.push(instance);
+                if (events.length > 0) {
+                    for (const {
+                        dataValues,
+                        dueDate,
+                        eventDate,
+                        event,
                         deleted,
-                        enrollmentDate,
-                        incidentDate,
-                        orgUnitName,
-                        program,
-                    };
-                    instances.push(instance);
-                    if (events.length > 0) {
-                        for (const {
-                            dataValues,
-                            dueDate,
-                            eventDate,
-                            event,
-                            deleted,
-                            notes,
-                            relationships,
-                            geometry,
-                            ...eventDetails
-                        } of events) {
-                            if (eventDetails.status !== "SCHEDULE") {
-                                calculatedEvents.push({
-                                    id: event,
-                                    orgUnitName,
-                                    enrollmentDate,
-                                    incidentDate,
-                                    dueDate,
-                                    eventDate,
-                                    deleted,
-                                    event,
-                                    ...units,
-                                    ...fromPairs(
-                                        dataValues.map(
-                                            ({ dataElement, value }: any) => [
-                                                dataElement,
-                                                value,
-                                            ]
-                                        )
-                                    ),
-                                    ...eventDetails,
-                                });
-                            }
+                        notes,
+                        relationships,
+                        geometry,
+                        ...eventDetails
+                    } of events) {
+                        if (eventDetails.status !== "SCHEDULE") {
+                            calculatedEvents.push({
+                                id: event,
+                                orgUnitName,
+                                enrollmentDate,
+                                incidentDate,
+                                dueDate,
+                                eventDate,
+                                deleted,
+                                event,
+                                ...units,
+                                ...fromPairs(
+                                    dataValues.map(
+                                        ({ dataElement, value }: any) => [
+                                            dataElement,
+                                            value,
+                                        ]
+                                    )
+                                ),
+                                ...eventDetails,
+                            });
                         }
                     }
                 }

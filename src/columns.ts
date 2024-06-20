@@ -89,7 +89,7 @@ export const COLUMNS: Array<{
     {
         selected: true,
         display: "Client member status ",
-        id: "clientMemberStatus2",
+        id: "clientMemberStatus",
     },
     { selected: true, display: "Regimen", id: "regimen" },
     {
@@ -134,7 +134,7 @@ export const COLUMNS: Array<{
     {
         selected: true,
         display: "Client TB Preventive Therapy Status ",
-        id: "currentTBStatus",
+        id: "currentTBPreventionStatus",
     },
     {
         selected: true,
@@ -358,7 +358,7 @@ export const COLUMNS: Array<{
         id: "otherHealthServices",
     },
     { selected: true, display: "CORE_HEALTH", id: "coreHealth" },
-    { selected: true, display: "GBV Prevention Education", id: "" },
+    { selected: true, display: "GBV Prevention Education", id: "GBVEduction" },
     { selected: true, display: "GBV Screening", id: "hasGbvScreening" },
     { selected: true, display: "Reported GBV", id: "reportedGBV" },
     { selected: true, display: "GBV counselling", id: "GBVCounseling" },

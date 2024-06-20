@@ -419,16 +419,6 @@ const generateLayering = (options: {
                 schoolMonitoring,
                 quarterEnd
             );
-            const protectionFundsB4Quarter = eventsBeforePeriod(
-                protectionFunds,
-                quarterEnd
-            );
-
-            // const referralsDuringYear = eventsWithinPeriod(
-            //     referrals,
-            //     financialQStart,
-            //     financialQEnd
-            // );
 
             const riskAssessmentsDuringQuarter = eventsWithinPeriod(
                 hivRiskAssessments,
@@ -468,6 +458,7 @@ const generateLayering = (options: {
             );
 
             const currentViralLoad = latestEvent(viralLoadsB4Quarter);
+            const baselineViralLoad = baselineEvent(viralLoadsB4Quarter);
             const currentHomeVisit = latestEvent(homeVisitsB4Quarter);
             const currentDirectBeneficiary = latestEvent(
                 directBeneficiariesB4Quarter
@@ -518,26 +509,52 @@ const generateLayering = (options: {
             const VSLABorrowing =
                 currentDirectBeneficiary?.["s4w6hTytt5h"] ?? "";
 
+            const [artStartDate] = getAttributes(baselineViralLoad, [
+                "epmIBD8gh7G",
+            ]);
+
             const [
-                artStartDate,
                 weight,
                 lastViralLoadDate,
                 viralTestDone,
                 viralLoadResultsReceived,
                 viralLoadStatus,
+                sampleType,
                 viralLoadCopies,
                 regimen,
+                clientMemberStatus,
+                onMultiMonthDispensing,
+                clientDSDModel,
+                currentTBStatus,
+                onTBTreatment,
+                hasThePersonDisclosed,
+                heiUptoDateWithImmunization,
+                currentTBPreventionStatus,
+                facility,
+                artNo,
+                onArt,
             ] = getAttributes(
                 [
-                    "epmIBD8gh7G",
                     "Kjtt7SV26zL",
                     "Ti0huZXbAM0",
                     "cM7dovIX2Dl",
                     "te2VwealaBT",
-                    "AmaNW7QDuOV",
+                    "hY3VAB2NyRu",
+                    "RmhO4qcsC2Z",
                     "b8p0uWaYRhY",
                     "nZ1omFVYFkT",
+                    "tkyfofbEzEc",
+                    "XZzjyuqPs0p",
+                    "RvvlK3akoaQ",
+                    "c9huL0msMQ7",
+                    "T6Id5L85PDM",
+                    "iFgXXIUj9C0",
+                    "qkpSMaBL0eQ",
+                    "nLwPogZRhau",
+
                     "usRWNcogGX7",
+                    "aBc9Lr1z25H",
+                    "xyDBnQTdZqS",
                 ],
                 currentViralLoad
             );
@@ -586,10 +603,10 @@ const generateLayering = (options: {
                 hivStatus,
             });
 
-            const [facility, artNo, onArt] = getMultiAttributes(
-                ["usRWNcogGX7", "aBc9Lr1z25H", "xyDBnQTdZqS"],
-                viralLoadsB4Quarter
-            );
+            // const [facility, artNo, onArt] = getMultiAttributes(
+            //     ["usRWNcogGX7", "aBc9Lr1z25H", "xyDBnQTdZqS"],
+            //     viralLoadsB4Quarter
+            // );
 
             const OVC_TST_ASSESS = currentRiskAssessment ? 1 : 0;
 
@@ -642,11 +659,7 @@ const generateLayering = (options: {
             const OVC_TST_REFER =
                 serviceProvided === "HCT/ Tested for HIV" ? 1 : 0;
             const OVC_TST_REPORT = hivResult && OVC_TST_REFER === 1 ? 1 : 0;
-            const {
-                memberStatus,
-                householdStatus,
-                clientMemberStatus: clientMemberStatus2,
-            } = findStatus(
+            const { memberStatus, householdStatus } = findStatus(
                 homeVisitsB4Quarter,
                 currentHomeVisit,
                 hasEnrollment
@@ -863,14 +876,14 @@ const generateLayering = (options: {
                 )
                     ? 1
                     : 0;
-            const eMTCT = eventsHasDataElements(
-                homeVisitsDuringQuarter,
-                getSectionDataElements("hwzwC18yXkZ")
-            );
+            const eMTCT = eventsHasDataElements(homeVisitsDuringQuarter, [
+                "AhUJLs4CGMI",
+                "GYxWuJCvCtc",
+            ]);
 
             const hivPrevention = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                getSectionDataElements("UefB1vs1yM0")
+                ["WheJwufMW87", "KBFmrSAROjO"]
             );
 
             const TFHealth =
@@ -992,21 +1005,6 @@ const generateLayering = (options: {
                 financialQuarterStart: financialQStart,
                 financialQuarterEnd: financialQEnd,
             });
-
-            const clientMemberStatus = currentViralLoad?.["tkyfofbEzEc"] ?? "";
-            const sampleType = currentViralLoad?.["RmhO4qcsC2Z"] ?? "";
-
-            const onMultiMonthDispensing = convertBoolToYesNo(
-                currentViralLoad?.["XZzjyuqPs0p"]
-            );
-
-            const clientDSDModel = currentViralLoad?.["RvvlK3akoaQ"] ?? "";
-            const currentTBStatus = currentViralLoad?.["c9huL0msMQ7"] ?? "";
-            const onTBTreatment = currentViralLoad?.["T6Id5L85PDM"] ?? "";
-            const hasThePersonDisclosed =
-                currentViralLoad?.["iFgXXIUj9C0"] ?? "";
-            const heiUptoDateWithImmunization =
-                currentViralLoad?.["qkpSMaBL0eQ"] ?? "";
 
             const viralLoadIs12Months = monthsSinceViralTest(
                 quarterEnd,
@@ -1241,19 +1239,19 @@ const generateLayering = (options: {
 
             const childProtectionEducation = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                [
-                    "vQeVaiEJfmM",
-                    "rsywcqeAWeD",
-                    "ZekYkAu0olk",
-                    "OhqAmjjqJNc",
-                    "xRxFcns3aew",
-                    "FTvLP1jSnqT",
-                    "iIQMfRchN5q",
-                    "zgYnmrUlwvb",
-                    "gT67vyCjAlS",
-                    "mQFKcNwfJlW",
-                ]
+                ["ZekYkAu0olk", "HleyWLT30Rr", "dT7weXodePx"]
             );
+            const GBVEduction = eventsHasDataElements(homeVisitsDuringQuarter, [
+                "Fwu5MCBQkrQ",
+                "DaIJDBnFIGQ",
+                "Byqy2x4IC8J",
+                "d6S3dar5jWZ",
+                "HNx72j76pnx",
+                "mv5c9U6H4d9",
+                "qWlv5jmj5xu",
+                "YwISL5jAN6K",
+                "tfuyHZc81z8",
+            ]);
             const coreChildProtection = anyService([
                 basicNeed,
                 legalSupport,
@@ -1602,8 +1600,9 @@ const generateLayering = (options: {
                 NMNInstructor: homeVisitor,
                 paraSocialWorker: homeVisitorContact,
                 householdExitReason,
-                clientMemberStatus2,
                 reasonForVisit,
+                currentTBPreventionStatus,
+                GBVEduction,
             });
         }
     }

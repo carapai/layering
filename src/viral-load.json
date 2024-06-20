@@ -1,0 +1,312 @@
+[
+    {
+        "name": "ART Information ",
+        "dataElements": [
+            { "name": "On ART", "id": "xyDBnQTdZqS" },
+            { "name": "Weight", "id": "fIbdjZvdOHt" },
+            { "name": "Beneficiary EMTCT status", "id": "XpPKqAwwWIa" },
+            { "name": "if Yes, ART Number", "id": "aBc9Lr1z25H" },
+            {
+                "name": "Health facility where client receives care",
+                "id": "usRWNcogGX7"
+            },
+            { "name": "Sub County of current care point", "id": "Yq0gJZ5yrF3" },
+            { "name": "District", "id": "kUbrc593RKq" },
+            { "name": "Date of ART initiation", "id": "epmIBD8gh7G" },
+            { "name": "Date of Last ART Clinic visit", "id": "s4VyDhKoQjU" },
+            { "name": "Next ART Appointment date", "id": "NXi3ARttBR8" },
+            { "name": "Client member status", "id": "tkyfofbEzEc" },
+            {
+                "name": "If Client transferred out, to where",
+                "id": "wiUm5Iad91G"
+            },
+            { "name": "HVT-024. Adherence level", "id": "nPoNUhr9I4Z" },
+            {
+                "name": "If Adherence is poor/fair, is the beneficiary on DOTs (Y/N)",
+                "id": "PbUx8xtMhKh"
+            },
+            { "name": "Give reason(s) if not on DOTS", "id": "gvoCXEepW8f" },
+            { "name": "Regimen", "id": "nZ1omFVYFkT" },
+            { "name": "Other Regimen", "id": "lsXWcdfwnVA" },
+            {
+                "name": "VL.On multi month Dispensing (MMD) ",
+                "id": "XZzjyuqPs0p"
+            },
+            { "name": "VL.Months of ART refill", "id": "RmeBuTeLsfg" },
+            { "name": "VL.Client DSD model", "id": "RvvlK3akoaQ" },
+            {
+                "name": "VL.Client TB Preventive Therapy Status",
+                "id": "nLwPogZRhau"
+            },
+            {
+                "name": "VL.Screened for T.B during the last visit",
+                "id": "MvrCiEIk5Ef"
+            },
+            { "name": "VL.T. B Screening status", "id": "bBILr4VHj7B" },
+            { "name": "VL.Current TB status", "id": "c9huL0msMQ7" },
+            { "name": "VL.On TB treatment", "id": "T6Id5L85PDM" },
+            {
+                "name": "VL.If on treatment is the client on community TB DOTS?",
+                "id": "EVM4daZEys4"
+            },
+            {
+                "name": "VL.Has the person Disclosed or Disclosed to?",
+                "id": "iFgXXIUj9C0"
+            }
+        ],
+        "id": "stYAYFDk3ez"
+    },
+    {
+        "name": "Viral Load Tests & Results",
+        "dataElements": [
+            {
+                "name": "Client eligible for viral load test (Y/N)",
+                "id": "PSctrPyEehc"
+            },
+            { "name": "Date when Last VL test was done", "id": "Ti0huZXbAM0" },
+            {
+                "name": "Date when NEXT VL test will be done",
+                "id": "ESTGBpvuFur"
+            },
+            { "name": "Viral Load test done", "id": "cM7dovIX2Dl" },
+            { "name": "Viral Load test results received", "id": "te2VwealaBT" },
+            {
+                "name": "Viral Load test results (Indicate Copies)",
+                "id": "b8p0uWaYRhY"
+            },
+            { "name": "Viral load Status", "id": "hY3VAB2NyRu" },
+            { "name": "VL-Sample type", "id": "RmhO4qcsC2Z" }
+        ],
+        "id": "yv50jmExiWd"
+    },
+    {
+        "name": "Non-Suppressing ART Clients Only",
+        "dataElements": [
+            { "name": "VL. On IAC", "id": "iHdNYfm1qlz" },
+            { "name": "VL. Date IAC started", "id": "aMVG1Z6yOsj" },
+            { "name": "VL. Date completed IAC", "id": "ZOcFcJreMe0" },
+            {
+                "name": "VL.Completed 3 consecutive IAC with Good Adherence score",
+                "id": "HQI3As33Elb"
+            },
+            { "name": "VL. Due date for repeat VL test", "id": "ZFpNv2lohYT" },
+            { "name": "VL.Bled for repeat VL test", "id": "INtBesP7YLH" },
+            { "name": "VL. Date Bled for Repeat VL test", "id": "ecweHE9hspo" },
+            {
+                "name": "VL. Repeat Viral load results (copies)",
+                "id": "dKuvKdHH5BP"
+            },
+            { "name": "VL. Repeat Viral load status", "id": "nXlDRLDpHhg" },
+            {
+                "name": "VL. For those non-suppressing after repeat VL test; Switched to another regimen ",
+                "id": "yvfGDDGKenV"
+            },
+            { "name": "Indicate regimen", "id": "gqYP8yQH2KJ" },
+            {
+                "name": "10. What are the main reasons why the beneficiary/client is not suppressing?",
+                "id": "tM1JkvYWZUc"
+            }
+        ],
+        "id": "YUfbYuttGra"
+    },
+    {
+        "name": "Drug Resistance ",
+        "dataElements": [
+            { "name": "VL.Drug resistance test date", "id": "WkTBHnRX7Ho" },
+            {
+                "name": "VL.Drug Resistant results received",
+                "id": "nzx7VOiV2hZ"
+            },
+            { "name": "VL.Client been switched", "id": "xWZb1VvNZxc" },
+            { "name": "VL.Regimen switched to", "id": "QMFNuxKZ6jX" }
+        ],
+        "id": "LmpvzBjhKOo"
+    },
+    {
+        "name": "Adherence issues identified",
+        "dataElements": [
+            {
+                "name": "PA. Lack of transport to access ART at facility",
+                "id": "A1gfni1X148"
+            },
+            { "name": "PA. Drug stock outs at facility", "id": "Tqp5yG0th24" },
+            { "name": "PA. Toxity / Side effects", "id": "Z1a2MWQjJeS" },
+            {
+                "name": "PA. Insufficient Food/Poor Nutrition",
+                "id": "rdMSTFMu3tt"
+            },
+            {
+                "name": "PA. Treatment fatigue/Pill burden due to conditions like TB or other diseases",
+                "id": "KZoIUCmHTg1"
+            },
+            { "name": "PA. Stigma and discrimination", "id": "ITtpjJt9hN1" },
+            { "name": "PA. Depression", "id": "l35Yw2Xg2Ns" },
+            { "name": "PA. Drug abuse / Substance abuse", "id": "McC9VZedp4C" },
+            { "name": "PA. Non-disclosure of status", "id": "h644OxUwtmN" },
+            { "name": "PA. Felt better / Too ill/Forgot", "id": "y7BqrUTKs8t" },
+            { "name": "PA. Alcoholism", "id": "wbLrlA2nsCD" },
+            { "name": "PA. Gender Based Violence", "id": "Wuz7pxhchtP" },
+            { "name": "PA. Sharing drugs with others", "id": "rA5AsHwyvWp" },
+            {
+                "name": "PA. Patient lost/ran out of pills",
+                "id": "gMYwt5t99Cl"
+            },
+            { "name": "PA. Others (Specify):", "id": "upbYnCOQglO" }
+        ],
+        "id": "WigEA93XrC7"
+    },
+    {
+        "name": "Mother baby pair",
+        "dataElements": [
+            { "name": "HEI-Mother baby pair", "id": "ggCxBusYWSf" }
+        ],
+        "id": "GnwNYdp3HPZ"
+    },
+    {
+        "name": "For HIV exposed infants only",
+        "dataElements": [
+            { "name": "HEI Individual Code", "id": "udCDAJdVI3H" },
+            { "name": "Age (in months)", "id": "PqGGAPhaz2g" },
+            { "name": "VL-Sex", "id": "MmZpSmR1ygj" },
+            { "name": "Beneficiary name", "id": "WTsN5Ik2eBV" },
+            {
+                "name": "Was the child registered at birth",
+                "id": "FDiyn2KG02D"
+            },
+            { "name": "EID enrollment date", "id": "sDMDb4InL5F" },
+            { "name": "EID number", "id": "Qyp4adG3KJL" },
+            { "name": "Where was the child born", "id": "UnTG2FYLZ0I" },
+            { "name": "Current weight in Kilograms (Kgs)", "id": "Kjtt7SV26zL" }
+        ],
+        "id": "UHl3p0RwnUv"
+    },
+    {
+        "name": "Other Information",
+        "dataElements": [
+            { "name": "Any signs of malnutrition", "id": "OALmYF8WxWP" },
+            { "name": "current infant feeding option", "id": "FEKGSrZiSt1" },
+            {
+                "name": "Mother received EMTCT services during pregnancy",
+                "id": "Yzr7Y8wHjL3"
+            },
+            { "name": "Active on ECD group", "id": "CRmWKYH5IDz" },
+            {
+                "name": "Sessions completed, if still active",
+                "id": "yXv23dQGnuW"
+            },
+            {
+                "name": "Is the child taking any medication for prophylaxis",
+                "id": "UXX5gTCDx0t"
+            },
+            { "name": "Child on Septrin", "id": "iuF8whCWYtL" },
+            {
+                "name": "HEI-At what age did the child start Septrin (in months)?",
+                "id": "WMCgai1ipez"
+            },
+            { "name": "Child on NVP Syrup", "id": "Zv2Qt97hfAy" },
+            {
+                "name": "VG-What age did child start Nevirapine syrup",
+                "id": "hGFU2hJfrGY"
+            },
+            {
+                "name": "VG-Child taking any other ARVs not NVP for prophylaxis (Y/N/Stopped)",
+                "id": "mGvZKGrC26i"
+            },
+            {
+                "name": "Up to date with Immunization schedule",
+                "id": "qkpSMaBL0eQ"
+            },
+            { "name": "Date when 1st PCR Was done", "id": "yTSlwP6htQh" },
+            { "name": "Age (Months) at 1st PCR", "id": "y8U4wl7WapI" },
+            { "name": "1st PCR Result", "id": "fUY7DEjsZin" },
+            { "name": "Result given to mother", "id": "iUiuBsdzlIO" },
+            { "name": "Date when 2nd PCR Was done", "id": "TJPxuJHRA3P" },
+            { "name": "Age at 2nd PCR", "id": "FSM6vHefbbs" },
+            { "name": "2nd PCR Result", "id": "TX2qmTSj0rM" },
+            { "name": "2nd PCR Result given to mother", "id": "cPdVtIbXDhB" },
+            { "name": "Date when 3rd PCR Was done", "id": "r0zBP8h3UEl" },
+            { "name": "3rd PCR Result", "id": "G0YhL0M4YjJ" },
+            { "name": "3rd PCR Result given to mother", "id": "kDWQIgITmkb" },
+            {
+                "name": "When did the child stop Breast/feeding",
+                "id": "rB2n2XTgAuG"
+            },
+            {
+                "name": "Date when HIV rapid test was done",
+                "id": "qitG6coAg3q"
+            },
+            {
+                "name": "G-Age when HIV rapid test was done",
+                "id": "Che2D6Jit3s"
+            },
+            { "name": "HIV test result", "id": "lznDPbUscke" },
+            { "name": "HIV Result given to mother", "id": "GgwfxtFzafL" },
+            { "name": "Final Outcome", "id": "fcAZR5zt9i3" },
+            { "name": "Date when confirmed HIV positive", "id": "nHicA9GX9dM" },
+            { "name": "Infant Initiated on ART", "id": "dx3SCyUsnv2" },
+            { "name": "Infant Date Initiated on ART", "id": "UHNjYenLB4T" },
+            { "name": "Infant Health Facility name", "id": "T2DtcH6yea7" },
+            { "name": "Infant ART Number", "id": "SF02jODMHXR" }
+        ],
+        "id": "WllFExAa3uc"
+    },
+    {
+        "name": "Services provided during the visit",
+        "dataElements": [
+            {
+                "name": "VL. Intensive Adherence Counseling (IAC)",
+                "id": "xdVsXCxgi5E"
+            },
+            { "name": "VL. Linkage to ART services", "id": "c97ei3AyqUq" },
+            {
+                "name": "VL. Linkage to Peer Support Groups for Young Positives",
+                "id": "g32oyomirVk"
+            },
+            {
+                "name": "VL. Nutrition Education and Support",
+                "id": "KYBCZidD8YK"
+            },
+            {
+                "name": "VL. Completed Referral for services including care and tx",
+                "id": "vgdtlyAikcE"
+            },
+            { "name": "VL. Transport Facilitation", "id": "lf7cS31Qlir" },
+            { "name": "VL. Psychosocial Support", "id": "nKjyjWLj88B" },
+            {
+                "name": "VL. Supported to receive Viral load test",
+                "id": "sGjrjidIde0"
+            },
+            {
+                "name": "Nutrition screening and education",
+                "id": "HbqzHG90yhP"
+            },
+            { "name": "Family Planning services", "id": "iKClBIJaebl" },
+            { "name": "Referral for birth registration", "id": "nEaFKX6HJkL" },
+            { "name": "HIV Prevention and Education", "id": "ASAbkj4Mmrh" },
+            {
+                "name": "Referral for immunization and growth monitoring",
+                "id": "kFwb98RSaXq"
+            },
+            { "name": "Establishment of kitchen gardens", "id": "olxpc9Ri3S6" },
+            { "name": "Linked to switch committee", "id": "nyb8sh4fWTP" }
+        ],
+        "id": "FQayOGklytA"
+    },
+    {
+        "name": "Next Actions taken by social Worker",
+        "dataElements": [
+            {
+                "name": "Next Action to be taken by social worker (based on care plan)",
+                "id": "eGE84OSan2n"
+            },
+            { "name": "Submitted by", "id": "ns5EKM1xBjy" },
+            { "name": "Title", "id": "XWWlh8KhsbU" },
+            { "name": "Telephone contact ", "id": "Fal6x0lGKTo" },
+            { "name": "VL-Reviewed by", "id": "lMZfyBRco1O" },
+            { "name": "VL-Reviewer's Title ", "id": "Lnk7Mziqe6A" },
+            { "name": "VL-Reviewer's Telephone Contact ", "id": "pI62gYv40ND" },
+            { "name": "Name of Data Entrant", "id": "YY5zG4Bh898" }
+        ],
+        "id": "qLE7d8o25cf"
+    }
+]

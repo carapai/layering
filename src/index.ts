@@ -1,7 +1,7 @@
-import fs from "fs";
+import "dotenv/config";
 import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
-import { serveStatic } from "@hono/node-server/serve-static";
 import { serve } from "@hono/node-server";
+import { serveStatic } from "@hono/node-server/serve-static";
 import { zValidator } from "@hono/zod-validator";
 import axios from "axios";
 import { Hono } from "hono";
@@ -10,9 +10,10 @@ import { trimTrailingSlash } from "hono/trailing-slash";
 import { z } from "zod";
 import { dhis2Queue } from "./dhis2Queue";
 import { downloadQueue } from "./downloadQueue";
+import { client } from "./elasticsearch";
 import { generateXLS } from "./generateExcel";
 import { myQueue } from "./layeringQueue";
-import { client } from "./elasticsearch";
+import { instanceQueue } from "./instanceQueue";
 
 const app = new Hono();
 
@@ -155,6 +156,26 @@ app.post(
         //     }
         // }
         return c.json(links);
+    }
+);
+
+app.get(
+    "/layer",
+    zValidator(
+        "query",
+        z.object({
+            instance: z.string(),
+        })
+    ),
+    async (c) => {
+        const options = c.req.query();
+        const job = await instanceQueue.add(options.instance, {
+            username: process.env.DHIS2_USERNAME ?? "",
+            password: process.env.DHIS2_PASSWORD ?? "",
+            url: process.env.DHIS2_URL ?? "",
+            instance: options.instance,
+        });
+        return c.json(job);
     }
 );
 
