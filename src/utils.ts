@@ -26,6 +26,14 @@ import { OrgUnit } from "./interfaces";
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isBetween);
 
+const viralLoadStatuses: Record<string, string> = {
+    "1": "Suppressed",
+    "2": "Unsuppressed",
+    "3": "Waiting",
+    "4": "Rejected",
+    "5": "Failed",
+};
+
 export const eventsBeforePeriod = (events: any[], end: Dayjs) => {
     return events.filter((e) => {
         return dayjs(e.eventDate).isSameOrBefore(end);
@@ -414,14 +422,14 @@ export const getNewlyPositive = ({
 };
 
 export const getNewlyTestedPositive = ({
-    newlyPositive,
+    newlyReportedPositive,
     artStartDate,
     financialQuarterStart,
     financialQuarterEnd,
     referralsDuringYear,
     hivStatus,
 }: {
-    newlyPositive: number;
+    newlyReportedPositive: number;
     artStartDate: string;
     financialQuarterStart: dayjs.Dayjs;
     financialQuarterEnd: dayjs.Dayjs;
@@ -430,7 +438,7 @@ export const getNewlyTestedPositive = ({
 }) => {
     let newlyTestedPositive = 0;
     if (
-        newlyPositive === 1 &&
+        newlyReportedPositive === 1 &&
         artStartDate &&
         dayjs(artStartDate).isBetween(
             financialQuarterStart,
@@ -439,7 +447,7 @@ export const getNewlyTestedPositive = ({
     ) {
         newlyTestedPositive = 0;
     } else if (
-        newlyPositive &&
+        newlyReportedPositive &&
         hasDataElementWithinPeriod(
             referralsDuringYear,
             "XTdRWh5MqPw",
@@ -1353,4 +1361,8 @@ export const getGraduationStatus = ({
     } else if (OVC_SERV === 0) {
         exitedWithGraduation = memberStatus;
     }
+};
+
+export const convertViralStatus = (status: string) => {
+    return viralLoadStatuses[status] ?? "";
 };

@@ -123,7 +123,7 @@ export const COLUMNS: Array<{
         id: "viralLoadStatus",
     },
     { selected: true, display: "Sample type", id: "sampleType" },
-    { selected: true, display: "Viral Load Copies", id: "copies" },
+    { selected: true, display: "Viral Load Copies", id: "viralLoadCopies" },
     { selected: true, display: "OVC_VLS (1 Yes, 0 No))", id: "VLSuppressed" },
     {
         selected: true,
@@ -139,7 +139,7 @@ export const COLUMNS: Array<{
     {
         selected: true,
         display: "Screened for T.B during the last visit ",
-        id: "tbScreening",
+        id: "screened4TB",
     },
     {
         selected: true,

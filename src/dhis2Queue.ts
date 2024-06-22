@@ -4,6 +4,7 @@ import { Queue, Worker } from "bullmq";
 import { OrgUnit } from "./interfaces";
 import { connection } from "./redis";
 import { flattenInstances, insertData, processOrganisations } from "./utils";
+import { layeringQueue } from "./layeringQueue";
 
 export const dhis2Queue = new Queue<
     {
@@ -11,6 +12,7 @@ export const dhis2Queue = new Queue<
         password: string;
         url: string;
         program: string;
+        generate: boolean;
         page?: number;
     } & Record<string, any>
 >("dhis2", {
@@ -23,6 +25,7 @@ const worker = new Worker<
         password: string;
         url: string;
         program: string;
+        generate: boolean;
         page?: number;
     } & Record<string, any>
 >(
@@ -34,6 +37,7 @@ const worker = new Worker<
             url,
             username,
             password,
+            generate,
             ...others
         } = job.data;
         let pageCount = 1;
@@ -87,6 +91,20 @@ const worker = new Worker<
                 }
                 page = page + 1;
             } while (page <= pageCount);
+            if (generate) {
+                let query: QueryDslQueryContainer = {
+                    match_all: {},
+                };
+                if (others.trackedEntityInstance) {
+                    query = {
+                        terms: {
+                            "trackedEntityInstance.keyword":
+                                others.trackedEntityInstance.split(","),
+                        },
+                    };
+                }
+                layeringQueue.add(program, query);
+            }
         } catch (error) {
             console.log(error);
         }

@@ -1,3 +1,4 @@
+import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
 import { Queue, Worker } from "bullmq";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
@@ -16,6 +17,7 @@ import {
     calculateQuarter,
     convertBoolToNum,
     convertBoolToYesNo,
+    convertViralStatus,
     deHasAnyValue,
     eventsBeforePeriod,
     eventsHasDataElements,
@@ -33,7 +35,6 @@ import {
     getHEIInformation,
     getHIVStatus,
     getIsNotAtRisk,
-    getMultiAttributes,
     getNewlyPositive,
     getNewlyTestedAndOnArt,
     getNewlyTestedPositive,
@@ -49,13 +50,12 @@ import {
     scroll,
     scroll3,
 } from "./utils";
-import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
 
 dayjs.extend(isoWeek);
 dayjs.extend(quarterOfYear);
 dayjs.extend(advancedFormat);
 
-export const myQueue = new Queue<QueryDslQueryContainer>("query", {
+export const layeringQueue = new Queue<QueryDslQueryContainer>("query", {
     connection,
 });
 
@@ -531,9 +531,11 @@ const generateLayering = (options: {
                 facility,
                 artNo,
                 onArt,
+                screened4TB,
+                tbScreeningStatus,
             ] = getAttributes(
                 [
-                    "Kjtt7SV26zL",
+                    "fIbdjZvdOHt",
                     "Ti0huZXbAM0",
                     "cM7dovIX2Dl",
                     "te2VwealaBT",
@@ -553,10 +555,11 @@ const generateLayering = (options: {
                     "usRWNcogGX7",
                     "aBc9Lr1z25H",
                     "xyDBnQTdZqS",
+                    "MvrCiEIk5Ef",
+                    "bBILr4VHj7B",
                 ],
                 currentViralLoad
             );
-
             const hivResult = getDataElement("XTdRWh5MqPw", currentReferral);
 
             const {
@@ -584,7 +587,7 @@ const generateLayering = (options: {
                 hivTestResults,
             });
 
-            const newlyPositive = getNewlyPositive({
+            const newlyReportedPositive = getNewlyPositive({
                 newlyEnrolled,
                 hivStatus,
                 HzUL8LTDPga,
@@ -593,7 +596,7 @@ const generateLayering = (options: {
             });
 
             const newlyTestedPositive = getNewlyTestedPositive({
-                newlyPositive,
+                newlyReportedPositive,
                 artStartDate,
                 financialQuarterStart: financialQStart,
                 financialQuarterEnd: financialQEnd,
@@ -692,23 +695,17 @@ const generateLayering = (options: {
             );
             const newlyEnrolledText = newlyEnrolled ? "Yes" : "No";
 
-            const {
-                VLTestDone,
-                ovcEligible,
-                ovcVL,
-                VLStatus,
-                VLSuppressed,
-                copies,
-            } = hivInformation({
-                artStartDate,
-                hivStatus,
-                quarterEnd,
-                lastViralLoadDate,
-                viralTestDone,
-                viralLoadResultsReceived,
-                viralLoadCopies,
-                viralLoadStatus,
-            });
+            const { VLTestDone, ovcEligible, ovcVL, VLStatus, copies } =
+                hivInformation({
+                    artStartDate,
+                    hivStatus,
+                    quarterEnd,
+                    lastViralLoadDate,
+                    viralTestDone,
+                    viralLoadResultsReceived,
+                    viralLoadCopies,
+                    viralLoadStatus,
+                });
 
             const bankLinkages = eventsHasDataElements(
                 serviceLinkagesDuringQuarter,
@@ -1402,11 +1399,15 @@ const generateLayering = (options: {
                 clientMemberStatus,
                 viralLoadIs12Months,
                 viralLoadIs6Months,
+                viralLoadStatus: convertViralStatus(viralLoadStatus),
                 sampleType,
-                onMultiMonthDispensing,
+                onMultiMonthDispensing: convertBoolToYesNo(
+                    onMultiMonthDispensing
+                ),
                 clientDSDModel,
                 currentTBStatus,
                 onTBTreatment,
+                viralLoadCopies,
                 hasThePersonDisclosed: convertBoolToYesNo(
                     hasThePersonDisclosed
                 ),
@@ -1452,12 +1453,15 @@ const generateLayering = (options: {
                 secondPCRResults,
                 dateThirdPCRDone,
                 thirdPCRResults,
+                viralLoadResultsReceived: convertBoolToNum(
+                    viralLoadResultsReceived
+                ),
                 hivTestDueDate,
                 dateHivTestDone,
                 hivTestResults,
                 finalOutcome,
                 pcr,
-                newlyPositive,
+                newlyReportedPositive,
                 newlyEnrolledText,
                 riskFactor,
                 householdStatus,
@@ -1478,7 +1482,9 @@ const generateLayering = (options: {
                 ovcVL,
                 VLStatus,
                 copies,
-                VLSuppressed,
+                tbScreeningStatus,
+                VLSuppressed:
+                    viralLoadStatus === "1" ? 1 : !!viralLoadStatus ? 0 : "",
                 immunisationStatus,
                 VSLA,
                 directBeneficiariesOperatingIGA,
@@ -1601,6 +1607,8 @@ const generateLayering = (options: {
                 reasonForVisit,
                 currentTBPreventionStatus,
                 GBVEduction,
+
+                screened4TB: convertBoolToYesNo(screened4TB),
             });
         }
     }

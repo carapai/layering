@@ -12,7 +12,7 @@ import { dhis2Queue } from "./dhis2Queue";
 import { downloadQueue } from "./downloadQueue";
 import { client } from "./elasticsearch";
 import { generateXLS } from "./generateExcel";
-import { myQueue } from "./layeringQueue";
+import { layeringQueue } from "./layeringQueue";
 import { instanceQueue } from "./instanceQueue";
 
 const app = new Hono();
@@ -41,7 +41,7 @@ app.post(
                 },
             };
         }
-        const job = await myQueue.add("myJobName", query);
+        const job = await layeringQueue.add("myJobName", query);
         return c.json(job);
     }
 );
@@ -78,6 +78,7 @@ app.post(
             username: z.string(),
             password: z.string(),
             others: z.record(z.any()),
+            generate: z.boolean(),
         })
     ),
     async (c) => {
@@ -135,26 +136,25 @@ app.post(
             .concat("layering", "layering2")
             .map((a) => `curl -X PUT localhost:9200/${a}?pretty`);
 
-        // console.log(links);
+        for (const index of [...all, "layering", "layering2"]) {
+            console.log(`Working on ${index}`);
+            try {
+                await client.indices.delete({ index });
+            } catch (error) {
+                console.log(error);
+            }
+            try {
+                await client.indices.create({
+                    index,
+                    settings: {
+                        "index.mapping.total_fields.limit": "10000",
+                    },
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
-        // for (const index of [...all, "layering", "layering2"]) {
-        //     console.log(`Working on ${index}`);
-        //     try {
-        //         await client.indices.delete({ index });
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        //     try {
-        //         await client.indices.create({
-        //             index,
-        //             settings: {
-        //                 "index.mapping.total_fields.limit": "10000",
-        //             },
-        //         });
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // }
         return c.json(links);
     }
 );
