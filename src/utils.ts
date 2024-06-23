@@ -41,9 +41,11 @@ export const eventsBeforePeriod = (events: any[], end: Dayjs) => {
 };
 
 export const eventsWithinPeriod = (events: any[], start: Dayjs, end: Dayjs) => {
-    return events.filter((e) => {
-        return dayjs(e.eventDate).isBetween(start, end);
+    const filtered = events.filter((e) => {
+        return dayjs(e.eventDate).isBetween(start, end, "date", "[]");
     });
+    console.log(filtered);
+    return filtered;
 };
 
 export const mostCurrentEvent = (events: any[]) => {
@@ -407,6 +409,8 @@ export const getNewlyPositive = ({
     if (newlyEnrolled && hivStatus === "+") {
         return 1;
     }
+
+    // TODO add previously unknown status
     if (hivStatus === "+") {
         if (
             HzUL8LTDPga === "Negative" &&
@@ -421,18 +425,19 @@ export const getNewlyPositive = ({
     return 0;
 };
 
+// TODO add art start date as base for
 export const getNewlyTestedPositive = ({
     newlyReportedPositive,
     artStartDate,
-    financialQuarterStart,
-    financialQuarterEnd,
+    quarterStart,
+    quarterEnd,
     referralsDuringYear,
     hivStatus,
 }: {
     newlyReportedPositive: number;
     artStartDate: string;
-    financialQuarterStart: dayjs.Dayjs;
-    financialQuarterEnd: dayjs.Dayjs;
+    quarterStart: dayjs.Dayjs;
+    quarterEnd: dayjs.Dayjs;
     referralsDuringYear: any[];
     hivStatus: string;
 }) => {
@@ -440,10 +445,7 @@ export const getNewlyTestedPositive = ({
     if (
         newlyReportedPositive === 1 &&
         artStartDate &&
-        dayjs(artStartDate).isBetween(
-            financialQuarterStart,
-            financialQuarterEnd
-        )
+        dayjs(artStartDate).isBetween(quarterStart, quarterEnd)
     ) {
         newlyTestedPositive = 0;
     } else if (
@@ -466,25 +468,22 @@ export const getNewlyTestedAndOnArt = ({
     artStartDate,
     onArt,
     serviceProvided,
-    financialQuarterStart,
-    financialQuarterEnd,
+    quarterStart,
+    quarterEnd,
 }: {
     newlyTestedPositive: number;
     onArt: string;
     artStartDate: string;
     serviceProvided: string;
-    financialQuarterStart: dayjs.Dayjs;
-    financialQuarterEnd: dayjs.Dayjs;
+    quarterStart: dayjs.Dayjs;
+    quarterEnd: dayjs.Dayjs;
 }) => {
     let newlyTestedAndOnArt = 0;
     if (
         newlyTestedPositive === 1 &&
         artStartDate &&
         onArt &&
-        dayjs(artStartDate).isBetween(
-            financialQuarterStart,
-            financialQuarterEnd
-        )
+        dayjs(artStartDate).isBetween(quarterStart, quarterEnd)
     ) {
         newlyTestedAndOnArt = 1;
     } else if (serviceProvided === "Started HIV treatment") {

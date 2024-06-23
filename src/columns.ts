@@ -48,7 +48,7 @@ export const COLUMNS: Array<{
     { selected: true, display: "Reasons for Exit", id: "reasonForExit" },
     {
         selected: true,
-        display: "Currently Enrolled in School (Y/N)",
+        display: "Currently Enrolled in School (Y/N) (Home visit)",
         id: "enrolledInSchool",
     },
     { selected: true, display: "Newly enrolled", id: "newlyEnrolledText" },
@@ -246,7 +246,7 @@ export const COLUMNS: Array<{
     { selected: true, display: "CORE_ES", id: "coreES" },
     {
         selected: true,
-        display: "Are you currently enrolled in school?",
+        display: "Are you currently enrolled in school? (School Mapping)",
         id: "enrolledAtSchool",
     },
     {

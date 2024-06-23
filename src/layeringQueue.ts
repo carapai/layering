@@ -14,7 +14,6 @@ import {
     anyEventWithDataElement,
     anyService,
     baselineEvent,
-    calculateQuarter,
     convertBoolToNum,
     convertBoolToYesNo,
     convertViralStatus,
@@ -384,10 +383,6 @@ const generateLayering = (options: {
             const quarterStart = period.startOf("quarter");
             const quarterEnd = period.endOf("quarter");
             const qtr = period.format("YYYY[Q]Q");
-            const [financialQStart, financialQEnd] = calculateQuarter(
-                quarterStart.year(),
-                period.quarter()
-            );
             const id = `${trackedEntityInstance}${qtr}`;
             const age = period.diff(dayjs(dob), "years");
             const ageGroup = findAgeGroup(age);
@@ -407,6 +402,7 @@ const generateLayering = (options: {
                 directBeneficiaries,
                 quarterEnd
             );
+
             const incomeGeneratingActivitiesB4Quarter = eventsBeforePeriod(
                 incomeGeneratingActivities,
                 quarterEnd
@@ -457,6 +453,10 @@ const generateLayering = (options: {
                 quarterEnd
             );
 
+            const directBeneficiariesDuringQuarter = eventsBeforePeriod(
+                directBeneficiaries,
+                quarterEnd
+            );
             const currentViralLoad = latestEvent(viralLoadsB4Quarter);
             const baselineViralLoad = baselineEvent(viralLoadsB4Quarter);
             const currentHomeVisit = latestEvent(homeVisitsB4Quarter);
@@ -598,8 +598,8 @@ const generateLayering = (options: {
             const newlyTestedPositive = getNewlyTestedPositive({
                 newlyReportedPositive,
                 artStartDate,
-                financialQuarterStart: financialQStart,
-                financialQuarterEnd: financialQEnd,
+                quarterStart,
+                quarterEnd,
                 referralsDuringYear: referralsDuringQuarter,
                 hivStatus,
             });
@@ -608,6 +608,8 @@ const generateLayering = (options: {
             //     ["usRWNcogGX7", "aBc9Lr1z25H", "xyDBnQTdZqS"],
             //     viralLoadsB4Quarter
             // );
+
+            // TODO add vsla
 
             const OVC_TST_ASSESS = currentRiskAssessment ? 1 : 0;
 
@@ -654,11 +656,13 @@ const generateLayering = (options: {
 
             riskFactor = hivStatus === "+" && age < 18 ? "CLHIV" : riskFactor;
 
-            const testedForHIV =
-                serviceProvided === "HCT/ Tested for HIV" ? 1 : 0;
+            const testedForHIV = anyEventWithAnyOfTheValue(
+                referralsDuringQuarter,
+                "XWudTD2LTUQ",
+                ["HCT/ Tested for HIV"]
+            );
             const primaryCareGiver = riskFactor === "Primary caregiver" ? 1 : 0;
-            const OVC_TST_REFER =
-                serviceProvided === "HCT/ Tested for HIV" ? 1 : 0;
+            const OVC_TST_REFER = testedForHIV;
             const OVC_TST_REPORT = hivResult && OVC_TST_REFER === 1 ? 1 : 0;
             const { memberStatus, householdStatus } = findStatus(
                 homeVisitsB4Quarter,
@@ -715,6 +719,10 @@ const generateLayering = (options: {
                 serviceLinkagesDuringQuarter,
                 ["BjjU0DuSJRJ"]
             );
+            const agriBusiness = eventsHasDataElements(
+                serviceLinkagesDuringQuarter,
+                ["BjjU0DuSJRJ"]
+            );
             const dreams = eventsHasDataElements(serviceLinkagesDuringQuarter, [
                 "sJY2dId52Pv",
             ]);
@@ -726,7 +734,7 @@ const generateLayering = (options: {
                 "QzzTM8u8USa",
                 "hzuzLSgcOsL",
             ]);
-
+            // TODO add Monthly vsla tool
             const igaBooster = eventsHasDataElements(
                 serviceLinkagesDuringQuarter,
                 ["Dk5MrVc8DCO"]
@@ -737,7 +745,7 @@ const generateLayering = (options: {
             );
             const governmentSocialProtection = eventsHasDataElements(
                 serviceLinkagesDuringQuarter,
-                ["fyZzO01L4oO"]
+                ["fyZzO01L4oO", "aAzK9GU72D4"]
             );
             const outputMarkets = eventsHasDataElements(
                 serviceLinkagesDuringQuarter,
@@ -753,6 +761,7 @@ const generateLayering = (options: {
                 ["fyZzO01L4oO"]
             );
 
+            // TODO add Monthly vsla tool
             const tempConsumption =
                 eventsHasDataElements(serviceLinkagesDuringQuarter, [
                     "HBOascaLodU",
@@ -818,26 +827,17 @@ const generateLayering = (options: {
                     : 0;
 
             const HTSReferral =
-                deHasAnyValue(serviceProvided, [
-                    "Started HIV treatment",
-                    "PEP",
-                    "HCT/ Tested for HIV",
-                    "Intensive Adherence Counseling (IAC)",
-                    "Viral Load Testing",
-                    "Provided with ARVs",
-                ]) ||
-                eventsHasDataElements(serviceLinkagesDuringQuarter, [
-                    "qGRGyK6uRaI",
-                ]);
+                deHasAnyValue(serviceProvided, ["HCT/ Tested for HIV"]) ||
+                eventsHasDataElements(homeVisitsB4Quarter, ["PEhTitztPIs"]);
 
             const nonDisclosureSupport = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                getSectionDataElements("ce3AQYScARV")
+                ["KQIXKWRaWAn", "Ozhhx5kqvFo", "lcLrfWup4jJ"]
             );
             const artInitiation = anyEventWithAnyOfTheValue(
                 referralsDuringQuarter,
                 "XWudTD2LTUQ",
-                ["Initiated on HIV Treatment"]
+                ["Provided with ARVs"]
             );
 
             const attachedToCorps = eventsHasDataElements(
@@ -851,26 +851,14 @@ const generateLayering = (options: {
 
             const artAdherenceEducation = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                getSectionDataElements("ZfSNO5akutD")
+                ["shpDhNPS54W", "F6dQ1A72dZD", "d36ew0WewuL"]
             );
             const hivCareAndLiteracy = eventsHasDataElements(
                 homeVisitsDuringQuarter,
                 ["F6dQ1A72dZD"]
             );
 
-            const iac =
-                anyEventWithDataElement(
-                    viralLoadDuringQuarter,
-                    "iHdNYfm1qlz",
-                    "true"
-                ) ||
-                anyEventWithAnyOfTheValue(
-                    referralsDuringQuarter,
-                    "XWudTD2LTUQ",
-                    ["Intensive Adherence Counseling (IAC)"]
-                )
-                    ? 1
-                    : 0;
+            const iac = getAttribute("iHdNYfm1qlz", currentViralLoad);
             const eMTCT = eventsHasDataElements(homeVisitsDuringQuarter, [
                 "AhUJLs4CGMI",
                 "GYxWuJCvCtc",
@@ -897,13 +885,11 @@ const generateLayering = (options: {
                 referralsDuringQuarter,
                 "XWudTD2LTUQ",
                 ["PEP"]
-            )
-                ? 1
-                : 0;
+            );
 
             const covid19Education = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                getSectionDataElements("pRmqIxwwWiz")
+                ["s4nVMznUGUX"]
             );
 
             const immunization = anyEventWithAnyOfTheValue(
@@ -919,10 +905,12 @@ const generateLayering = (options: {
 
             const wash =
                 anyEventWithDE(homeVisitsDuringQuarter, "eEZu3v92pJZ") ||
-                eventsHasDataElements(
-                    homeVisitsDuringQuarter,
-                    getSectionDataElements("kRLvRElkBMc")
-                ) === 1
+                eventsHasDataElements(homeVisitsDuringQuarter, [
+                    "t5ruFth9fR8",
+                    "YylRfk3iKiJ",
+                    "amaCMIvRteg",
+                    "e1uS7v9nbKW",
+                ]) === 1
                     ? 1
                     : 0;
 
@@ -932,7 +920,7 @@ const generateLayering = (options: {
 
             const familyPlanning = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["q2Pop0z4hrt", "oJfyYYOgbqs", "wUGLrnw0SV6"]
+                ["q2Pop0z4hrt", "oJfyYYOgbqs", "ucTls5HXyN3", "wUGLrnw0SV6"]
             );
             const initiatedOnTB = anyEventWithAnyOfTheValue(
                 referralsDuringQuarter,
@@ -997,8 +985,8 @@ const generateLayering = (options: {
                 artStartDate,
                 onArt,
                 serviceProvided,
-                financialQuarterStart: financialQStart,
-                financialQuarterEnd: financialQEnd,
+                quarterStart,
+                quarterEnd,
             });
 
             const viralLoadIs12Months = monthsSinceViralTest(
@@ -1020,7 +1008,7 @@ const generateLayering = (options: {
                 hasEverMissedAnAppointment,
                 missedAnAppointmentAction,
             } = missedAppointmentInfo(missedAppointments, quarterEnd);
-            const VSLA = directBeneficiariesB4Quarter.length > 0 ? 1 : 0;
+            const VSLA = directBeneficiariesDuringQuarter.length > 0 ? 1 : 0;
 
             const directBeneficiariesOperatingIGA =
                 incomeGeneratingActivitiesB4Quarter.length > 0 ? 1 : 0;
@@ -1042,6 +1030,10 @@ const generateLayering = (options: {
                 igaRegisteringSuccess,
                 outputMarkets,
             ]);
+            const enrolledAtSchool = getAttribute(
+                "sMW7nyVNwge",
+                currentSchoolMapping
+            );
             const currentSchool = getAttribute(
                 "EYTmVQPfoh4",
                 currentSchoolMapping
@@ -1064,9 +1056,11 @@ const generateLayering = (options: {
                 nonFormalEducation,
             ]);
 
-            const communityViralLoadBleeding = deHasAnyValue(serviceProvided, [
-                "Viral Load Testing",
-            ]);
+            const communityViralLoadBleeding = anyEventWithAnyOfTheValue(
+                referralsDuringQuarter,
+                "XWudTD2LTUQ",
+                ["Viral Load Testing"]
+            );
 
             const coreHealth = anyService([
                 HTSReferral,
@@ -1255,10 +1249,9 @@ const generateLayering = (options: {
                 birthRegistration,
                 childProtectionEducation,
             ]);
-
             const nutritionEducation = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["mSruDFpElU1"]
+                ["mSruDFpElU1", "uCcUxJtJIcl"]
             );
 
             const nutritionalStatus = findAnyEventValue(
@@ -1329,7 +1322,7 @@ const generateLayering = (options: {
             ]);
             const assistiveDevices = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["ctxofPwv89O", "FnYsJk15LW0"]
+                ["ctxofPwv89O"]
             );
             const { fullyGraduated, preGraduated } = getGraduationInfo(
                 mostRecentGraduation,
@@ -1493,7 +1486,7 @@ const generateLayering = (options: {
                 VSLABorrowing,
                 outputMarkets,
                 fLiteracy: "",
-                agriBusiness: "",
+                agriBusiness: agricLinkages,
                 spmTraining: "",
                 micro,
                 igaBooster,
@@ -1514,7 +1507,7 @@ const generateLayering = (options: {
                 artAdherenceEducation,
                 viralLoadBleeding,
                 returnedToCare,
-                iac,
+                iac: convertBoolToNum(iac),
                 eMTCT,
                 hivPrevention,
                 journeysMOH: "",
@@ -1607,7 +1600,7 @@ const generateLayering = (options: {
                 reasonForVisit,
                 currentTBPreventionStatus,
                 GBVEduction,
-
+                enrolledAtSchool: convertBoolToYesNo(enrolledAtSchool),
                 screened4TB: convertBoolToYesNo(screened4TB),
             });
         }
@@ -1631,10 +1624,10 @@ const worker = new Worker<QueryDslQueryContainer>(
                     // dayjs().subtract(7, "quarters"),
                     // dayjs().subtract(6, "quarters"),
                     // dayjs().subtract(5, "quarters"),
-                    dayjs().subtract(4, "quarters"),
-                    dayjs().subtract(3, "quarters"),
-                    dayjs().subtract(2, "quarters"),
-                    dayjs().subtract(1, "quarters"),
+                    // dayjs().subtract(4, "quarters"),
+                    // dayjs().subtract(3, "quarters"),
+                    // dayjs().subtract(2, "quarters"),
+                    // dayjs().subtract(1, "quarters"),
                     dayjs(),
                 ],
                 trackedEntityInstances: documents,

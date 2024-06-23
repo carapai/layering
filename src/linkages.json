@@ -1,0 +1,405 @@
+[
+    {
+        "dataElement": {
+            "name": "LLT. Name of Implementing Partner",
+            "id": "PsCPjsbx4Xk"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "LLT. Group Name (Other if no group name)",
+            "id": "wpuquwrBOOP"
+        }
+    },
+    { "dataElement": { "name": "LLT. Group Type", "id": "dvVT0RbZUZp" } },
+    {
+        "dataElement": {
+            "name": "LLT. Name of Service Provider",
+            "id": "S4WA0pgGPeY"
+        }
+    },
+    { "dataElement": { "name": "LLT. Service category", "id": "HzDRzHCuzdf" } },
+    {
+        "dataElement": {
+            "name": "LLT. DREAMS ID (if  applicable)",
+            "id": "sJY2dId52Pv"
+        }
+    },
+    {
+        "dataElement": { "name": "LLT. Service linked to", "id": "NxQ4EZUB0fr" }
+    },
+    {
+        "dataElement": {
+            "name": "LLT. Received Service? (Y/N)",
+            "id": "TIhvDoKqbal"
+        }
+    },
+    { "dataElement": { "name": "LLT. Submitted by", "id": "iO4gYKAu8tQ" } },
+    { "dataElement": { "name": "Reviewed by", "id": "siNTkvEzsTt" } },
+    { "dataElement": { "name": "Title of reviewer", "id": "QtR8cK0q9hv" } },
+    { "dataElement": { "name": "Date of review", "id": "fdaIDbNwRGK" } },
+    {
+        "dataElement": {
+            "name": "LT-Name of Data Entrant",
+            "id": "zTIN7bWBopY"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "LT-Name of Home Visitor",
+            "id": "c3c1IVrrpWG"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1a1. Access credit services",
+            "id": "xUW1Gx6g7mn"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1a2. Access saving services",
+            "id": "VOkal1836K0"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1a3. Insurance services/ Health Fund",
+            "id": "FWrUnd1AiTR"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1a. VSLA/SILC or Financial Services and Bank Linkages",
+            "id": "JkSOHPXlvCR"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1b1. Input Vouchers",
+            "id": "QzzTM8u8USa"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1b2. Low cost alternative skills",
+            "id": "hzuzLSgcOsL"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1b. IGA support including Micro-Franchise SME",
+            "id": "aS0PFCSdpiw"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1c. Business skills training ",
+            "id": "hwlkvb0xli1"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1d. Apprenticeship/Vocational skills training ",
+            "id": "E7WqYprrglQ"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e1.Gov’t Emergence fund",
+            "id": "fyZzO01L4oO"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e2. SAGE",
+            "id": "aAzK9GU72D4"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e3i. IGA support",
+            "id": "lKBoNZ0jHhj"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e3E. Education support",
+            "id": "Y6AilIwYpFy"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e3F. Food support",
+            "id": "eoQxge4LVrx"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e3M. Medical support",
+            "id": "GKETuKQNPh0"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e3. VSLA OVC protection Fund ",
+            "id": "TGgP0ndV5Yj"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e4. Other PEPFAR initiatives",
+            "id": "xTKyxUTXGw6"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e5. Non PEPFAR initiatives",
+            "id": "nDrXkF8aP9Y"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e6. Internal Contributions",
+            "id": "ZvjuX3gHBAC"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e7. Others specify___________",
+            "id": "vt2ptZQKfTD"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e8. Temporary food/cash transfer",
+            "id": "icbRVzuYeIy"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Economic Stability and Security-1e. Startup kit/Tool kits/Capital/Cash Transfers (including Unconditional financial support initiatives ",
+            "id": "Dk5MrVc8DCO"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Food Security, Nutrition and Agribusiness support-2a. Agricultural & farming inputs such as seeds, poultry or animals ",
+            "id": "BjjU0DuSJRJ"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Food Security, Nutrition and Agribusiness support-2b. Agric Advisory service/ training in agricultural production ",
+            "id": "IovXP3fomDO"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Food Security, Nutrition and Agribusiness support-2c. Nutrition education/counselling ",
+            "id": "QgylB3n0uuX"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Food Security, Nutrition and Agribusiness support-2d. Food/supplements assistance ",
+            "id": "HBOascaLodU"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Food Security, Nutrition and Agribusiness support-2e1. Input Markets through voucher ",
+            "id": "vFxB1KqM5lp"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Food Security, Nutrition and Agribusiness support-2e2. Output Markets through group-based marketing or HLF organizations",
+            "id": "pJTLmJDJDyA"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Education and Development/ Education subsidy and OVC Plus Up- 4a. Enrolled in ECD Centre",
+            "id": "AQuInXObBo7"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Education and Development/ Education subsidy and OVC Plus Up- 4b. Training in ECD ",
+            "id": "gpPe9SjWDXT"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Education and Development/ Education subsidy and OVC Plus Up-4c. enrollment/ reenrollment in school",
+            "id": "zugisWwepeI"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Education and Development/ Education subsidy and OVC Plus Up-4e. Provided School Fees ",
+            "id": "mFv83EyB7Mu"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Education and Development/ Education subsidy and OVC Plus Up-4f. Provided with school material ",
+            "id": "SC6LwbFKBXN"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Education and Development/ Education subsidy and OVC Plus Up-4g1. Home learning",
+            "id": "IRNd6kPc6Yv"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-H1. Family planning (Education, pills, condom distribution",
+            "id": "fSWUj483KL4"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-H2. Condom Promotion",
+            "id": "OKRiFPnHs0q"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-H3. STI Screening and Treatment",
+            "id": "oIjArqUfz7B"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-H4. VMMC",
+            "id": "LGGiilKOYvf"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-H6. HIV Prevention Education",
+            "id": "ZaAWQsiFPHh"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS1. Pre HIV-Screening",
+            "id": "Pb2MpeSKuEA"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS2. Pre-Counseling",
+            "id": "t0Y7rfqKFMN"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS3. HTC",
+            "id": "qGRGyK6uRaI"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS4. Post Counseling",
+            "id": "wWqddcKX5ir"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS5. Linkage to ART",
+            "id": "c6DTndNT2fM"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS6. HIV Test ",
+            "id": "LwcqnNevUcG"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS8. Viral load test",
+            "id": "jS1k55KsANg"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Violence and Protection services-10h. SGBV Prevention and post care education",
+            "id": "mPmmtfJDyVO"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Violence and Protection services-6c. Participation in community sensitization on child protection ",
+            "id": "OhqAmjjqJNc"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "Violence and Protection services-6i. SINOVUYO (Positive parenting)",
+            "id": "d2B6HIe7b4V"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "C-1.\tEconomic Stability and Security",
+            "id": "o11VKdZUwcg"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "C-2.\tFood Security, Nutrition and Agribusiness support",
+            "id": "lucS67EnDeo"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "C-3.\tEducation and Development/ Education subsidy and OVC Plus Up ",
+            "id": "nlINJbGEPuk"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "C-4.\tHIV and Sexual Reproductive Health Services",
+            "id": "otGJfXAyZvC"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "C-5.\tViolence and Protection services ",
+            "id": "p7E7sibfpui"
+        }
+    },
+    { "dataElement": { "name": "LT-Reviewed by", "id": "OKT5S0L4qRP" } },
+    {
+        "dataElement": {
+            "name": "LT-Reviewer's Telephone Contact ",
+            "id": "ZU2JjaGFvs0"
+        }
+    },
+    { "dataElement": { "name": "LT-Reviewer's Title ", "id": "u5m9ENzcNEf" } },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-H5. Contraceptive Mix",
+            "id": "ndYV4U4popf"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-3F Linked for mosquito net",
+            "id": "pAhoqjQAlfE"
+        }
+    },
+    {
+        "dataElement": {
+            "name": "HIV and Sexual Reproductive Health Services-HTS7. Referred for HIV confirmatory test",
+            "id": "TIJTibcIZ1D"
+        }
+    },
+    { "dataElement": { "name": "Telephone contact ", "id": "Fal6x0lGKTo" } },
+    { "dataElement": { "name": "LT-Other Group Type", "id": "CAJlstc88Jc" } }
+]
