@@ -4,7 +4,7 @@ import { OrgUnit } from "./interfaces";
 import { connection } from "./redis";
 import { flattenInstances, insertData, processOrganisations } from "./utils";
 import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
-import { myQueue } from "./layeringQueue";
+import { layeringQueue } from "./layeringQueue";
 
 export const instanceQueue = new Queue<{
     username: string;
@@ -63,7 +63,7 @@ const worker = new Worker<{
             };
 
             console.log("Adding job to layering queue");
-            const job = await myQueue.add(instance, query);
+            const job = await layeringQueue.add(instance, query);
             return job;
         } catch (error: any) {
             console.log(error?.message);
