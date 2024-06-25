@@ -346,7 +346,7 @@ const generateLayering = (options: {
         let allPreviousLayering = previousLayering[trackedEntityInstance] || {};
 
         const dob = N1nMqKtYKvI;
-        let currentLayer = {
+        let currentLayer: Record<string, any> = {
             trackedEntityInstance,
             beneficiaryId: HLKc2AKR9jW,
             e0zEpTw7IH6,
@@ -1378,6 +1378,13 @@ const generateLayering = (options: {
                 servedInPreviousQuarter,
                 newlyEnrolled,
             });
+
+            if (currentHomeVisit && currentHomeVisit.eventDate) {
+                currentLayer = {
+                    ...currentLayer,
+                    currentHomeVisitDate: currentHomeVisit.eventDate,
+                };
+            }
 
             layering.push({
                 ...currentLayer,

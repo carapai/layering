@@ -14,6 +14,11 @@ export const COLUMNS: Array<{
     { selected: true, display: "Household Head", id: "householdHead" },
     { selected: true, display: "Primary Caregiver", id: "primaryCareGiver" },
     { selected: true, display: "Date of Assessment", id: "eventDate" },
+    {
+        selected: true,
+        display: "Current Home Visit Date",
+        id: "currentHomeVisitDate",
+    },
     { selected: true, display: "Beneficiary Name", id: "beneficiaryName" },
     { selected: true, display: "DOB", id: "dob" },
     { selected: true, display: "Age", id: "age" },

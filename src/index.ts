@@ -14,6 +14,9 @@ import { client } from "./elasticsearch";
 import { generateXLS } from "./generateExcel";
 import { layeringQueue } from "./layeringQueue";
 import { instanceQueue } from "./instanceQueue";
+import { scheduleQueue } from "./scheduleQueue";
+import { OrgUnit } from "./interfaces";
+import { processOrganisations } from "./utils";
 
 const app = new Hono();
 
@@ -100,64 +103,102 @@ app.post("/sql", async (c) => {
 });
 
 app.post(
-    "/reset",
+    "/schedule",
     zValidator(
         "json",
         z.object({
-            url: z.string(),
-            username: z.string(),
-            password: z.string(),
+            lastUpdatedDuration: z.string(),
         })
     ),
     async (c) => {
-        const { url, username, password } = c.req.valid("json");
-        const api = axios.create({
-            baseURL: url,
-            auth: { username: username, password: password },
-        });
-        const {
-            data: { programs },
-        } = await api.get<{ programs: Array<{ id: string }> }>(
-            "programs.json",
-            { params: { fields: "id", paging: false } }
-        );
-        const {
-            data: { programStages },
-        } = await api.get<{ programStages: Array<{ id: string }> }>(
-            "programStages.json",
-            { params: { fields: "id", paging: false } }
-        );
-
-        const all = programs
-            .concat(programStages)
-            .map(({ id }) => String(id).toLowerCase());
-
-        const links = all
-            .concat("layering", "layering2")
-            .map((a) => `curl -X PUT localhost:9200/${a}?pretty`);
-
-        for (const index of [...all, "layering", "layering2"]) {
-            console.log(`Working on ${index}`);
-            try {
-                await client.indices.delete({ index });
-            } catch (error) {
-                console.log(error);
+        const { lastUpdatedDuration } = c.req.valid("json");
+        const job = await scheduleQueue.add(
+            "scheduling",
+            { lastUpdatedDuration },
+            {
+                repeat: { every: 1000 * 60 * 60 },
             }
-            try {
-                await client.indices.create({
-                    index,
-                    settings: {
-                        "index.mapping.total_fields.limit": "10000",
-                    },
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        return c.json(links);
+        );
+        return c.json(job);
     }
 );
+
+app.post(
+    "/generate",
+    zValidator(
+        "json",
+        z.object({
+            lastUpdatedDuration: z.string(),
+        })
+    ),
+    async (c) => {
+        const { lastUpdatedDuration } = c.req.valid("json");
+        const job = await scheduleQueue.add("running", {
+            lastUpdatedDuration,
+        });
+        return c.json(job);
+    }
+);
+
+app.get("/jobs", async (c) => {
+    const removed = await scheduleQueue.removeRepeatableByKey(
+        "schedule::::10000"
+    );
+    console.log(removed);
+    const repeatableJobs = await scheduleQueue.getRepeatableJobs();
+
+    return c.json(repeatableJobs);
+});
+
+app.post("/reset", async (c) => {
+    const api = axios.create({
+        baseURL: process.env.DHIS2_URL,
+        auth: {
+            username: process.env.DHIS2_USERNAME ?? "",
+            password: process.env.DHIS2_PASSWORD ?? "",
+        },
+    });
+    const {
+        data: { programs },
+    } = await api.get<{ programs: Array<{ id: string }> }>("programs.json", {
+        params: { fields: "id", paging: false },
+    });
+    const {
+        data: { programStages },
+    } = await api.get<{ programStages: Array<{ id: string }> }>(
+        "programStages.json",
+        { params: { fields: "id", paging: false } }
+    );
+
+    const all = programs
+        .concat(programStages)
+        .map(({ id }) => String(id).toLowerCase());
+
+    const links = all
+        .concat("layering", "layering2")
+        .map((a) => `curl -X PUT localhost:9200/${a}?pretty`);
+
+    for (const index of [...all, "layering", "layering2"]) {
+        console.log(`Working on ${index}`);
+        try {
+            await client.indices.delete({ index });
+        } catch (error) {
+            console.log(error);
+        }
+        try {
+            await client.indices.create({
+                index,
+                settings: {
+                    "index.mapping.total_fields.limit": "10000",
+                },
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    return c.json(links);
+});
 
 app.get(
     "/layer",

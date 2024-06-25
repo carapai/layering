@@ -1,8 +1,14 @@
+import {
+    QueryDslQueryContainer,
+    SearchRequest,
+} from "@elastic/elasticsearch/lib/api/types";
+import { AxiosInstance } from "axios";
 import dayjs, { Dayjs } from "dayjs";
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isBetween from "dayjs/plugin/isBetween";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import {
     chunk,
+    Dictionary,
     every,
     fromPairs,
     groupBy,
@@ -14,10 +20,6 @@ import {
     sum,
     uniq,
 } from "lodash";
-import {
-    QueryDslQueryContainer,
-    SearchRequest,
-} from "@elastic/elasticsearch/lib/api/types";
 import { client, indexBulk } from "./elasticsearch";
 
 import homeVisitSections from "./homeVisitSections.json";
@@ -44,7 +46,6 @@ export const eventsWithinPeriod = (events: any[], start: Dayjs, end: Dayjs) => {
     const filtered = events.filter((e) => {
         return dayjs(e.eventDate).isBetween(start, end, "date", "[]");
     });
-    console.log(filtered);
     return filtered;
 };
 
@@ -1139,6 +1140,7 @@ export const flattenInstances = (
                     orgUnitName,
                     program,
                 };
+                console.log(instance);
                 instances.push(instance);
                 if (events.length > 0) {
                     for (const {
@@ -1152,16 +1154,9 @@ export const flattenInstances = (
                         geometry,
                         ...eventDetails
                     } of events) {
-                        if (eventDetails.status !== "SCHEDULE") {
+                        if (eventDetails.status !== "SCHEDULE" && eventDate) {
+                            console.log(eventDate);
                             calculatedEvents.push({
-                                id: event,
-                                orgUnitName,
-                                enrollmentDate,
-                                incidentDate,
-                                dueDate,
-                                eventDate,
-                                deleted,
-                                event,
                                 ...units,
                                 ...fromPairs(
                                     dataValues.map(
@@ -1172,6 +1167,13 @@ export const flattenInstances = (
                                     )
                                 ),
                                 ...eventDetails,
+                                id: event,
+                                orgUnitName,
+                                enrollmentDate,
+                                incidentDate,
+                                eventDate,
+                                deleted,
+                                event,
                             });
                         }
                     }
@@ -1364,4 +1366,65 @@ export const getGraduationStatus = ({
 
 export const convertViralStatus = (status: string) => {
     return viralLoadStatuses[status] ?? "";
+};
+
+export const queryDHIS2Data = async ({
+    api,
+    page = 1,
+    program,
+    processedUnits,
+    callback,
+    ...others
+}: {
+    program: string;
+    page?: number;
+    api: AxiosInstance;
+    processedUnits: Dictionary<{
+        subCounty: string;
+        district: string;
+        orgUnitName: string;
+    }>;
+    callback?: (instances: string[]) => void;
+} & Record<string, any>) => {
+    let pageCount = 1;
+    do {
+        let params: Record<string, any> = {
+            ...others,
+            page,
+            program,
+        };
+        if (pageCount === 1) {
+            params = { ...params, totalPages: true };
+        }
+        console.log(params);
+        console.log(`Fetching data for page ${page} of ${pageCount}`);
+        const {
+            data: { trackedEntityInstances, ...rest },
+        } = await api.get<{
+            trackedEntityInstances: Array<any>;
+            pager: { pageCount: number };
+        }>("trackedEntityInstances.json", {
+            params,
+        });
+        if (pageCount === 1 && rest.pager && rest.pager.pageCount) {
+            pageCount = rest.pager.pageCount;
+        }
+        if (trackedEntityInstances.length > 0) {
+            const { instances, calculatedEvents } = flattenInstances(
+                trackedEntityInstances,
+                processedUnits
+            );
+            console.log(`Indexing data for ${page} of ${pageCount}`);
+            await insertData({ instances, calculatedEvents, program });
+
+            if (callback !== undefined) {
+                callback(
+                    trackedEntityInstances.map(
+                        ({ trackedEntityInstance }) => trackedEntityInstance
+                    )
+                );
+            }
+        }
+        page = page + 1;
+    } while (page <= pageCount);
 };

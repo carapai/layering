@@ -2,9 +2,9 @@ import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
 import axios from "axios";
 import { Queue, Worker } from "bullmq";
 import { OrgUnit } from "./interfaces";
-import { connection } from "./redis";
-import { flattenInstances, insertData, processOrganisations } from "./utils";
 import { layeringQueue } from "./layeringQueue";
+import { connection } from "./redis";
+import { processOrganisations, queryDHIS2Data } from "./utils";
 
 export const dhis2Queue = new Queue<
     {
@@ -40,7 +40,6 @@ const worker = new Worker<
             generate,
             ...others
         } = job.data;
-        let pageCount = 1;
         const api = axios.create({
             baseURL: url,
             auth: { username: username, password: password },
@@ -59,38 +58,15 @@ const worker = new Worker<
                 },
             });
             const processedUnits = processOrganisations(organisationUnits);
-            do {
-                let params: Record<string, any> = {
-                    ...others,
-                    page,
-                    program,
-                };
-                if (pageCount === 1) {
-                    params = { ...params, totalPages: true };
-                }
-                console.log(`Fetching data for page ${page} of ${pageCount}`);
-                const {
-                    data: { trackedEntityInstances, ...rest },
-                } = await api.get<{
-                    trackedEntityInstances: Array<any>;
-                    pager: { pageCount: number };
-                }>("trackedEntityInstances.json", {
-                    params,
-                });
 
-                if (pageCount === 1 && rest.pager && rest.pager.pageCount) {
-                    pageCount = rest.pager.pageCount;
-                }
-                if (trackedEntityInstances.length > 0) {
-                    const { instances, calculatedEvents } = flattenInstances(
-                        trackedEntityInstances,
-                        processedUnits
-                    );
-                    console.log(`Indexing data for ${page} of ${pageCount}`);
-                    await insertData({ instances, calculatedEvents, program });
-                }
-                page = page + 1;
-            } while (page <= pageCount);
+            await queryDHIS2Data({
+                program,
+                page,
+                processedUnits,
+                api,
+                others,
+            });
+
             if (generate) {
                 let query: QueryDslQueryContainer = {
                     match_all: {},
