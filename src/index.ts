@@ -128,7 +128,7 @@ app.post(
     zValidator(
         "json",
         z.object({
-            lastUpdatedDuration: z.string(),
+            lastUpdatedDuration: z.string().optional(),
         })
     ),
     async (c) => {
