@@ -529,4 +529,9 @@ export const COLUMNS: Array<{
         display: "Telephone No. of Para /social Worker",
         id: "paraSocialWorker",
     },
+    {
+        display: "Lasted Generated",
+        id: "generated",
+        selected: true,
+    },
 ];

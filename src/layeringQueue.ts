@@ -1609,6 +1609,7 @@ const generateLayering = (options: {
                 GBVEduction,
                 enrolledAtSchool: convertBoolToYesNo(enrolledAtSchool),
                 screened4TB: convertBoolToYesNo(screened4TB),
+                generated: new Date().toISOString(),
             });
         }
     }
