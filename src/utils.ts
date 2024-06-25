@@ -1140,7 +1140,6 @@ export const flattenInstances = (
                     orgUnitName,
                     program,
                 };
-                console.log(instance);
                 instances.push(instance);
                 if (events.length > 0) {
                     for (const {
@@ -1155,7 +1154,6 @@ export const flattenInstances = (
                         ...eventDetails
                     } of events) {
                         if (eventDetails.status !== "SCHEDULE" && eventDate) {
-                            console.log(eventDate);
                             calculatedEvents.push({
                                 ...units,
                                 ...fromPairs(
