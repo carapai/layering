@@ -447,14 +447,20 @@ const generateLayering = (options: {
                 quarterStart,
                 quarterEnd
             );
+            const missedAppointmentsDuringQuarter = eventsWithinPeriod(
+                missedAppointments,
+                quarterStart,
+                quarterEnd
+            );
             const GBVScreeningDuringQuarter = eventsWithinPeriod(
                 GBVScreenings,
                 quarterStart,
                 quarterEnd
             );
 
-            const directBeneficiariesDuringQuarter = eventsBeforePeriod(
+            const directBeneficiariesDuringQuarter = eventsWithinPeriod(
                 directBeneficiaries,
+                quarterStart,
                 quarterEnd
             );
             const currentViralLoad = latestEvent(viralLoadsB4Quarter);
@@ -777,19 +783,28 @@ const generateLayering = (options: {
                 "NxQ4EZUB0fr",
                 ["UF3 VSLA OVC protection Fund"]
             );
-            const educationFund = anyEventWithAnyOfTheValue(
-                serviceLinkagesDuringQuarter,
-                "NxQ4EZUB0fr",
-                ["UF09 OVC VSLA Education Fund"]
+            const educationFund = eventsHasDataElements(
+                directBeneficiariesDuringQuarter,
+                [
+                    "HmpNjCf65od",
+                    "pmTpaik3AgA",
+                    "eOb7mLpEVsc",
+                    "NUdSDlTPEqt",
+                    "uVuaGfrwrbC",
+                ]
+            );
+            const scholasticMaterials = eventsHasDataElements(
+                directBeneficiariesDuringQuarter,
+                ["pmTpaik3AgA", "eOb7mLpEVsc"]
+            );
+            const schoolFees = eventsHasDataElements(
+                directBeneficiariesDuringQuarter,
+                ["HmpNjCf65od", "sViPcBarrle"]
             );
             const educationSubsidy =
                 eventsHasDataElements(serviceLinkagesDuringQuarter, [
-                    "N6vri2eGvIr",
-                    "Np1E6nDdbNQ",
-                    "cKdecGMnNnz",
-                    "hn3a5FQCtkT",
-                    "OoBgArxswBi",
-                    "x6qjZOXRElL",
+                    "mFv83EyB7Mu",
+                    "SC6LwbFKBXN",
                 ]) ||
                 anyEventWithAnyOfTheValue(
                     referralsDuringQuarter,
@@ -812,10 +827,9 @@ const generateLayering = (options: {
                 "NxQ4EZUB0fr",
                 ["Home Learning"]
             );
-            const healthFund = anyEventWithAnyOfTheValue(
-                serviceLinkagesDuringQuarter,
-                "NxQ4EZUB0fr",
-                ["UF10 OVC VSLA Health Fund"]
+            const healthFund = eventsHasDataElements(
+                directBeneficiariesDuringQuarter,
+                ["WCeWH0JgylX", "umGULhvsBeR", "Ltw2hqQFgwu", "NzLj7pJypTz"]
             );
 
             const educationInformation =
@@ -1009,6 +1023,13 @@ const generateLayering = (options: {
                 missedAnAppointmentAction,
             } = missedAppointmentInfo(missedAppointments, quarterEnd);
             const VSLA = directBeneficiariesDuringQuarter.length > 0 ? 1 : 0;
+
+            const ovcProtectionFunds = anyEventWithDE(
+                directBeneficiariesDuringQuarter,
+                "qEeXNzlJkN8"
+            )
+                ? 1
+                : 0;
 
             const directBeneficiariesOperatingIGA =
                 incomeGeneratingActivitiesB4Quarter.length > 0 ? 1 : 0;
@@ -1610,6 +1631,9 @@ const generateLayering = (options: {
                 enrolledAtSchool: convertBoolToYesNo(enrolledAtSchool),
                 screened4TB: convertBoolToYesNo(screened4TB),
                 generated: new Date().toISOString(),
+                ovcProtectionFunds,
+                scholasticMaterials,
+                schoolFees,
             });
         }
     }

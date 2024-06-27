@@ -229,7 +229,11 @@ export const COLUMNS: Array<{
         id: "tempConsumption",
     },
     { selected: true, display: "VSLA Borrowing", id: "VSLABorrowing" },
-    { selected: true, display: "VSLA OVC protection Fund", id: "" },
+    {
+        selected: true,
+        display: "VSLA OVC protection Fund",
+        id: "ovcProtectionFunds",
+    },
     { selected: true, display: "Vocational/Apprenticeship", id: "" },
     {
         selected: true,
