@@ -846,7 +846,7 @@ const generateLayering = (options: {
 
             const nonDisclosureSupport = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["KQIXKWRaWAn", "Ozhhx5kqvFo", "lcLrfWup4jJ"]
+                ["KQIXKWRaWAn", "Ozhhx5kqvFo", "lcLrfWup4jJ", "A4sfodNawYV"]
             );
             const artInitiation = anyEventWithAnyOfTheValue(
                 referralsDuringQuarter,
@@ -856,7 +856,7 @@ const generateLayering = (options: {
 
             const attachedToCorps = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["mCxdn8HSVbn"]
+                ["mCxdn8HSVbn", "shpDhNPS54W", "bVJ6kjus9QI"]
             );
 
             const homeDrugDelivery = deHasAnyValue(serviceProvided, [
@@ -865,11 +865,11 @@ const generateLayering = (options: {
 
             const artAdherenceEducation = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["shpDhNPS54W", "F6dQ1A72dZD", "d36ew0WewuL"]
+                ["shpDhNPS54W", "F6dQ1A72dZD", "d36ew0WewuL", "w0sD5QMKbMe"]
             );
             const hivCareAndLiteracy = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["F6dQ1A72dZD"]
+                ["F6dQ1A72dZD", "w0sD5QMKbMe", "qISFIP4Df6R", "shpDhNPS54W"]
             );
 
             const iac = getAttribute("iHdNYfm1qlz", currentViralLoad);
@@ -880,7 +880,7 @@ const generateLayering = (options: {
 
             const hivPrevention = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["WheJwufMW87", "KBFmrSAROjO"]
+                ["WheJwufMW87", "KBFmrSAROjO", "HF7l5x4f3az", "GYxWuJCvCtc"]
             );
 
             const TFHealth =
@@ -893,6 +893,8 @@ const generateLayering = (options: {
                     "EG851ch1rWZ",
                     "gLj768y0v9Y",
                     "xdxz9xJ7USt",
+                    "pLoagwClpZC",
+                    "qISFIP4Df6R",
                 ]);
 
             const PEP = anyEventWithAnyOfTheValue(
@@ -930,6 +932,7 @@ const generateLayering = (options: {
 
             const treatedNets = eventsHasDataElements(homeVisitsDuringQuarter, [
                 "Cnjs7y3Rvi0",
+                "kVisFm4hqa1",
             ]);
 
             const familyPlanning = eventsHasDataElements(
@@ -1338,6 +1341,15 @@ const generateLayering = (options: {
                     "Az2vyIEXkmE",
                 ]
             );
+
+            const linkedToDSDM = eventsHasDataElements(
+                homeVisitsDuringQuarter,
+                ["UlGVB1Za2e6", "pLoagwClpZC"]
+            );
+            const appointmentReminding = eventsHasDataElements(
+                homeVisitsDuringQuarter,
+                ["M3csIquN0lC", "pLoagwClpZC"]
+            );
             const willWriting = eventsHasDataElements(homeVisitsDuringQuarter, [
                 "as9t4IWFo18",
             ]);
@@ -1596,14 +1608,8 @@ const generateLayering = (options: {
                 missedAnAppointmentFollowupOutcome,
                 hasEverMissedAnAppointment,
                 missedAnAppointmentAction,
-                linkedToDSDM:
-                    missedAnAppointmentAction === "3d2. Linked to DSDM (MMD)"
-                        ? 1
-                        : 0,
-                appointmentReminding:
-                    missedAnAppointmentAction === "3d5. Appointment reminding"
-                        ? 1
-                        : 0,
+                linkedToDSDM,
+                appointmentReminding,
                 orgUnit,
                 regimen,
                 agricAdvisoryService,
