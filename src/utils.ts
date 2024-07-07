@@ -411,12 +411,20 @@ export const getNewlyPositive = ({
         return 1;
     }
 
-    // TODO add previously unknown status
     if (hivStatus === "+") {
         if (
-            HzUL8LTDPga === "Negative" &&
+            (HzUL8LTDPga === "Negative" || HzUL8LTDPga === "Dont Know (DK)") &&
             previousViralLoads.length === 0 &&
-            allEventsHaveSameValue(previousReferrals, "XTdRWh5MqPw", "Negative")
+            (allEventsHaveSameValue(
+                previousReferrals,
+                "XTdRWh5MqPw",
+                "Negative"
+            ) ||
+                allEventsHaveSameValue(
+                    previousReferrals,
+                    "XTdRWh5MqPw",
+                    "Dont Know (DK)"
+                ))
         ) {
             return 1;
         } else {
@@ -443,12 +451,13 @@ export const getNewlyTestedPositive = ({
     hivStatus: string;
 }) => {
     let newlyTestedPositive = 0;
+
     if (
         newlyReportedPositive === 1 &&
         artStartDate &&
         dayjs(artStartDate).isBetween(quarterStart, quarterEnd)
     ) {
-        newlyTestedPositive = 0;
+        newlyTestedPositive = 1;
     } else if (
         newlyReportedPositive &&
         hasDataElementWithinPeriod(
@@ -466,28 +475,20 @@ export const getNewlyTestedPositive = ({
 
 export const getNewlyTestedAndOnArt = ({
     newlyTestedPositive,
-    artStartDate,
     onArt,
     serviceProvided,
-    quarterStart,
-    quarterEnd,
 }: {
     newlyTestedPositive: number;
     onArt: string;
-    artStartDate: string;
     serviceProvided: string;
-    quarterStart: dayjs.Dayjs;
-    quarterEnd: dayjs.Dayjs;
 }) => {
     let newlyTestedAndOnArt = 0;
-    if (
-        newlyTestedPositive === 1 &&
-        artStartDate &&
-        onArt &&
-        dayjs(artStartDate).isBetween(quarterStart, quarterEnd)
-    ) {
+    if (newlyTestedPositive === 1 && onArt) {
         newlyTestedAndOnArt = 1;
-    } else if (serviceProvided === "Started HIV treatment") {
+    } else if (
+        newlyTestedPositive &&
+        serviceProvided === "Started HIV treatment"
+    ) {
         newlyTestedAndOnArt = 1;
     }
     return newlyTestedAndOnArt;
@@ -662,56 +663,25 @@ export const deHasAnyValue = (de: string, values: any[]) => {
     return 0;
 };
 
-export const findStatus = (
-    homeVisitsBe4Quarter: any[],
-    currentHomeVisit: any,
-    hasEnrollment: boolean
-) => {
-    const clientMemberStatus = currentHomeVisit?.["RVwtjzZO8qG"] ?? "";
-    let memberStatus = "No Home Visit";
-    let householdStatus = "Not Enrolled";
-    if (findAnyEventValue(homeVisitsBe4Quarter, "tM67MBdox3O") === "true") {
-        memberStatus = "Active";
-    } else if (findAnyEventValue(homeVisitsBe4Quarter, "VEw6HHnx8mR")) {
-        memberStatus = findAnyEventValue(homeVisitsBe4Quarter, "VEw6HHnx8mR");
-    }
+export const findStatus = (currentHomeVisit: any) => {
+    let { RVwtjzZO8qG: memberStatus = "", KyqXQlehtwG: householdStatus = "" } =
+        currentHomeVisit?.["RVwtjzZO8qG"] ?? "No Home Visit";
 
-    if (findAnyEventValue(homeVisitsBe4Quarter, "PpUByWk3p8N")) {
-        householdStatus = findAnyEventValue(
-            homeVisitsBe4Quarter,
-            "PpUByWk3p8N"
-        );
-    } else if (hasEnrollment) {
-        householdStatus = "Active";
-    }
-
-    return { memberStatus, householdStatus, clientMemberStatus };
+    return { memberStatus, householdStatus };
 };
 
-export const isAtSchool = (
-    age: number,
-    homeVisitValue: any,
-    enrollmentValue: any
-) => {
-    if (age >= 6 && age <= 17) {
-        if (homeVisitValue) {
-            return convertBoolToYesNo(homeVisitValue);
-        }
-
-        if (enrollmentValue === "Yes") {
-            return "Y";
-        }
-        if (enrollmentValue === "No") {
-            return "N";
-        }
-    } else if (enrollmentValue) {
-        if (enrollmentValue === "Yes") {
-            return "Y";
-        }
-        if (enrollmentValue === "No") {
-            return "N";
-        }
+export const isAtSchool = (homeVisitValue: any, enrollmentValue: any) => {
+    if (homeVisitValue) {
+        return convertBoolToYesNo(homeVisitValue);
     }
+
+    if (enrollmentValue === "Yes") {
+        return "Y";
+    }
+    if (enrollmentValue === "No") {
+        return "N";
+    }
+
     return "NA";
 };
 
@@ -1271,13 +1241,14 @@ export const getOVCInfo = ({
         OVC_SERV = 1;
     } else if (quarter === 1 && servedInPreviousQuarter === 1) {
         OVC_SERV = 1;
-    } else {
-        OVC_SERV = 0;
     }
 
-    if ((age < 18 && ovcVL === 1) || (ovcVL === "1" && OVC_SERV === 1)) {
+    if (
+        (age <= 20 && ovcVL === 1) ||
+        (String(ovcVL) === "1" && OVC_SERV === 1)
+    ) {
         OVC_ENROL = 1;
-    } else if (age < 18 && hivStatus === "+") {
+    } else if (age <= 20 && hivStatus === "+") {
         OVC_ENROL = 0;
     }
     let OVC_SERV_SUBPOP = risks[riskFactor] || riskFactor;
@@ -1425,4 +1396,34 @@ export const queryDHIS2Data = async ({
         }
         page = page + 1;
     } while (page <= pageCount);
+};
+
+export const getGraduationAssessment = (currentGraduationAssessment: any) => {
+    const graduationAssessment = [
+        "QzuE1EG64rC",
+        "suCGOqF6Q0N",
+        "MKVqOBL22kp",
+        "PW4BPCQ3RyX",
+        "Hh9Zq9nX9uS",
+        "lBpEEsJTWQR",
+        "oJnCG2SxvL9",
+        "sfM2HpxKYK4",
+    ].map((de) => {
+        if (currentGraduationAssessment[de] === "Not Applicable") {
+            return "Met";
+        }
+        return currentGraduationAssessment[de];
+    });
+
+    const graduationAssessmentScore = graduationAssessment.filter(
+        (a) => a === "Met"
+    ).length;
+
+    if (graduationAssessmentScore === 8) {
+        return { preGraduated: 1, graduated: 1 };
+    }
+    if (graduationAssessmentScore >= 6) {
+        return { preGraduated: 1, graduated: 0 };
+    }
+    return { preGraduated: 0, graduated: 0 };
 };

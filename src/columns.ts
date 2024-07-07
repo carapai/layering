@@ -59,9 +59,11 @@ export const COLUMNS: Array<{
     { selected: true, display: "Newly enrolled", id: "newlyEnrolledText" },
     { selected: true, display: "HIV_Status(+, /,?,  //+)", id: "hivStatus" },
     { selected: true, display: "OVC_TST ASSESS", id: "OVC_TST_ASSESS" },
+    // TODO get guidance from Julius
     { selected: true, display: "OVC_TST RISK", id: "isAtRisk" },
     { selected: true, display: "OVC_TST REFER", id: "OVC_TST_REFER" },
     { selected: true, display: "OVC_TST REPORT", id: "OVC_TST_REPORT" },
+    // TODO if status is DK and not at risk
     {
         selected: true,
         display: "HIV test not required based on  HIV risk Assessment",
@@ -158,6 +160,8 @@ export const COLUMNS: Array<{
         display: "Has the person Disclosed or Disclosed to? Y/N",
         id: "hasThePersonDisclosed",
     },
+    { selected: true, display: "Mother Baby Pair", id: "motherBabyPair" },
+    { selected: true, display: "HEI Individual Code", id: "heiCode" },
     { selected: true, display: "EID No", id: "eidNo" },
     { selected: true, display: "EID Enrollment date", id: "eidEnrollmentDate" },
     { selected: true, display: "Mother's Name", id: "motherName" },
@@ -234,7 +238,12 @@ export const COLUMNS: Array<{
         display: "VSLA OVC protection Fund",
         id: "ovcProtectionFunds",
     },
-    { selected: true, display: "Vocational/Apprenticeship", id: "" },
+
+    {
+        selected: true,
+        display: "Vocational/Apprenticeship",
+        id: "apprenticeship",
+    },
     {
         selected: true,
         display: "Linked to Gvernment social protection programs",
@@ -243,7 +252,7 @@ export const COLUMNS: Array<{
     {
         selected: true,
         display: "Direct Beneficiaries operating an IGA",
-        id: "igaBooster",
+        id: "operatingAnIGA",
     },
     {
         selected: true,
@@ -273,6 +282,11 @@ export const COLUMNS: Array<{
         display: "Monitored at school",
         id: "monitoringAtSchool",
     },
+    {
+        selected: true,
+        display: "Regularly attending school",
+        id: "regularlyAttendingSchool",
+    },
     { selected: true, display: "Education subsidy", id: "educationSubsidy" },
     { selected: true, display: "OVC VSLA Education Fund", id: "educationFund" },
     {
@@ -286,7 +300,7 @@ export const COLUMNS: Array<{
         display: "Supported to enrol in school",
         id: "supportedToEnroll",
     },
-    { selected: true, display: "CORE_EDUCATION", id: "coreEducation" },
+    { selected: true, display: "CORE EDUCATION", id: "coreEducation" },
     { selected: true, display: "VSLA OVC Health Fund", id: "healthFund" },
     { selected: true, display: "HTS referral", id: "HTSReferral" },
     {
@@ -303,7 +317,7 @@ export const COLUMNS: Array<{
     { selected: true, display: "Attachment to CoRPS", id: "attachedToCorps" },
     {
         selected: true,
-        display: "ART_Adherence_Education",
+        display: "ART Adherence Education",
         id: "artAdherenceEducation",
     },
     {
@@ -328,7 +342,7 @@ export const COLUMNS: Array<{
         display: "HIV prevention Education",
         id: "hivPrevention",
     },
-    { selected: true, display: "Transport_Health", id: "TFHealth" },
+    { selected: true, display: "Transport Health", id: "TFHealth" },
     { selected: true, display: "PEP Service", id: "PEP" },
     { selected: true, display: "COVID 19 Education", id: "covid19Education" },
     { selected: true, display: "Linked to DSDM (MMD)", id: "linkedToDSDM" },
@@ -373,7 +387,7 @@ export const COLUMNS: Array<{
     { selected: true, display: "GBV counselling", id: "GBVCounseling" },
     {
         selected: true,
-        display: "GBV_Referred for further support",
+        display: "GBV Referred for further support",
         id: "GBVReferral",
     },
     {
@@ -396,8 +410,12 @@ export const COLUMNS: Array<{
     },
     { selected: true, display: "GBV Legal support", id: "GBVLegalSupport" },
     { selected: true, display: "Basic needs", id: "basicNeed" },
-    { selected: true, display: "CP Legal support", id: "legalSupport" },
-    { selected: true, display: "RE Integartion", id: "reIntegration" },
+    {
+        selected: true,
+        display: "Child Protection Legal support",
+        id: "legalSupport",
+    },
+    { selected: true, display: "RE Integration", id: "reIntegration" },
     {
         selected: true,
         display: "Withdrawn from Child labor",
@@ -432,7 +450,7 @@ export const COLUMNS: Array<{
     },
     {
         selected: true,
-        display: "CORE_CHILD PROTECTION",
+        display: "CORE CHILD PROTECTION",
         id: "coreChildProtection",
     },
     {
@@ -453,7 +471,7 @@ export const COLUMNS: Array<{
     { selected: true, display: "Voucher for crops", id: "voucher4Crops" },
     {
         selected: true,
-        display: "Supported to estblish Kitchen Garden",
+        display: "Supported to establish Kitchen Garden",
         id: "kitchenGarden",
     },
     {
