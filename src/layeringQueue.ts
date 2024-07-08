@@ -386,11 +386,6 @@ const generateLayering = (options: {
 
             const [financialQuarterStart, financialQuarterEnd] =
                 calculateQuarter(quarterStart.year(), period.quarter());
-
-            // console.log(
-            //     financialQuarterStart.format("YYYY-MM-DD"),
-            //     financialQuarterEnd.format("YYYY-MM-DD")
-            // );
             const qtr = period.format("YYYY[Q]Q");
             const id = `${trackedEntityInstance}${qtr}`;
             const age = period.diff(dayjs(dob), "years");
@@ -510,6 +505,7 @@ const generateLayering = (options: {
             );
             const baselineViralLoad = baselineEvent(viralLoadsB4Quarter);
             const currentHomeVisit = latestEvent(homeVisitsB4Quarter);
+            console.log(currentHomeVisit);
             const currentDirectBeneficiary = latestEvent(
                 directBeneficiariesB4Quarter
             );

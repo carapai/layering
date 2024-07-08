@@ -55,7 +55,6 @@ const worker = new Worker<
                 api,
                 ...others,
                 callback: (data: string[]) => {
-                    console.log(data);
                     if (generate && data.length > 0) {
                         const query: QueryDslQueryContainer = {
                             terms: {
