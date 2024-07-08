@@ -546,9 +546,9 @@ const generateLayering = (options: {
 
             const baselineRiskFactor =
                 nDUbdM2FjyP || firstHomeVisit?.["rQBaynepqjy"];
-            const reasonForExit = currentHomeVisit?.["yiKbqQvYunj"] ?? "";
+            // const reasonForExit = currentHomeVisit?.["yiKbqQvYunj"] ?? "";
             const reasonForVisit = currentHomeVisit?.["t7kVwlLVBns"] ?? "";
-            const householdExitReason = currentHomeVisit?.["Xy3kS6Jgd08"] ?? "";
+            // const householdExitReason = currentHomeVisit?.["Xy3kS6Jgd08"] ?? "";
             const VSLASavings = currentDirectBeneficiary?.["H5vsW6LYFhy"] ?? "";
             const VSLABorrowing =
                 currentDirectBeneficiary?.["s4w6hTytt5h"] ?? "";
@@ -716,8 +716,12 @@ const generateLayering = (options: {
             const primaryCareGiver = riskFactor === "Primary caregiver" ? 1 : 0;
             const OVC_TST_REFER = testedForHIV;
             const OVC_TST_REPORT = hivResult && OVC_TST_REFER === 1 ? 1 : 0;
-            const { memberStatus, householdStatus } =
-                findStatus(currentHomeVisit);
+            const {
+                memberStatus,
+                householdStatus,
+                householdExitReason,
+                reasonForExit,
+            } = findStatus(currentHomeVisit);
 
             const enrolledInSchool = convertBoolToYesNo(
                 currentHomeVisit?.["OsOZF4e4yh5"]

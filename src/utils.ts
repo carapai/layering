@@ -664,10 +664,19 @@ export const deHasAnyValue = (de: string, values: any[]) => {
 };
 
 export const findStatus = (currentHomeVisit: any) => {
-    let { RVwtjzZO8qG: memberStatus = "", KyqXQlehtwG: householdStatus = "" } =
-        currentHomeVisit?.["RVwtjzZO8qG"] ?? "No Home Visit";
+    let {
+        RVwtjzZO8qG: memberStatus = "No Home Visit",
+        KyqXQlehtwG: householdStatus = "",
+        yiKbqQvYunj: reasonForExit = "",
+        Xy3kS6Jgd08: householdExitReason = "",
+    } = currentHomeVisit || {};
 
-    return { memberStatus, householdStatus };
+    return {
+        memberStatus,
+        householdStatus,
+        reasonForExit,
+        householdExitReason,
+    };
 };
 
 export const isAtSchool = (homeVisitValue: any, enrollmentValue: any) => {
