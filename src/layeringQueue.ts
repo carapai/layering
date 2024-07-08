@@ -538,7 +538,7 @@ const generateLayering = (options: {
 
             let riskFactor = currentHomeVisit?.["rQBaynepqjy"];
             const districtOfRelocation = currentHomeVisit?.["VVFcQiYRQQL"];
-            const subCountyOfRelocation = currentHomeVisit?.["VVFcQiYRQQL"];
+            const subCountyOfRelocation = currentHomeVisit?.["pmAiKj6U4Jx"];
             const otherRiskFactor = currentHomeVisit?.["V7oko4Tm3N8"];
 
             const baselineRiskFactor =

@@ -1385,7 +1385,6 @@ export const queryDHIS2Data = async ({
             params,
         });
 
-        console.log(trackedEntityInstances);
         if (pageCount === 1 && rest.pager && rest.pager.pageCount) {
             pageCount = rest.pager.pageCount;
         }
