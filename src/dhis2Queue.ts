@@ -65,22 +65,20 @@ const worker = new Worker<
                 processedUnits,
                 api,
                 others,
+                callback: (data: string[]) => {
+                    if (generate && data.length > 0) {
+                        const query: QueryDslQueryContainer = {
+                            terms: {
+                                "trackedEntityInstance.keyword": data,
+                            },
+                        };
+                        layeringQueue.add(
+                            String(new Date().getMilliseconds),
+                            query
+                        );
+                    }
+                },
             });
-
-            if (generate) {
-                let query: QueryDslQueryContainer = {
-                    match_all: {},
-                };
-                if (others.trackedEntityInstance) {
-                    query = {
-                        terms: {
-                            "trackedEntityInstance.keyword":
-                                others.trackedEntityInstance.split(","),
-                        },
-                    };
-                }
-                layeringQueue.add(program, query);
-            }
         } catch (error) {
             console.log(error);
         }
