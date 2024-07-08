@@ -53,6 +53,16 @@ export const COLUMNS: Array<{
     { selected: true, display: "Reasons for Exit", id: "reasonForExit" },
     {
         selected: true,
+        display: "District Relocated to",
+        id: "districtOfRelocation",
+    },
+    {
+        selected: true,
+        display: "Sub County Relocated to",
+        id: "subCountyOfRelocation",
+    },
+    {
+        selected: true,
         display: "Currently Enrolled in School (Y/N) (Home visit)",
         id: "enrolledInSchool",
     },

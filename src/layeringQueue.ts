@@ -505,7 +505,6 @@ const generateLayering = (options: {
             );
             const baselineViralLoad = baselineEvent(viralLoadsB4Quarter);
             const currentHomeVisit = latestEvent(homeVisitsDuringQuarter);
-            console.log(currentHomeVisit);
             const currentDirectBeneficiary = latestEvent(
                 directBeneficiariesB4Quarter
             );
@@ -538,6 +537,8 @@ const generateLayering = (options: {
             );
 
             let riskFactor = currentHomeVisit?.["rQBaynepqjy"];
+            const districtOfRelocation = currentHomeVisit?.["VVFcQiYRQQL"];
+            const subCountyOfRelocation = currentHomeVisit?.["VVFcQiYRQQL"];
             const otherRiskFactor = currentHomeVisit?.["V7oko4Tm3N8"];
 
             const baselineRiskFactor =
@@ -1756,6 +1757,8 @@ const generateLayering = (options: {
                 apprenticeship,
                 operatingAnIGA,
                 regularlyAttendingSchool,
+                districtOfRelocation,
+                subCountyOfRelocation,
             });
         }
     }
