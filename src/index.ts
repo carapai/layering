@@ -77,9 +77,6 @@ app.post(
         z.object({
             program: z.string(),
             page: z.number().optional(),
-            url: z.string(),
-            username: z.string(),
-            password: z.string(),
             others: z.record(z.any()),
             generate: z.boolean(),
         })

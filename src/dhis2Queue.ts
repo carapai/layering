@@ -8,9 +8,6 @@ import { processOrganisations, queryDHIS2Data } from "./utils";
 
 export const dhis2Queue = new Queue<
     {
-        username: string;
-        password: string;
-        url: string;
         program: string;
         generate: boolean;
         page?: number;
@@ -21,9 +18,6 @@ export const dhis2Queue = new Queue<
 
 const worker = new Worker<
     {
-        username: string;
-        password: string;
-        url: string;
         program: string;
         generate: boolean;
         page?: number;
@@ -41,8 +35,11 @@ const worker = new Worker<
             ...others
         } = job.data;
         const api = axios.create({
-            baseURL: url,
-            auth: { username: username, password: password },
+            baseURL: process.env.DHIS2_URL,
+            auth: {
+                username: process.env.DHIS2_USERNAME ?? "",
+                password: process.env.DHIS2_PASSWORD ?? "",
+            },
         });
         try {
             console.log("Fetching organisation units");
