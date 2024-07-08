@@ -1409,7 +1409,9 @@ const generateLayering = (options: {
                 );
 
             const farmingInputs =
-                eventsHasDataElements(homeVisitsB4Quarter, ["W1BGlC1OtTu"]) ||
+                eventsHasDataElements(homeVisitsDuringQuarter, [
+                    "W1BGlC1OtTu",
+                ]) ||
                 eventsHasDataElements(serviceLinkagesDuringQuarter, [
                     "BjjU0DuSJRJ",
                 ]);
