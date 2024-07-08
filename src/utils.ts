@@ -1409,7 +1409,7 @@ export const getGraduationAssessment = (currentGraduationAssessment: any) => {
         "oJnCG2SxvL9",
         "sfM2HpxKYK4",
     ].map((de) => {
-        if (currentGraduationAssessment[de] === "Not Applicable") {
+        if (currentGraduationAssessment?.[de] === "Not Applicable") {
             return "Met";
         }
         return currentGraduationAssessment[de];
