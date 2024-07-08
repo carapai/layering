@@ -504,7 +504,7 @@ const generateLayering = (options: {
                 graduationAssessmentsB4Quarter
             );
             const baselineViralLoad = baselineEvent(viralLoadsB4Quarter);
-            const currentHomeVisit = latestEvent(homeVisitsB4Quarter);
+            const currentHomeVisit = latestEvent(homeVisitsDuringQuarter);
             console.log(currentHomeVisit);
             const currentDirectBeneficiary = latestEvent(
                 directBeneficiariesB4Quarter
