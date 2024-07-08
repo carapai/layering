@@ -25,15 +25,7 @@ const worker = new Worker<
 >(
     "dhis2",
     async (job) => {
-        let {
-            page = 1,
-            program,
-            url,
-            username,
-            password,
-            generate,
-            ...others
-        } = job.data;
+        let { page = 1, program, generate, ...others } = job.data;
         const api = axios.create({
             baseURL: process.env.DHIS2_URL,
             auth: {
@@ -61,7 +53,7 @@ const worker = new Worker<
                 page,
                 processedUnits,
                 api,
-                others,
+                ...others,
                 callback: (data: string[]) => {
                     if (generate && data.length > 0) {
                         const query: QueryDslQueryContainer = {
