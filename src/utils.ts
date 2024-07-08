@@ -1417,11 +1417,14 @@ export const getGraduationAssessment = (currentGraduationAssessment: any) => {
         "lBpEEsJTWQR",
         "oJnCG2SxvL9",
         "sfM2HpxKYK4",
-    ].map((de) => {
-        if (currentGraduationAssessment?.[de] === "Not Applicable") {
-            return "Met";
+    ].flatMap((de) => {
+        if (currentGraduationAssessment) {
+            if (currentGraduationAssessment[de] === "Not Applicable")
+                return "Met";
+
+            return currentGraduationAssessment[de];
         }
-        return currentGraduationAssessment[de];
+        return [];
     });
 
     const graduationAssessmentScore = graduationAssessment.filter(
