@@ -474,31 +474,32 @@ const generateLayering = (options: {
             const directBeneficiariesDuringYear = eventsWithinPeriod(
                 directBeneficiaries,
                 financialQuarterStart,
-                quarterEnd
+                financialQuarterEnd
             );
 
             const incomeGeneratingActivitiesDuringYear = eventsWithinPeriod(
                 incomeGeneratingActivities,
                 financialQuarterStart,
-                quarterEnd
+                financialQuarterEnd
             );
             const schoolMappingDuringYear = eventsWithinPeriod(
                 incomeGeneratingActivities,
                 financialQuarterStart,
-                quarterEnd
+                financialQuarterEnd
             );
 
             const schoolMonitoringDuringYear = eventsWithinPeriod(
                 schoolMonitoring,
                 financialQuarterStart,
-                quarterEnd
+                financialQuarterEnd
             );
 
             const GBVScreeningDuringYear = eventsWithinPeriod(
                 GBVScreenings,
                 financialQuarterStart,
-                quarterEnd
+                financialQuarterEnd
             );
+
             const currentViralLoad = latestEvent(viralLoadsB4Quarter);
             const currentGraduationAssessment = latestEvent(
                 graduationAssessmentsB4Quarter
