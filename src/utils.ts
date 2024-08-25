@@ -1422,7 +1422,7 @@ export const queryDHIS2Data = async ({
             }
         }
         page = page + 1;
-    } while (page === 1);
+    } while (page <= pageCount);
 };
 
 export const getGraduationAssessment = (currentGraduationAssessment: any) => {
