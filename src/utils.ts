@@ -36,7 +36,9 @@ const viralLoadStatuses: Record<string, string> = {
     "5": "Failed",
 };
 
-function removeEmptyKeys(obj: { [key: string]: any }): { [key: string]: any } {
+export function removeEmptyKeys(obj: { [key: string]: any }): {
+    [key: string]: any;
+} {
     return Object.entries(obj).reduce((acc, [key, value]) => {
         if (
             value !== null &&
