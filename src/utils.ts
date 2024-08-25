@@ -1420,7 +1420,7 @@ export const queryDHIS2Data = async ({
             }
         }
         page = page + 1;
-    } while (page <= pageCount);
+    } while (page === 1);
 };
 
 export const getGraduationAssessment = (currentGraduationAssessment: any) => {
