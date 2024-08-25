@@ -36,6 +36,19 @@ const viralLoadStatuses: Record<string, string> = {
     "5": "Failed",
 };
 
+function removeEmptyKeys(obj: { [key: string]: any }): { [key: string]: any } {
+    return Object.entries(obj).reduce((acc, [key, value]) => {
+        if (
+            value !== null &&
+            value !== undefined &&
+            (typeof value !== "string" || value.trim() !== "")
+        ) {
+            acc[key] = typeof value === "string" ? value.trim() : value;
+        }
+        return acc;
+    }, {} as { [key: string]: any });
+}
+
 export const eventsBeforePeriod = (events: any[], end: Dayjs) => {
     return events.filter((e) => {
         return dayjs(e.eventDate).isSameOrBefore(end);
@@ -55,11 +68,11 @@ export const mostCurrentEvent = (events: any[]) => {
 
 export const getCurrentViralLoad = (viralLoads: any[], endDate: Dayjs) => {
     const virals = eventsBeforePeriod(viralLoads, endDate).filter(
-        ({ Ti0huZXbAM0 }) => !!Ti0huZXbAM0
+        ({ Ti0huZXbAM0 }) => !!Ti0huZXbAM0,
     );
     let currentViralLoad = maxBy(
         virals,
-        ({ Ti0huZXbAM0, eventDate }) => `${Ti0huZXbAM0}${eventDate}`
+        ({ Ti0huZXbAM0, eventDate }) => `${Ti0huZXbAM0}${eventDate}`,
     );
 
     if (!currentViralLoad && virals.length > 0) {
@@ -80,7 +93,7 @@ export const firstEvent = (events: any[], endDate: Dayjs) => {
 export const scroll = async (
     index: string,
     trackedEntityInstances: string[],
-    columns?: string[]
+    columns?: string[],
 ) => {
     let query: SearchRequest = {
         index: index.toLowerCase(),
@@ -134,7 +147,7 @@ export const scroll2 = async (index: string) => {
 export const scroll3 = async (
     index: string,
     search: QueryDslQueryContainer,
-    callback: (doc: any[]) => Promise<void>
+    callback: (doc: any[]) => Promise<void>,
 ) => {
     let query: SearchRequest = {
         index: index.toLowerCase(),
@@ -154,7 +167,7 @@ export const getEconomicStatus = (hvat: any) => {
         const { zbAGBW6PsGd, kQCB9F39zWO, iRJUDyUBLQF } = hvat;
 
         const score18 = [zbAGBW6PsGd, kQCB9F39zWO, iRJUDyUBLQF].filter(
-            (v) => v !== null && v !== undefined && v !== ""
+            (v) => v !== null && v !== undefined && v !== "",
         );
         const yeses = score18.filter((v) => v === "Yes").length;
         const noses = score18.filter((v) => v === "No").length;
@@ -182,7 +195,7 @@ export const baselineEvent = (events: any[]) => {
 
 export const getAttribute = (
     attribute: string,
-    event?: { [key: string]: any }
+    event?: { [key: string]: any },
 ) => {
     if (event) {
         return event[attribute] || "";
@@ -204,7 +217,7 @@ export const anyEventWithDE = (events: any[], dataElement: string) => {
 export const findAnyEventValue = (events: any[], dataElement: string) => {
     const foundEvent = orderBy(events, ["eventDate"], ["asc"]).reduce(function (
         acc,
-        x
+        x,
     ) {
         for (var key in x) acc[key] = x[key];
         return acc;
@@ -218,7 +231,7 @@ export const findAnyEventValue = (events: any[], dataElement: string) => {
 
 export const getAttributes = (
     attributes: string[],
-    event?: { [key: string]: any }
+    event?: { [key: string]: any },
 ) => {
     if (attributes) {
         return attributes.map((a) => getAttribute(a, event));
@@ -340,7 +353,7 @@ export const getHIVStatus = ({
 
 export const getDataElement = (
     dataElement: string,
-    event?: { [key: string]: any }
+    event?: { [key: string]: any },
 ) => {
     if (event) return event[dataElement];
 
@@ -378,7 +391,7 @@ export const calculateQuarter = (year: number, quarter: number) => {
 export const allEventsHaveSameValue = (
     events: any[],
     dataElement: string,
-    value: any
+    value: any,
 ) => {
     if (events.length > 0) {
         return events.every((e) => e[dataElement] === value);
@@ -389,7 +402,7 @@ export const allEventsHaveSameValue = (
 export const hasDataElementWithinPeriod = (
     events: any[],
     dataElement: string,
-    value: any
+    value: any,
 ) => {
     return events.find((e) => e[dataElement] === value) !== undefined;
 };
@@ -418,12 +431,12 @@ export const getNewlyPositive = ({
             (allEventsHaveSameValue(
                 previousReferrals,
                 "XTdRWh5MqPw",
-                "Negative"
+                "Negative",
             ) ||
                 allEventsHaveSameValue(
                     previousReferrals,
                     "XTdRWh5MqPw",
-                    "Dont Know (DK)"
+                    "Dont Know (DK)",
                 ))
         ) {
             return 1;
@@ -463,7 +476,7 @@ export const getNewlyTestedPositive = ({
         hasDataElementWithinPeriod(
             referralsDuringYear,
             "XTdRWh5MqPw",
-            "Positive"
+            "Positive",
         )
     ) {
         newlyTestedPositive = 1;
@@ -497,7 +510,7 @@ export const getNewlyTestedAndOnArt = ({
 export const anyEventHasDataElementValue = (
     events: any[],
     dataElement: string,
-    value: any
+    value: any,
 ) => {
     return events.find((e) => e[dataElement] === value);
 };
@@ -527,7 +540,7 @@ export const newlyTestedPositive = ({
         anyEventHasDataElementValue(
             referralsDuringYear,
             "XTdRWh5MqPw",
-            "Positive"
+            "Positive",
         )
     ) {
         return 1;
@@ -538,7 +551,7 @@ export const newlyTestedPositive = ({
 export const checkRiskAssessment = (
     dataElements: string[],
     event?: { [key: string]: any },
-    value?: string
+    value?: string,
 ) => {
     if (event) {
         const de = dataElements
@@ -572,7 +585,7 @@ export const getRiskAssessment = (currentRiskAssessment?: {
 }) => {
     const tbScreeningChild = checkRiskAssessment(
         ["DgCXKSDPTWn", "Rs5qrKay7Gq", "QEm2B8LZtzd", "X9n17I5Ibdf"],
-        currentRiskAssessment
+        currentRiskAssessment,
     );
     const tbScreeningChild17 = checkRiskAssessment(
         [
@@ -582,17 +595,17 @@ export const getRiskAssessment = (currentRiskAssessment?: {
             "X9n17I5Ibdf",
             "Oi6CUuucUCP",
         ],
-        currentRiskAssessment
+        currentRiskAssessment,
     );
     const tbScreeningAdult = checkRiskAssessment(
         ["If8hDeux5XE", "ha2nnIeFgbu", "NMtrXN3NBqY", "Oi6CUuucUCP"],
-        currentRiskAssessment
+        currentRiskAssessment,
     );
 
     const atTBRiskChild = checkRiskAssessment(
         ["DgCXKSDPTWn", "Rs5qrKay7Gq", "QEm2B8LZtzd", "X9n17I5Ibdf"],
         currentRiskAssessment,
-        "true"
+        "true",
     );
     const atTBRiskChild17 = checkRiskAssessment(
         [
@@ -604,13 +617,13 @@ export const getRiskAssessment = (currentRiskAssessment?: {
         ],
         currentRiskAssessment,
 
-        "true"
+        "true",
     );
     const atTBRiskAdult = checkRiskAssessment(
         ["If8hDeux5XE", "ha2nnIeFgbu", "NMtrXN3NBqY", "Oi6CUuucUCP"],
         currentRiskAssessment,
 
-        "true"
+        "true",
     );
 
     const notAtRisk = checkRiskAssessment(
@@ -625,7 +638,7 @@ export const getRiskAssessment = (currentRiskAssessment?: {
             "oI9btGSwA7P",
         ],
         currentRiskAssessment,
-        "false"
+        "false",
     );
 
     const notAtRiskAdult = checkRiskAssessment(
@@ -641,7 +654,7 @@ export const getRiskAssessment = (currentRiskAssessment?: {
             "VtnameiqmRy",
         ],
         currentRiskAssessment,
-        "false"
+        "false",
     );
 
     return {
@@ -738,7 +751,7 @@ export const hivInformation = ({
         if (lastViralLoadDate && ovcEligible === 1) {
             const monthsSinceLastViralLoad = quarterEnd.diff(
                 dayjs(artStartDate)!,
-                "months"
+                "months",
             );
             if (monthsSinceLastViralLoad < 12) {
                 VLTestDone =
@@ -787,7 +800,7 @@ export const hivInformation = ({
 export const anyEventWithAnyOfTheValue = (
     events: any[],
     dataElement: string,
-    values: string[]
+    values: string[],
 ) => {
     const search = events.find((event) => {
         return values.indexOf(event[dataElement]) !== -1;
@@ -799,7 +812,7 @@ export const anyEventWithAnyOfTheValue = (
 
 export const eventsHasDataElements = (
     events: any[],
-    dataElements: string[]
+    dataElements: string[],
 ) => {
     const cond = dataElements
         .map((element) => anyEventWithDE(events, element))
@@ -812,7 +825,7 @@ export const eventsHasDataElements = (
 export const anyEventWithDataElement = (
     events: any[],
     dataElement: string,
-    value: any
+    value: any,
 ) => {
     if (events.length === 0) {
         return undefined;
@@ -824,7 +837,7 @@ export const anyEventWithDataElement = (
 
 export const specificDataElement = (
     dataElement: string,
-    event?: { [key: string]: any }
+    event?: { [key: string]: any },
 ) => {
     return event ? event[dataElement] : null;
 };
@@ -832,7 +845,7 @@ export const specificDataElement = (
 export const getIsNotAtRisk = (
     hivStatus: string,
     notAtRiskAdult: number,
-    notAtRisk: number
+    notAtRisk: number,
 ) => {
     let isNotAtRisk = 0;
     if (hivStatus !== "+") {
@@ -880,7 +893,7 @@ export const getUnknownStatus = ({
 export const monthsSinceViralTest = (
     comparisonDate: dayjs.Dayjs,
     numberOfMonths: number,
-    viralLoadDate?: string
+    viralLoadDate?: string,
 ) => {
     if (
         viralLoadDate &&
@@ -894,7 +907,7 @@ export const monthsSinceViralTest = (
 export const everMissed = (
     events: any[],
     dataElement: string,
-    end: dayjs.Dayjs
+    end: dayjs.Dayjs,
 ) => {
     return (
         events.filter((event) => {
@@ -916,7 +929,7 @@ export const everMissed = (
 export const searchEventBe4DateDataElement = (
     events: any[],
     dataElement: string,
-    end: dayjs.Dayjs
+    end: dayjs.Dayjs,
 ) => {
     const filteredEvents = events.filter((event) => {
         return (
@@ -928,13 +941,13 @@ export const searchEventBe4DateDataElement = (
 
     return maxBy(
         filteredEvents,
-        ({ [dataElement]: val, eventDate }) => `${val}${eventDate}`
+        ({ [dataElement]: val, eventDate }) => `${val}${eventDate}`,
     );
 };
 
 export const missedAppointmentInfo = (
     missedAppointments: any[],
-    quarterEnd: dayjs.Dayjs
+    quarterEnd: dayjs.Dayjs,
 ) => {
     let missedAppointmentDate = "";
     let missedAnAppointment = 0;
@@ -944,13 +957,13 @@ export const missedAppointmentInfo = (
     const latestMissedAppointment = searchEventBe4DateDataElement(
         missedAppointments,
         "XTl5dE2AcVM",
-        quarterEnd
+        quarterEnd,
     );
 
     const hasEverMissedAnAppointment = everMissed(
         missedAppointments,
         "XTl5dE2AcVM",
-        quarterEnd
+        quarterEnd,
     )
         ? 1
         : 0;
@@ -991,13 +1004,13 @@ export const missedAppointmentInfo = (
 };
 
 export const fetchGroupActivities4Instances = async (
-    trackedEntityInstances: any[]
+    trackedEntityInstances: any[],
 ) => {
     const allMemberCodes = uniq(
         trackedEntityInstances.flatMap(({ HLKc2AKR9jW }) => {
             if (HLKc2AKR9jW) return HLKc2AKR9jW;
             return [];
-        })
+        }),
     );
     if (allMemberCodes.length > 0) {
         let data: any[] = [];
@@ -1010,7 +1023,7 @@ export const fetchGroupActivities4Instances = async (
             },
             async (response) => {
                 data = data.concat(response);
-            }
+            },
         );
         return groupBy(data, "ypDUCAS6juy");
     }
@@ -1050,17 +1063,17 @@ export const processOrganisations = (organisationUnits: Array<OrgUnit>) => {
                             .slice(1)
                             .map((v, i) => {
                                 return [`level${i + 1}`, v];
-                            })
+                            }),
                     ),
                 },
             ];
-        })
+        }),
     );
 };
 
 export const flattenInstances = (
     trackedEntityInstances: Array<any>,
-    processedUnits: Record<string, any>
+    processedUnits: Record<string, any>,
 ) => {
     let instances = [];
     let calculatedEvents = [];
@@ -1075,7 +1088,7 @@ export const flattenInstances = (
     } of trackedEntityInstances) {
         const units = processedUnits[orgUnit];
         let processedAttributes = fromPairs(
-            attributes.map(({ attribute, value }: any) => [attribute, value])
+            attributes.map(({ attribute, value }: any) => [attribute, value]),
         );
         const allRelations = fromPairs(
             relationships
@@ -1085,7 +1098,7 @@ export const flattenInstances = (
                         rel.from?.trackedEntityInstance?.trackedEntityInstance,
                     ];
                 })
-                .filter((a: any) => a[1] !== undefined)
+                .filter((a: any) => a[1] !== undefined),
         );
         if (enrollments.length > 0) {
             for (const {
@@ -1102,7 +1115,7 @@ export const flattenInstances = (
                         attributes.map(({ attribute, value }: any) => [
                             attribute,
                             value,
-                        ])
+                        ]),
                     ),
                 };
                 const instance = {
@@ -1119,7 +1132,7 @@ export const flattenInstances = (
                     orgUnitName,
                     program,
                 };
-                instances.push(instance);
+                instances.push(removeEmptyKeys(instance));
                 if (events.length > 0) {
                     for (const {
                         dataValues,
@@ -1133,15 +1146,15 @@ export const flattenInstances = (
                         ...eventDetails
                     } of events) {
                         if (eventDetails.status !== "SCHEDULE" && eventDate) {
-                            calculatedEvents.push({
+                            const currentEvent = {
                                 ...units,
                                 ...fromPairs(
                                     dataValues.map(
                                         ({ dataElement, value }: any) => [
                                             dataElement,
                                             value,
-                                        ]
-                                    )
+                                        ],
+                                    ),
                                 ),
                                 ...eventDetails,
                                 id: event,
@@ -1151,7 +1164,10 @@ export const flattenInstances = (
                                 eventDate,
                                 deleted,
                                 event,
-                            });
+                            };
+                            calculatedEvents.push(
+                                removeEmptyKeys(currentEvent),
+                            );
                         }
                     }
                 }
@@ -1177,7 +1193,7 @@ export const insertData = async ({
     });
     await Promise.all([
         ...chunk(instances, 250).map((c) =>
-            indexBulk(program.toLowerCase(), c)
+            indexBulk(program.toLowerCase(), c),
         ),
         ...requests,
     ]);
@@ -1196,21 +1212,21 @@ export const convertBoolToNum = (value: "true" | "false") => {
 
 export const getGraduationInfo = (
     mostRecentGraduation: any,
-    quarterEnd: Dayjs
+    quarterEnd: Dayjs,
 ) => {
     let preGraduated = 0;
     let fullyGraduated = 0;
     if (mostRecentGraduation) {
         const graduation = specificDataElement(
             "XPJtNCSNCdR",
-            mostRecentGraduation
+            mostRecentGraduation,
         );
         if (graduation === "1") {
             preGraduated = 1;
         }
         const monthsSinceGraduation = quarterEnd.diff(
             dayjs(mostRecentGraduation.eventDate),
-            "months"
+            "months",
         );
 
         if (monthsSinceGraduation >= 6 && preGraduated === 1) {
@@ -1291,7 +1307,7 @@ export const findAssetOwnership = (filtered: any[], quarterEnd: Dayjs) => {
         const [current, previous] = hVatsBeforePeriod.slice(-2);
         const currentAssets = sum(elements.map((e) => Number(current[e] || 0)));
         const previousAssets = sum(
-            elements.map((e) => Number(previous[e] || 0))
+            elements.map((e) => Number(previous[e] || 0)),
         );
         if (currentAssets > previousAssets) {
             assetOwnership = "Improved";
@@ -1374,7 +1390,6 @@ export const queryDHIS2Data = async ({
         if (pageCount === 1) {
             params = { ...params, totalPages: true };
         }
-        console.log(params);
         console.log(`Fetching data for page ${page} of ${pageCount}`);
         const {
             data: { trackedEntityInstances, ...rest },
@@ -1391,7 +1406,7 @@ export const queryDHIS2Data = async ({
         if (trackedEntityInstances.length > 0) {
             const { instances, calculatedEvents } = flattenInstances(
                 trackedEntityInstances,
-                processedUnits
+                processedUnits,
             );
             console.log(`Indexing data for ${page} of ${pageCount}`);
             await insertData({ instances, calculatedEvents, program });
@@ -1399,8 +1414,8 @@ export const queryDHIS2Data = async ({
             if (callback !== undefined) {
                 callback(
                     trackedEntityInstances.map(
-                        ({ trackedEntityInstance }) => trackedEntityInstance
-                    )
+                        ({ trackedEntityInstance }) => trackedEntityInstance,
+                    ),
                 );
             }
         }
@@ -1429,7 +1444,7 @@ export const getGraduationAssessment = (currentGraduationAssessment: any) => {
     });
 
     const graduationAssessmentScore = graduationAssessment.filter(
-        (a) => a === "Met"
+        (a) => a === "Met",
     ).length;
 
     if (graduationAssessmentScore === 8) {

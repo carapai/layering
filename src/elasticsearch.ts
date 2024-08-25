@@ -26,5 +26,4 @@ export const indexBulk = async (index: string, data: any[]) => {
     });
 
     processBulkInserts(response);
-    // return response;
 };

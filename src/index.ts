@@ -1,9 +1,9 @@
-import "dotenv/config";
 import { QueryDslQueryContainer } from "@elastic/elasticsearch/lib/api/types";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { zValidator } from "@hono/zod-validator";
 import axios from "axios";
+import "dotenv/config";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { trimTrailingSlash } from "hono/trailing-slash";
@@ -12,11 +12,9 @@ import { dhis2Queue } from "./dhis2Queue";
 import { downloadQueue } from "./downloadQueue";
 import { client } from "./elasticsearch";
 import { generateXLS } from "./generateExcel";
-import { layeringQueue } from "./layeringQueue";
 import { instanceQueue } from "./instanceQueue";
+import { layeringQueue } from "./layeringQueue";
 import { scheduleQueue } from "./scheduleQueue";
-import { OrgUnit } from "./interfaces";
-import { processOrganisations } from "./utils";
 
 const app = new Hono();
 
@@ -30,7 +28,7 @@ app.post(
         "json",
         z.object({
             trackedEntities: z.string().array().optional(),
-        })
+        }),
     ),
     async (c) => {
         const options = c.req.valid("json");
@@ -46,7 +44,7 @@ app.post(
         }
         const job = await layeringQueue.add("myJobName", query);
         return c.json(job);
-    }
+    },
 );
 
 app.get(
@@ -57,7 +55,7 @@ app.get(
             period: z.string(),
             selectedOrgUnits: z.string(),
             code: z.string().optional(),
-        })
+        }),
     ),
     async (c) => {
         const options = c.req.query();
@@ -67,7 +65,7 @@ app.get(
             code: options.code,
         });
         return c.json(response);
-    }
+    },
 );
 
 app.post(
@@ -79,13 +77,13 @@ app.post(
             page: z.number().optional(),
             others: z.record(z.any()),
             generate: z.boolean(),
-        })
+        }),
     ),
     async (c) => {
         const { others, ...rest } = c.req.valid("json");
         const job = await dhis2Queue.add(rest.program, { ...rest, ...others });
         return c.json(job);
-    }
+    },
 );
 
 app.post("/tei", async (c) => {
@@ -105,7 +103,7 @@ app.post(
         "json",
         z.object({
             lastUpdatedDuration: z.string(),
-        })
+        }),
     ),
     async (c) => {
         const { lastUpdatedDuration } = c.req.valid("json");
@@ -114,10 +112,10 @@ app.post(
             { lastUpdatedDuration },
             {
                 repeat: { every: 1000 * 60 * 60 },
-            }
+            },
         );
         return c.json(job);
-    }
+    },
 );
 
 app.post(
@@ -126,7 +124,7 @@ app.post(
         "json",
         z.object({
             lastUpdatedDuration: z.string().optional(),
-        })
+        }),
     ),
     async (c) => {
         const { lastUpdatedDuration } = c.req.valid("json");
@@ -134,12 +132,12 @@ app.post(
             lastUpdatedDuration,
         });
         return c.json(job);
-    }
+    },
 );
 
 app.get("/jobs", async (c) => {
     const removed = await scheduleQueue.removeRepeatableByKey(
-        "schedule::::10000"
+        "schedule::::10000",
     );
     console.log(removed);
     const repeatableJobs = await scheduleQueue.getRepeatableJobs();
@@ -164,7 +162,7 @@ app.post("/reset", async (c) => {
         data: { programStages },
     } = await api.get<{ programStages: Array<{ id: string }> }>(
         "programStages.json",
-        { params: { fields: "id", paging: false } }
+        { params: { fields: "id", paging: false } },
     );
 
     const all = programs
@@ -203,7 +201,7 @@ app.get(
         "query",
         z.object({
             instance: z.string(),
-        })
+        }),
     ),
     async (c) => {
         const options = c.req.query();
@@ -214,7 +212,7 @@ app.get(
             instance: options.instance,
         });
         return c.json(job);
-    }
+    },
 );
 
 const port = 3001;

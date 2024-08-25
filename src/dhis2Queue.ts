@@ -63,7 +63,7 @@ const worker = new Worker<
                         };
                         layeringQueue.add(
                             String(new Date().getMilliseconds),
-                            query
+                            query,
                         );
                     }
                 },
@@ -72,7 +72,7 @@ const worker = new Worker<
             console.log(error);
         }
     },
-    { connection }
+    { connection },
 );
 
 worker.on("completed", (job) => {
