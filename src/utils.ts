@@ -1457,3 +1457,8 @@ export const getGraduationAssessment = (currentGraduationAssessment: any) => {
     }
     return { preGraduated: 0, graduated: 0 };
 };
+
+export const convertSearchTo10 = (search: any) => {
+    if (search) return 1;
+    return 0;
+};
