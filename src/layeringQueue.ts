@@ -651,12 +651,6 @@ const generateLayering = (options: {
                 referralsDuringYear: referralsDuringQuarter,
                 hivStatus,
             });
-
-            // const [facility, artNo, onArt] = getMultiAttributes(
-            //     ["usRWNcogGX7", "aBc9Lr1z25H", "xyDBnQTdZqS"],
-            //     viralLoadsB4Quarter
-            // );
-
             // TODO add vsla
 
             const OVC_TST_ASSESS = currentRiskAssessment ? 1 : 0;
@@ -1436,6 +1430,9 @@ const generateLayering = (options: {
                 kitchenGarden,
                 nutritionalAssessment,
                 nutritionalFoodSupplement,
+                agricAdvisoryService,
+                voucher4Crops,
+                farmingInputs,
             ]);
 
             const recreationActivities = eventsHasDataElements(

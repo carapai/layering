@@ -562,7 +562,12 @@ export const COLUMNS: Array<{
         id: "paraSocialWorker",
     },
     {
-        display: "Lasted Generated",
+        display: "Data Entrant",
+        id: "entrant",
+        selected: true,
+    },
+    {
+        display: "Last Generated",
         id: "generated",
         selected: true,
     },
