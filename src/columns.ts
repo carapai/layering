@@ -563,7 +563,7 @@ export const COLUMNS: Array<{
     },
     {
         display: "Data Entrant",
-        id: "entrant",
+        id: "dataEntrant",
         selected: true,
     },
     {
