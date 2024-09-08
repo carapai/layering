@@ -358,7 +358,6 @@ export const getDataElement = (
     event?: { [key: string]: any },
 ) => {
     if (event) return event[dataElement];
-
     return undefined;
 };
 
@@ -824,6 +823,19 @@ export const eventsHasDataElements = (
     return 0;
 };
 
+export const eventsHasDataElementsWithValue = (
+    events: any[],
+    dataElements: string[],
+    value: string,
+) => {
+    const cond = dataElements
+        .map((element) => getAttribute(element, events))
+        .some((a) => a === value);
+
+    if (cond) return 1;
+    return 0;
+};
+
 export const anyEventWithDataElement = (
     events: any[],
     dataElement: string,
@@ -905,7 +917,7 @@ export const monthsSinceViralTest = (
 
     return 0;
 };
-
+// TODO add 12 months
 export const everMissed = (
     events: any[],
     dataElement: string,

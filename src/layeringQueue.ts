@@ -22,6 +22,7 @@ import {
     deHasAnyValue,
     eventsBeforePeriod,
     eventsHasDataElements,
+    eventsHasDataElementsWithValue,
     eventsWithinPeriod,
     fetchGroupActivities4Instances,
     findAnyEventValue,
@@ -495,13 +496,14 @@ const generateLayering = (options: {
                 financialQuarterStart,
                 financialQuarterEnd,
             );
-
+            // TODO pick a question from GBV tool
             const GBVScreeningDuringYear = eventsWithinPeriod(
                 GBVScreenings,
                 financialQuarterStart,
                 financialQuarterEnd,
             );
 
+            const currentGBVScreening = latestEvent(GBVScreeningDuringYear);
             const currentViralLoad = latestEvent(viralLoadsB4Quarter);
             const currentGraduationAssessment = latestEvent(
                 graduationAssessmentsB4Quarter,
@@ -597,7 +599,6 @@ const generateLayering = (options: {
                     "iFgXXIUj9C0",
                     "qkpSMaBL0eQ",
                     "nLwPogZRhau",
-
                     "usRWNcogGX7",
                     "aBc9Lr1z25H",
                     "xyDBnQTdZqS",
@@ -775,14 +776,16 @@ const generateLayering = (options: {
             );
             const microFranchise = eventsHasDataElements(
                 serviceLinkagesDuringQuarter,
-                ["aS0PFCSdpiw"],
+                ["aS0PFCSdpiw", "QzzTM8u8USa", "hzuzLSgcOsL"],
             );
             const dreams = eventsHasDataElements(serviceLinkagesDuringQuarter, [
                 "sJY2dId52Pv",
             ]);
-            const vmmc = eventsHasDataElements(serviceLinkagesDuringQuarter, [
-                "LGGiilKOYvf",
-            ]);
+            const vmmc =
+                eventsHasDataElements(serviceLinkagesDuringQuarter, [
+                    "LGGiilKOYvf",
+                ]) ||
+                eventsHasDataElements(homeVisitsDuringQuarter, ["R5ekqgunDq1"]);
 
             const micro = eventsHasDataElements(serviceLinkagesDuringQuarter, [
                 "QzzTM8u8USa",
@@ -830,6 +833,8 @@ const generateLayering = (options: {
             const tempConsumption =
                 eventsHasDataElements(serviceLinkagesDuringQuarter, [
                     "HBOascaLodU",
+                    "icbRVzuYeIy",
+                    "eoQxge4LVrx",
                 ]) ||
                 anyEventWithAnyOfTheValue(
                     referralsDuringQuarter,
@@ -847,14 +852,28 @@ const generateLayering = (options: {
                 ["TGgP0ndV5Yj"],
                 serviceLinkagesDuringQuarter,
             );
+            // TODO add 3a, 3b, 3c, 3d, 3e in all sections
             const educationFund = eventsHasDataElements(
                 directBeneficiariesDuringQuarter,
                 [
                     "HmpNjCf65od",
                     "pmTpaik3AgA",
                     "eOb7mLpEVsc",
+                    "sViPcBarrle",
                     "NUdSDlTPEqt",
                     "uVuaGfrwrbC",
+                    "ManqFdrSiR6",
+                    "YVT2mgn5c8p",
+                    "mylipOlFcFM",
+                    "vgHBTSm6ubk",
+                    "pyxkseJ0YfB",
+                    "AEMXqEH1VhE",
+                    "FdLk4KU0PG6",
+                    "hvlKwVy8hQW",
+                    "ASfLndMQOSG",
+                    "gUcZokyyOCd",
+                    "He4tQvmuaDk",
+                    "f09NZPtdwCK",
                 ],
             );
             const scholasticMaterials =
@@ -890,11 +909,10 @@ const generateLayering = (options: {
                     "q7qAlWTOKXz",
                     "SuOs4WcHF13",
                 ]);
-
+            // TODO add 2a, 2b, 2c and 2d
             const healthFund = eventsHasDataElements(
                 directBeneficiariesDuringQuarter,
                 [
-                    "WCeWH0JgylX",
                     "umGULhvsBeR",
                     "Ltw2hqQFgwu",
                     "STX2Y8mvHzX",
@@ -964,11 +982,17 @@ const generateLayering = (options: {
             );
 
             const iac = getAttribute("iHdNYfm1qlz", currentViralLoad);
-            const eMTCT = eventsHasDataElements(homeVisitsDuringQuarter, [
-                "AhUJLs4CGMI",
-                "GYxWuJCvCtc",
-                "HF7l5x4f3az",
-            ]);
+            const eMTCT =
+                eventsHasDataElements(homeVisitsDuringQuarter, [
+                    "AhUJLs4CGMI",
+                    "GYxWuJCvCtc",
+                    "HF7l5x4f3az",
+                ]) ||
+                anyEventWithAnyOfTheValue(
+                    referralsDuringQuarter,
+                    "XWudTD2LTUQ",
+                    ["EMTCT"],
+                );
 
             const hivPrevention = eventsHasDataElements(
                 homeVisitsDuringQuarter,
@@ -1070,11 +1094,17 @@ const generateLayering = (options: {
                     "jS1k55KsANg",
                 ]);
 
-            const returnedToCare = anyEventWithAnyOfTheValue(
-                referralsDuringQuarter,
-                "XWudTD2LTUQ",
-                ["PLHIV Returned to care", "Provided with ARVs"],
-            );
+            const returnedToCare =
+                anyEventWithAnyOfTheValue(
+                    referralsDuringQuarter,
+                    "XWudTD2LTUQ",
+                    ["PLHIV Returned to care", "Provided with ARVs"],
+                ) ||
+                anyEventWithAnyOfTheValue(
+                    missedAppointmentsDuringQuarter,
+                    "vnxQFpwvu67",
+                    ["Returned to Care"],
+                );
 
             const otherHealthServices = eventsHasDataElements(
                 homeVisitsDuringQuarter,
@@ -1098,9 +1128,9 @@ const generateLayering = (options: {
             );
 
             const tbScreening =
-                (tbScreeningChild === 4 && age < 16) ||
-                (tbScreeningAdult === 4 && age > 17) ||
-                (tbScreeningChild17 === 4 && age >= 16)
+                (tbScreeningChild >= 4 && age < 16) ||
+                (tbScreeningAdult >= 4 && age > 17) ||
+                (tbScreeningChild17 >= 4 && age >= 16)
                     ? 1
                     : 0;
 
@@ -1156,7 +1186,6 @@ const generateLayering = (options: {
                 agricLinkages,
                 tempConsumption,
                 igaBooster,
-                igaRegisteringSuccess,
                 micro,
                 vlsaOvcFund,
                 VSLABorrowing,
@@ -1182,15 +1211,18 @@ const generateLayering = (options: {
 
             const monitoringAtSchool = eventsHasDataElements(
                 ["tKAa4KmRM7R"],
-                schoolMappingDuringYear,
+                schoolMonitoringDuringYear,
             );
             const regularlyAttendingSchool = findAnyEventValue(
-                schoolMappingDuringYear,
+                schoolMonitoringDuringYear,
                 "tKAa4KmRM7R",
             );
-            const hasGbvScreening = GBVScreeningDuringYear.length > 0 ? 1 : 0;
 
-            const coreEducation = anyService([educationFund, educationSubsidy]);
+            const coreEducation = anyService([
+                educationFund,
+                educationSubsidy,
+                supportedToEnroll,
+            ]);
 
             const communityViralLoadBleeding =
                 anyEventWithAnyOfTheValue(
@@ -1235,16 +1267,35 @@ const generateLayering = (options: {
                 "IHcLv90cUNq",
                 "true",
             );
+            const violence = anyEventWithDataElement(
+                GBVScreeningDuringYear,
+                "FbF9YMRDarB",
+                "true",
+            );
             const emotional2 = anyEventWithDataElement(
                 GBVScreeningDuringYear,
                 "diWuTE7rxUk",
                 "true",
             );
-            const physicalAbuse = anyEventWithDataElement(
-                GBVScreeningDuringYear,
-                "chX1ZE4MQuB",
-                "true",
+            const physicalAbuse = eventsHasDataElements(
+                homeVisitsDuringQuarter,
+                [
+                    "c8SFOQxWyOm",
+                    "zOkZh3kDLTZ",
+                    "SlVjFqZKz3U",
+                    "RSYM3WHKVqT",
+                    "wpkk9H2ZiDi",
+                    "WP3Jdhog1tQ",
+                    "C74BUBGLwNP",
+                    "Fwu5MCBQkrQ",
+                ],
             );
+
+            // anyEventWithDataElement(
+            //     GBVScreeningDuringYear,
+            //     "chX1ZE4MQuB",
+            //     "true",
+            // );
 
             const sexual1 = anyEventWithDataElement(
                 GBVScreeningDuringYear,
@@ -1256,17 +1307,50 @@ const generateLayering = (options: {
                 "UMHo3JZKT5Y",
                 "true",
             );
-            const sexualAbuse = sexual1 !== undefined || sexual2 !== undefined;
+            // const sexualAbuse = sexual1 !== undefined || sexual2 !== undefined;
 
-            const emotionalAbuse =
-                emotional1 !== undefined || emotional2 !== undefined;
+            const sexualAbuse = eventsHasDataElements(homeVisitsDuringQuarter, [
+                "zDvcGqjmSQr",
+                "cONYrx9udsm",
+                "ruSwtO1J9CV",
+                "dMvIT2yhzIR",
+                "jrH62qjPmVm",
+                "Az2vyIEXkmE",
+                "una6BJZTmSq",
+                "Byqy2x4IC8J",
+            ]);
+            const emotionalAbuse = eventsHasDataElements(
+                homeVisitsDuringQuarter,
+                [
+                    "SiwjAG5Z7n1",
+                    "mq0VUxyrvQ8",
+                    "UXoUP6m5x3n",
+                    "Pv5x5K8nysq",
+                    "NKeCrNSwWI8",
+                    "MpmKR1jTGPa",
+                    "GLHrhAoGIjA",
+                    "DaIJDBnFIGQ",
+                ],
+            );
 
             const reportedGBV =
                 emotional1 !== undefined ||
                 emotional2 !== undefined ||
                 physicalAbuse !== undefined ||
                 sexual1 !== undefined ||
-                sexual2 !== undefined;
+                sexual2 !== undefined ||
+                violence !== undefined;
+
+            const hasGbvScreening = getAttributes(
+                [
+                    "IHcLv90cUNq",
+                    "diWuTE7rxUk",
+                    "chX1ZE4MQuB",
+                    "HZd8eEGyZc4",
+                    "UMHo3JZKT5Y",
+                ],
+                currentGBVScreening,
+            ).filter((a) => a !== null && a !== undefined && a !== "");
 
             const GBVCounseling = eventsHasDataElements(
                 GBVScreeningDuringYear,
@@ -1276,14 +1360,19 @@ const generateLayering = (options: {
                 "CVHBWfo9zcw",
             ]);
 
-            const IPVHIVDisclosure =
-                anyEventWithDataElement(
-                    GBVScreeningDuringYear,
-                    "kOPwD2ZQvVz",
-                    "true",
-                ) !== undefined
-                    ? 1
-                    : 0;
+            const IPVHIVDisclosure = eventsHasDataElements(
+                homeVisitsDuringQuarter,
+                [
+                    "d8d52oyjouy",
+                    "fU9JasieC5b",
+                    "hFjerhDyBKS",
+                    "XCvSBlgksT0",
+                    "QAmU3eQcj4j",
+                    "ycYzqNr0vl5",
+                    "NT5y7WQQcvG",
+                    "tfuyHZc81z8",
+                ],
+            );
 
             const TFGBV = anyEventWithDataElement(
                 referralsDuringQuarter,
@@ -1305,11 +1394,23 @@ const generateLayering = (options: {
                     "ruSwtO1J9CV",
                 ],
             );
-            const GBVLegalSupport = anyEventWithDataElement(
-                referralsDuringQuarter,
-                "XWudTD2LTUQ",
-                "Legal support",
-            );
+            const GBVLegalSupport =
+                eventsHasDataElements(homeVisitsDuringQuarter, [
+                    "srAJAZLBf9h",
+                    "dvQHNVbEGPb",
+                    "KmxUqMzSSWT",
+                    "d8d52oyjouy",
+                    "c8SFOQxWyOm",
+                    "SiwjAG5Z7n1",
+                    "zDvcGqjmSQr",
+                    "leOn4N7Irta",
+                    "vRxHFjnbnwf",
+                ]) ||
+                anyEventWithDataElement(
+                    referralsDuringQuarter,
+                    "XWudTD2LTUQ",
+                    "Legal support",
+                );
             const basicNeed = eventsHasDataElements(homeVisitsDuringQuarter, [
                 "ORCzvst8msI",
                 "hYY3ot7ZaKl",
@@ -1322,11 +1423,16 @@ const generateLayering = (options: {
                 "eGfIisC9M9g",
                 "dMvIT2yhzIR",
             ]);
-            const legalSupport = anyEventWithDataElement(
-                referralsDuringQuarter,
-                "XWudTD2LTUQ",
-                "Legal support",
-            );
+            const legalSupport =
+                eventsHasDataElements(homeVisitsDuringQuarter, [
+                    "zlDhryIk7OU",
+                    "y8Pq26t7CyW",
+                ]) ||
+                anyEventWithDataElement(
+                    referralsDuringQuarter,
+                    "XWudTD2LTUQ",
+                    "Legal support",
+                );
             const reIntegration = eventsHasDataElements(
                 homeVisitsDuringQuarter,
                 ["Ef9jKdJk9No"],
@@ -1347,7 +1453,7 @@ const generateLayering = (options: {
 
             const childProtectionEducation = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["ZekYkAu0olk", "HleyWLT30Rr", "dT7weXodePx"],
+                ["ZekYkAu0olk", "HleyWLT30Rr", "dT7weXodePx", "FTvLP1jSnqT"],
             );
             const GBVEduction = eventsHasDataElements(homeVisitsDuringQuarter, [
                 "Fwu5MCBQkrQ",
@@ -1367,6 +1473,7 @@ const generateLayering = (options: {
                 withdrawFromLabour,
                 birthRegistration,
                 childProtectionEducation,
+                handleChildAbuse,
             ]);
             const nutritionEducation = eventsHasDataElements(
                 homeVisitsDuringQuarter,
@@ -1399,7 +1506,7 @@ const generateLayering = (options: {
                 anyEventWithAnyOfTheValue(
                     referralsDuringQuarter,
                     "XWudTD2LTUQ",
-                    ["Nutritional support"],
+                    ["Nutritional support", "Temporary Food Support"],
                 );
 
             const farmingInputs =
@@ -1452,7 +1559,7 @@ const generateLayering = (options: {
 
             const linkedToDSDM = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["UlGVB1Za2e6"],
+                ["UlGVB1Za2e6", "AKd0FB51xCK"],
             );
             const appointmentReminding = eventsHasDataElements(
                 homeVisitsDuringQuarter,
@@ -1476,6 +1583,15 @@ const generateLayering = (options: {
                 coreChildProtection,
                 coreNutrition,
             ]);
+
+            const CPas =
+                [
+                    coreES,
+                    coreEducation,
+                    coreHealth,
+                    coreChildProtection,
+                    coreNutrition,
+                ].filter((a) => a === 1).length >= 3;
 
             const psychosocialSupport = quarter;
 
@@ -1510,6 +1626,29 @@ const generateLayering = (options: {
                 On_ART_HVAT = umqeJCVp4Zq === "Yes" ? "1" : "0";
             }
 
+            const isAtisk = eventsHasDataElementsWithValue(
+                riskAssessmentsDuringQuarter,
+                [
+                    "WwMOTHl2cOz",
+                    "uf6tkJtuWpt",
+                    "zpvSpZxMYIV",
+                    "O6O0ADYLwua",
+                    "VOCmw7bULXR",
+                    "FHu4YfcrIQw",
+                    "Dny6B3ubQEa",
+                    "h7JCV3YLRJO",
+                    "VtnameiqmRy",
+                    "XvsUJ8mP0WG",
+                    "Y8kX45XGXXI",
+                    "NN0M618qUFX",
+                    "MH5BGP1Ww2Q",
+                    "p3FSiLQ1q6T",
+                    "x1bL4w5EsPL",
+                    "dunvFwnbGQF",
+                    "oI9btGSwA7P",
+                ],
+                "true",
+            );
             const assetOwnership = findAssetOwnership(filtered, quarterEnd);
             const exitedWithGraduation = getGraduationStatus({
                 memberStatus,
@@ -1563,7 +1702,7 @@ const generateLayering = (options: {
                 dreams,
                 vmmc,
                 voucher4Crops,
-                hasGbvScreening,
+                hasGbvScreening: hasGbvScreening.length > 0 ? 1 : 0,
                 reportedGBV,
                 GBVCounseling,
                 GBVReferral,
@@ -1717,15 +1856,9 @@ const generateLayering = (options: {
                 orgUnit,
                 regimen,
                 agricAdvisoryService,
-                emotionalAbuse: convertBoolToNum(
-                    String(emotionalAbuse) as "true" | "false",
-                ),
-                sexualAbuse: convertBoolToNum(
-                    String(sexualAbuse) as "true" | "false",
-                ),
-                physicalAbuse: convertBoolToNum(
-                    String(physicalAbuse) as "true" | "false",
-                ),
+                emotionalAbuse,
+                sexualAbuse,
+                physicalAbuse,
                 IPVHIVDisclosure,
                 withdrawnFromGVBHousehold,
                 GBVLegalSupport: convertSearchTo10(GBVLegalSupport),
@@ -1758,6 +1891,8 @@ const generateLayering = (options: {
                 regularlyAttendingSchool,
                 districtOfRelocation,
                 subCountyOfRelocation,
+                CPas,
+                isAtisk,
             });
             layering.push(
                 fromPairs(
