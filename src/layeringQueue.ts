@@ -1584,6 +1584,10 @@ const generateLayering = (options: {
                 coreNutrition,
             ]);
 
+            const psychosocialSupport = quarter;
+
+            const corePSS = psychosocialSupport;
+
             const CPas =
                 [
                     coreES,
@@ -1591,11 +1595,10 @@ const generateLayering = (options: {
                     coreHealth,
                     coreChildProtection,
                     coreNutrition,
-                ].filter((a) => a === 1).length >= 3;
-
-            const psychosocialSupport = quarter;
-
-            const corePSS = psychosocialSupport;
+                    corePSS,
+                ].filter((a) => a === 1).length >= 3
+                    ? 1
+                    : 0;
 
             allPreviousLayering = {
                 ...allPreviousLayering,
