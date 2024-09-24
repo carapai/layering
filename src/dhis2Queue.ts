@@ -5,6 +5,7 @@ import { OrgUnit } from "./interfaces";
 import { layeringQueue } from "./layeringQueue";
 import { connection } from "./redis";
 import { processOrganisations, queryDHIS2Data } from "./utils";
+import { layering2Queue } from "./layering2Queue";
 
 export const dhis2Queue = new Queue<
     {
@@ -55,13 +56,31 @@ const worker = new Worker<
                 api,
                 ...others,
                 callback: (data: string[]) => {
-                    if (generate && data.length > 0) {
+                    if (
+                        generate &&
+                        data.length > 0 &&
+                        program === "RDEklSXCD4C"
+                    ) {
                         const query: QueryDslQueryContainer = {
                             terms: {
                                 "trackedEntityInstance.keyword": data,
                             },
                         };
                         layeringQueue.add(
+                            String(new Date().getMilliseconds),
+                            query,
+                        );
+                    } else if (
+                        generate &&
+                        data.length > 0 &&
+                        program === "lMC8XN5Lanc"
+                    ) {
+                        const query: QueryDslQueryContainer = {
+                            terms: {
+                                "trackedEntityInstance.keyword": data,
+                            },
+                        };
+                        layering2Queue.add(
                             String(new Date().getMilliseconds),
                             query,
                         );

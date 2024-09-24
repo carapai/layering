@@ -1,0 +1,207 @@
+[
+    {
+        "name": "GAT. Bank Linkages Sessions",
+        "displayName": "GAT. Bank Linkages Sessions",
+        "options": [
+            { "code": "Monitoring the performance of Linked groups" },
+            { "code": "Account opening process" },
+            { "code": "Sensitization on linkage banking" },
+            { "code": "Rating of Mature groups for Bank linkage" }
+        ]
+    },
+    {
+        "name": "GAT. Early Childhood Development Sessions",
+        "displayName": "GAT. Early Childhood Development Sessions",
+        "options": [
+            { "code": "Baby Massage" },
+            { "code": "Physical development" },
+            { "code": "HIV Basic and HIV in children" },
+            { "code": "Basic health, Hygiene, Safety and Nutrition" },
+            { "code": "Introduction to Early childhood development" },
+            { "code": "Disclosure, Adherence and HIV risks in children" },
+            { "code": "Language development" },
+            { "code": "Loss, Grief and Bereavement" },
+            { "code": "Care planning, Referrals and Linkages to care" },
+            { "code": "Cognitive development" },
+            { "code": "Baby cues" },
+            { "code": "Social and Emotional Development" }
+        ]
+    },
+    {
+        "name": "GAT. Financial Literacy Sessions",
+        "displayName": "GAT. Financial Literacy Sessions",
+        "options": [
+            { "code": "Module2: Debt" },
+            { "code": "Saving" },
+            { "code": "Financial Service providers" },
+            { "code": "Planning for Old age" },
+            { "code": "Personal Financial Management" },
+            { "code": "Loan Management" },
+            { "code": "Module3: Budgeting" },
+            { "code": "Investment" },
+            { "code": "Module1: Saving" }
+        ]
+    },
+    {
+        "name": "GAT. Group VSLA methodology sessions",
+        "displayName": "GAT. Group VSLA methodology sessions",
+        "options": [
+            { "code": "Leadership and Elections of the Management committ" },
+            { "code": "Meeting procedures/ meeting steps" },
+            { "code": "Group formation and General Assembly" },
+            { "code": "Conflict resolution" },
+            { "code": "Share-out & Action audit" },
+            { "code": "Development of Internal rules and regulations" },
+            { "code": "VSLA concepts" },
+            { "code": "Introduction to written record keeping" }
+        ]
+    },
+    {
+        "name": "GAT. JOURNEYS PLUS (LARA) Sessions",
+        "displayName": "GAT. JOURNEYS PLUS (LARA) Sessions",
+        "options": [
+            { "code": "Gender and HIV" },
+            { "code": "HIV Transmission" },
+            { "code": "Stigma and Discrimination" },
+            { "code": "Reporting of Violence and Abuse" },
+            { "code": "HIV & School Related GBV risk and protection" },
+            { "code": "Positive bystander response to violence" },
+            { "code": "Post Violence Care, treatment and support" },
+            { "code": "Seeking Assistance" },
+            { "code": "Teacher to pupil Relationships" },
+            { "code": "Resisting negative peer pressure" },
+            { "code": "Healthy and unhealthy relationships" },
+            { "code": "HIV/AIDS, STI, Truth and Myths" },
+            { "code": "The 4Cs and meaning of consents" },
+            { "code": "Power and Consent" },
+            { "code": "My body image" },
+            { "code": "Pupil to pupil Relationships" },
+            { "code": "Teenage Pregnancy" }
+        ]
+    },
+    {
+        "name": "GAT. MOH Journeys curriculum sessions",
+        "displayName": "GAT. MOH Journeys curriculum sessions",
+        "options": [
+            { "code": "Status" },
+            { "code": "My circle of support" },
+            { "code": "14.How HIV affects our bodies" },
+            { "code": "Respecting similarities and differences" },
+            { "code": "Healthy and unhealthy relationships" },
+            { "code": "Child pregnancy" },
+            { "code": "Let's communicate" },
+            { "code": "Community response to violence" },
+            { "code": "What's important to me" },
+            { "code": "Our project" },
+            { "code": "Sexual Harassment" },
+            { "code": "Positive and Negative attention" },
+            { "code": "How HIV and AIDs affects children" },
+            {
+                "code": "Facts about HIV/AIDS and other sexual transmitted infections (STIs)"
+            },
+            { "code": "The feeling game" },
+            { "code": "Talents, interests and personal qualities" },
+            { "code": "My Body" },
+            { "code": "My body image" },
+            { "code": "Making friends" },
+            { "code": "Menstruation and making reusable sanitary pads" },
+            { "code": "Gender" }
+        ]
+    },
+    {
+        "name": "GAT. No means No sessions (Boys)",
+        "displayName": "GAT. No means No sessions (Boys)",
+        "options": [
+            { "code": "Intervention" },
+            { "code": "Introduction to sources of strength" },
+            { "code": "Journey to Manhood" },
+            { "code": "Cycle of force" },
+            { "code": "Introduction to the man box" }
+        ]
+    },
+    {
+        "name": "GAT. No means No sessions (Boys) New Curriculum",
+        "displayName": "GAT. No means No sessions (Boys) New Curriculum",
+        "options": [
+            { "code": "9. Bystander Intervention" },
+            { "code": "7 Your Moment of Truth" },
+            { "code": "2. Steps on your Journey to Adulthood." },
+            { "code": "6 Empowered Survivors Perspective" },
+            { "code": "5 Scenes of Strength" },
+            { "code": "1 Introduction to No Means No program." },
+            { "code": "8. It take Courage" },
+            { "code": "10. Graduation" },
+            { "code": "4 Your Sources of Strength" },
+            { "code": "3. Step Outside of the Box" }
+        ]
+    },
+    {
+        "name": "GAT. No means No sessions (Girls)",
+        "displayName": "GAT. No means No sessions (Girls)",
+        "options": [
+            { "code": "Strikes, chokes, full force" },
+            {
+                "code": "Assertive, aggressiveness passive scale and verbal skills"
+            },
+            { "code": "Weapons and targets" },
+            { "code": "Self-defence basics and assault continuum" },
+            {
+                "code": "Descalation, negotiation, multiple attackers, full force drill"
+            },
+            { "code": "Target, test and attack (plays, awareness, intuition)" }
+        ]
+    },
+    {
+        "name": "GAT. SINOVUYO Sessions",
+        "displayName": "GAT. SINOVUYO Sessions",
+        "options": [
+            { "code": "Problem solving-putting out the fire spending time" },
+            { "code": "Keeping safe in the community" },
+            { "code": "Introducing the program and defining goals" },
+            { "code": "Building a positive relationship thru" },
+            { "code": "Motivation to save and making a budget" },
+            { "code": "Dealing with problems without conflict-II" },
+            { "code": "Talking about emotions" },
+            { "code": "Managing anger & solving problems" },
+            { "code": "Establishing family rules and routines" },
+            { "code": "Understanding the ways to save and the risk to bor" },
+            { "code": "Responding to crisis" },
+            { "code": "Widening the circle of support" },
+            { "code": "Praising each other" },
+            { "code": "Dealing with problems without Conflict-I" }
+        ]
+    },
+    {
+        "name": "GAT. SPM Training Sessions",
+        "displayName": "GAT. SPM Training Sessions",
+        "options": [
+            { "code": "IGA selection process" },
+            { "code": "IGA management" },
+            { "code": "Market assessment" },
+            { "code": "Actual IGA Selection" },
+            { "code": "Estimating sales and Income" },
+            { "code": "IGA planning" },
+            { "code": "Estimation of start-up and working costs" },
+            { "code": "Weekly expenses and Weekly income" },
+            { "code": "Knowledge and skills" }
+        ]
+    },
+    {
+        "name": "GAT. VSLA Saving and Borrowing",
+        "displayName": "GAT. VSLA Saving and Borrowing",
+        "options": [
+            { "code": "VSLA Saving" },
+            { "code": "VSLA OVC Fund" },
+            { "code": "VSLA Borrowing" }
+        ]
+    },
+    {
+        "name": "GAT. VSLA TOT/Refresher Sessions",
+        "displayName": "GAT. VSLA TOT/Refresher Sessions",
+        "options": [
+            { "code": "Financial Literacy and Bank Linkage" },
+            { "code": "Selection Planning and Management of IGAs" },
+            { "code": "TOT on VSLA methodology" }
+        ]
+    }
+]

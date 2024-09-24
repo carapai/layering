@@ -25,6 +25,7 @@ import {
     eventsHasDataElementsWithValue,
     eventsWithinPeriod,
     fetchGroupActivities4Instances,
+    findAgeGroup,
     findAnyEventValue,
     findAssetOwnership,
     findStatus,
@@ -33,7 +34,6 @@ import {
     getDataElement,
     getEconomicStatus,
     getGraduationAssessment,
-    getGraduationInfo,
     getGraduationStatus,
     getHEIInformation,
     getHIVStatus,
@@ -46,7 +46,6 @@ import {
     getSectionDataElements,
     getUnknownStatus,
     hivInformation,
-    isAtSchool,
     latestEvent,
     missedAppointmentInfo,
     monthsSinceViralTest,
@@ -54,7 +53,6 @@ import {
     scroll,
     scroll3,
 } from "./utils";
-import { events } from "@elastic/elasticsearch";
 
 dayjs.extend(isoWeek);
 dayjs.extend(quarterOfYear);
@@ -188,34 +186,6 @@ const fetchData = async (trackedEntityInstances: any[]) => {
         allGBVScreening,
         allIndividualGraduationAssessments,
     };
-};
-
-const findAgeGroup = (age: number) => {
-    if (age <= 0) {
-        return "< 1";
-    }
-
-    if (age > 0 && age <= 4) {
-        return "1 - 4";
-    }
-    if (age > 4 && age <= 9) {
-        return "5 - 9";
-    }
-    if (age > 9 && age <= 14) {
-        return "10 - 14";
-    }
-    if (age > 14 && age <= 17) {
-        return "15 - 17";
-    }
-    if (age > 17 && age <= 20) {
-        return "18 - 20";
-    }
-    if (age > 20 && age <= 24) {
-        return "21 - 24";
-    }
-    if (age >= 25) {
-        return "25+";
-    }
 };
 
 const generateLayering = (options: {
