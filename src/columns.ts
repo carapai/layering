@@ -425,6 +425,11 @@ export const COLUMNS: Array<{
     { selected: true, display: "Basic needs", id: "basicNeed" },
     {
         selected: true,
+        display: "Basic needs(Direct Beneficiary)",
+        id: "basicNeedsDirect",
+    },
+    {
+        selected: true,
         display: "Child Protection Legal support",
         id: "legalSupport",
     },

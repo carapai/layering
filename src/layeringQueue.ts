@@ -822,34 +822,16 @@ const generateLayering = (options: {
                 ["TGgP0ndV5Yj"],
                 serviceLinkagesDuringQuarter,
             );
-            // TODO add 3a, 3b, 3c, 3d, 3e in all sections
             const educationFund = eventsHasDataElements(
                 directBeneficiariesDuringQuarter,
-                [
-                    "HmpNjCf65od",
-                    "pmTpaik3AgA",
-                    "eOb7mLpEVsc",
-                    "sViPcBarrle",
-                    "NUdSDlTPEqt",
-                    "uVuaGfrwrbC",
-                    "ManqFdrSiR6",
-                    "YVT2mgn5c8p",
-                    "mylipOlFcFM",
-                    "vgHBTSm6ubk",
-                    "pyxkseJ0YfB",
-                    "AEMXqEH1VhE",
-                    "FdLk4KU0PG6",
-                    "hvlKwVy8hQW",
-                    "ASfLndMQOSG",
-                    "gUcZokyyOCd",
-                    "He4tQvmuaDk",
-                    "f09NZPtdwCK",
-                ],
+                ["HmpNjCf65od"],
             );
             const scholasticMaterials =
                 eventsHasDataElements(directBeneficiariesDuringQuarter, [
                     "pmTpaik3AgA",
                     "eOb7mLpEVsc",
+                    "sViPcBarrle",
+                    "NUdSDlTPEqt",
                 ]) ||
                 eventsHasDataElements(serviceLinkagesDuringQuarter, [
                     "SC6LwbFKBXN",
@@ -857,7 +839,8 @@ const generateLayering = (options: {
             const schoolFees =
                 eventsHasDataElements(directBeneficiariesDuringQuarter, [
                     "HmpNjCf65od",
-                    "sViPcBarrle",
+                    "pmTpaik3AgA",
+                    "eOb7mLpEVsc",
                 ]) ||
                 eventsHasDataElements(serviceLinkagesDuringQuarter, [
                     "mFv83EyB7Mu",
@@ -882,21 +865,7 @@ const generateLayering = (options: {
             // TODO add 2a, 2b, 2c and 2d
             const healthFund = eventsHasDataElements(
                 directBeneficiariesDuringQuarter,
-                [
-                    "umGULhvsBeR",
-                    "Ltw2hqQFgwu",
-                    "STX2Y8mvHzX",
-                    "pkZekl4vvqA",
-                    "Q08YfrOHdoi",
-                    "LQAN64C03mG",
-                    "Ltw2hqQFgwu",
-                    "mQmBmmGrwnV",
-                    "XT0FoT41zcA",
-                    "QzKBojiIzfb",
-                    "DeTVbcixIVB",
-                    "JWqDIODvcO4",
-                    "WCeWH0JgylX",
-                ],
+                ["umGULhvsBeR", "W0ygjeJ62mX", "NzLj7pJypTz"],
             );
 
             const educationInformation =
@@ -970,15 +939,12 @@ const generateLayering = (options: {
             );
 
             const TFHealth =
-                eventsHasDataElements(
-                    [
-                        "XT0FoT41zcA",
-                        "LQAN64C03mG",
-                        "Ltw2hqQFgwu",
-                        "mQmBmmGrwnV",
-                    ],
-                    directBeneficiariesDuringQuarter,
-                ) ||
+                eventsHasDataElements(directBeneficiariesDuringQuarter, [
+                    "XT0FoT41zcA",
+                    "LQAN64C03mG",
+                    "Ltw2hqQFgwu",
+                    "mQmBmmGrwnV",
+                ]) ||
                 eventsHasDataElements(homeVisitsDuringQuarter, [
                     "EG851ch1rWZ",
                     "gLj768y0v9Y",
@@ -1138,7 +1104,13 @@ const generateLayering = (options: {
                 hasEverMissedAnAppointment,
                 missedAnAppointmentAction,
             } = missedAppointmentInfo(missedAppointments, quarterEnd);
-            const VSLA = directBeneficiariesDuringYear.length > 0 ? 1 : 0;
+
+            const VSLA = eventsHasDataElements(directBeneficiariesDuringYear, [
+                "x8BMFjQ1DRf",
+                "H5vsW6LYFhy",
+                "s4w6hTytt5h",
+                "oB05MH3DImM",
+            ]);
 
             const ovcProtectionFunds = anyEventWithDE(
                 directBeneficiariesDuringQuarter,
@@ -1393,6 +1365,22 @@ const generateLayering = (options: {
                 "eGfIisC9M9g",
                 "dMvIT2yhzIR",
             ]);
+
+            const basicNeedsDirect = eventsHasDataElements(
+                directBeneficiariesDuringQuarter,
+                [
+                    "Nzm4skzhTGh",
+                    "qpMKn9JOiLw",
+                    "DmbKoa8UR10",
+                    "q7qAlWTOKXz",
+                    "JCBi2nMe63P",
+                    "umGULhvsBeR",
+                    "W0ygjeJ62mX",
+                    "NzLj7pJypTz",
+                    "Ltw2hqQFgwu",
+                    "JWqDIODvcO4",
+                ],
+            );
             const legalSupport =
                 eventsHasDataElements(homeVisitsDuringQuarter, [
                     "zlDhryIk7OU",
@@ -1402,7 +1390,10 @@ const generateLayering = (options: {
                     referralsDuringQuarter,
                     "XWudTD2LTUQ",
                     "Legal support",
-                );
+                ) ||
+                eventsHasDataElements(serviceLinkagesDuringQuarter, [
+                    "LD2LNyKiSRh",
+                ]);
             const reIntegration = eventsHasDataElements(
                 homeVisitsDuringQuarter,
                 ["Ef9jKdJk9No"],
@@ -1466,7 +1457,7 @@ const generateLayering = (options: {
                 eventsHasDataElements(homeVisitsDuringQuarter, ["sPzsTkUzj73"]);
             const kitchenGarden = anyEventHasDataElementValue(
                 serviceLinkagesDuringQuarter,
-                "BjjU0DuSJRJ",
+                "JJ42NgK9N45",
                 "true",
             );
             const nutritionalFoodSupplement =
@@ -1535,9 +1526,13 @@ const generateLayering = (options: {
                 homeVisitsDuringQuarter,
                 ["M3csIquN0lC", "pLoagwClpZC"],
             );
-            const willWriting = eventsHasDataElements(homeVisitsDuringQuarter, [
-                "as9t4IWFo18",
-            ]);
+            const willWriting =
+                eventsHasDataElements(homeVisitsDuringQuarter, [
+                    "as9t4IWFo18",
+                ]) ||
+                eventsHasDataElements(serviceLinkagesDuringQuarter, [
+                    "uxwj0u33Wbk",
+                ]);
             const assistiveDevices = eventsHasDataElements(
                 homeVisitsDuringQuarter,
                 ["ctxofPwv89O"],
@@ -1716,7 +1711,11 @@ const generateLayering = (options: {
                 newlyEnrolledText,
                 riskFactor,
                 householdStatus,
-                memberStatus,
+                memberStatus:
+                    memberStatus === "No Home Visit" &&
+                    servedInPreviousQuarter === 1
+                        ? "Present But NotServed"
+                        : memberStatus,
                 enrolledInSchool,
                 newlyEnrolled,
                 hivStatus,
@@ -1866,6 +1865,7 @@ const generateLayering = (options: {
                 subCountyOfRelocation,
                 CPas,
                 isAtisk,
+                basicNeedsDirect,
             });
             layering.push(
                 fromPairs(
