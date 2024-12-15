@@ -375,10 +375,11 @@ const generateLayering = (options: {
                 quarterEnd,
             );
 
-            const directBeneficiariesB4Quarter = eventsBeforePeriod(
-                directBeneficiaries,
-                quarterEnd,
-            );
+            // const directBeneficiariesB4Quarter = eventsBeforePeriod(
+            //     directBeneficiaries,
+            //     quarterEnd,
+            // );
+
             const graduationAssessmentsB4Quarter = eventsBeforePeriod(
                 graduationAssessments,
                 quarterEnd,
@@ -388,14 +389,19 @@ const generateLayering = (options: {
                 incomeGeneratingActivities,
                 quarterEnd,
             );
-            const schoolMappingsB4Quarter = eventsBeforePeriod(
-                schoolMappings,
+            const incomeGeneratingActivitiesDuringQuarter = eventsWithinPeriod(
+                incomeGeneratingActivities,
+                quarterStart,
                 quarterEnd,
             );
-            const schoolMonitoringB4Quarter = eventsBeforePeriod(
-                schoolMonitoring,
-                quarterEnd,
-            );
+            // const schoolMappingsB4Quarter = eventsBeforePeriod(
+            //     schoolMappings,
+            //     quarterEnd,
+            // );
+            // const schoolMonitoringB4Quarter = eventsBeforePeriod(
+            //     schoolMonitoring,
+            //     quarterEnd,
+            // );
 
             const riskAssessmentsDuringQuarter = eventsWithinPeriod(
                 hivRiskAssessments,
@@ -423,11 +429,11 @@ const generateLayering = (options: {
                 quarterStart,
                 quarterEnd,
             );
-            const protectionFundsDuringQuarter = eventsWithinPeriod(
-                protectionFunds,
-                quarterStart,
-                quarterEnd,
-            );
+            // const protectionFundsDuringQuarter = eventsWithinPeriod(
+            //     protectionFunds,
+            //     quarterStart,
+            //     quarterEnd,
+            // );
             const missedAppointmentsDuringQuarter = eventsWithinPeriod(
                 missedAppointments,
                 quarterStart,
@@ -444,17 +450,17 @@ const generateLayering = (options: {
                 quarterStart,
                 quarterEnd,
             );
-            const directBeneficiariesDuringYear = eventsWithinPeriod(
-                directBeneficiaries,
-                financialQuarterStart,
-                financialQuarterEnd,
-            );
+            // const directBeneficiariesDuringYear = eventsWithinPeriod(
+            //     directBeneficiaries,
+            //     financialQuarterStart,
+            //     financialQuarterEnd,
+            // );
 
-            const incomeGeneratingActivitiesDuringYear = eventsWithinPeriod(
-                incomeGeneratingActivities,
-                financialQuarterStart,
-                financialQuarterEnd,
-            );
+            // const incomeGeneratingActivitiesDuringYear = eventsWithinPeriod(
+            //     incomeGeneratingActivities,
+            //     financialQuarterStart,
+            //     financialQuarterEnd,
+            // );
             const schoolMappingDuringYear = eventsWithinPeriod(
                 incomeGeneratingActivities,
                 financialQuarterStart,
@@ -481,7 +487,7 @@ const generateLayering = (options: {
             const baselineViralLoad = baselineEvent(viralLoadsB4Quarter);
             const currentHomeVisit = latestEvent(homeVisitsDuringQuarter);
             const currentDirectBeneficiary = latestEvent(
-                directBeneficiariesB4Quarter,
+                directBeneficiariesDuringQuarter,
             );
             const currentReferral = latestEvent(referralsDuringQuarter);
             const currentRiskAssessment = latestEvent(
@@ -763,7 +769,7 @@ const generateLayering = (options: {
             ]);
 
             const operatingAnIGA = anyEventWithDataElement(
-                incomeGeneratingActivitiesDuringYear,
+                incomeGeneratingActivitiesDuringQuarter,
                 "DX0IhFQgsnS",
                 "true",
             );
@@ -794,7 +800,7 @@ const generateLayering = (options: {
             );
 
             const igaRegisteringSuccess = anyEventWithAnyOfTheValue(
-                incomeGeneratingActivitiesB4Quarter,
+                incomeGeneratingActivitiesDuringQuarter,
                 "TecfD9jSvKy",
                 ["50,001-300,000", "300,001-500,000", "Over 500,000"],
             );
@@ -1105,12 +1111,10 @@ const generateLayering = (options: {
                 missedAnAppointmentAction,
             } = missedAppointmentInfo(missedAppointments, quarterEnd);
 
-            const VSLA = eventsHasDataElements(directBeneficiariesDuringYear, [
-                "x8BMFjQ1DRf",
-                "H5vsW6LYFhy",
-                "s4w6hTytt5h",
-                "oB05MH3DImM",
-            ]);
+            const VSLA = eventsHasDataElements(
+                directBeneficiariesDuringQuarter,
+                ["x8BMFjQ1DRf", "H5vsW6LYFhy", "s4w6hTytt5h", "oB05MH3DImM"],
+            );
 
             const ovcProtectionFunds = anyEventWithDE(
                 directBeneficiariesDuringQuarter,
