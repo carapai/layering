@@ -34,6 +34,7 @@ const worker = new Worker<
                 password: process.env.DHIS2_PASSWORD ?? "",
             },
         });
+
         try {
             console.log("Fetching organisation units");
             const {

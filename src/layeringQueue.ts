@@ -1124,7 +1124,7 @@ const generateLayering = (options: {
                 : 0;
 
             const directBeneficiariesOperatingIGA =
-                incomeGeneratingActivitiesB4Quarter.length > 0 ? 1 : 0;
+                incomeGeneratingActivitiesDuringQuarter.length > 0 ? 1 : 0;
 
             const coreES = anyService([
                 VSLA,
@@ -1134,8 +1134,8 @@ const generateLayering = (options: {
                 igaBooster,
                 micro,
                 vlsaOvcFund,
-                VSLABorrowing,
-                VSLASavings,
+                VSLABorrowing !== "" && VSLABorrowing !== undefined ? 1 : 0,
+                VSLASavings !== "" && VSLASavings !== undefined ? 1 : 0,
                 vocationalApprenticeship,
                 governmentSocialProtection,
                 directBeneficiariesOperatingIGA,
@@ -1280,12 +1280,12 @@ const generateLayering = (options: {
             );
 
             const reportedGBV =
-                emotional1 !== undefined ||
-                emotional2 !== undefined ||
-                physicalAbuse !== undefined ||
-                sexual1 !== undefined ||
-                sexual2 !== undefined ||
-                violence !== undefined;
+                (emotional1 !== undefined && emotional1 !== 0) ||
+                (emotional2 !== undefined && emotional2 !== 0) ||
+                (physicalAbuse !== undefined && physicalAbuse !== 0) ||
+                (sexual1 !== undefined && sexual1 !== 0) ||
+                (sexual2 !== undefined && sexual2 !== 0) ||
+                (violence !== undefined && violence !== 0);
 
             const hasGbvScreening = getAttributes(
                 [
@@ -1675,7 +1675,7 @@ const generateLayering = (options: {
                 vmmc,
                 voucher4Crops,
                 hasGbvScreening: hasGbvScreening.length > 0 ? 1 : 0,
-                reportedGBV,
+                reportedGBV: convertBoolToNum(reportedGBV),
                 GBVCounseling,
                 GBVReferral,
                 attachedToCorps,

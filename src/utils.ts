@@ -1218,10 +1218,11 @@ export const convertBoolToYesNo = (value: "true" | "false") => {
     if (value === "false") return "N";
     return "";
 };
-export const convertBoolToNum = (value: "true" | "false") => {
+export const convertBoolToNum = (value: "true" | "false" | true | false) => {
     if (value === "true") return "1";
     if (value === "false") return "0";
-    return "";
+    if (value) return "1";
+    return "0";
 };
 
 export const getGraduationInfo = (
@@ -1413,7 +1414,6 @@ export const queryDHIS2Data = async ({
         }>("trackedEntityInstances.json", {
             params,
         });
-
         if (pageCount === 1 && rest.pager && rest.pager.pageCount) {
             pageCount = rest.pager.pageCount;
         }
