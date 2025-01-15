@@ -170,10 +170,10 @@ app.post("/reset", async (c) => {
         .map(({ id }) => String(id).toLowerCase());
 
     const links = all
-        .concat("layering", "layering2")
+        .concat("layering", "layering2", "layering3")
         .map((a) => `curl -X PUT localhost:9200/${a}?pretty`);
 
-    for (const index of [...all, "layering", "layering2"]) {
+    for (const index of [...all, "layering", "layering2", "layering3"]) {
         console.log(`Working on ${index}`);
         try {
             await client.indices.delete({ index });

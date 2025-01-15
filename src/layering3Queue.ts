@@ -21,19 +21,27 @@ dayjs.extend(isoWeek);
 dayjs.extend(quarterOfYear);
 dayjs.extend(advancedFormat);
 
-export const layering2Queue = new Queue<QueryDslQueryContainer>("layering2", {
+export const layering3Queue = new Queue<QueryDslQueryContainer>("layering3", {
     connection,
 });
+
+const getEvents = (
+    available: { [key: string]: any[] },
+    trackedEntityInstance: string,
+) => {
+    return available[trackedEntityInstance] || [];
+};
 
 const fetchData = async (trackedEntityInstances: any[]) => {
     const trackedEntityInstanceIds = trackedEntityInstances.map(
         (tei) => tei.trackedEntityInstance,
     );
-    const allSessions = await scroll("fTCSYlAqD2S", trackedEntityInstanceIds);
+    const allSessions = await scroll("EVkAS8LJNbO", trackedEntityInstanceIds);
     return {
         allSessions,
     };
 };
+
 const fetchActivities = async () => {
     const allSessions = await scroll2("IXxHJADVCkb");
     return allSessions.reduce((acc, b) => {
@@ -75,8 +83,9 @@ const generateLayering = (options: {
         },
         {},
     );
+
     for (const {
-        X4pNSt9UzOw,
+        HLKc2AKR9jW,
         XzKmUgJRlRa,
         huFucxA3e5c,
         CfpoFtRmK1z,
@@ -95,6 +104,7 @@ const generateLayering = (options: {
         level4,
         level5,
     } of trackedEntityInstances) {
+        const sessions = getEvents(allSessions, trackedEntityInstance);
         for (const period of periods) {
             const quarterStart = period.startOf("quarter");
             const quarterEnd = period.endOf("quarter");
@@ -161,6 +171,7 @@ const generateLayering = (options: {
                 "GAT. SPM Training Sessions": [],
                 "GAT. VSLA TOT/Refresher Sessions": [],
             };
+
             sessionsWithinQuarter.forEach((session) => {
                 const sessionCategory = session["qgikW8oSfNe"];
                 const currentSessions =
@@ -341,7 +352,7 @@ const generateLayering = (options: {
             }, {});
 
             layering.push({
-                X4pNSt9UzOw,
+                X4pNSt9UzOw: HLKc2AKR9jW,
                 huFucxA3e5c,
                 CfpoFtRmK1z,
                 N1nMqKtYKvI,
@@ -384,10 +395,10 @@ const generateLayering = (options: {
 };
 
 const worker = new Worker<QueryDslQueryContainer>(
-    "layering2",
+    "layering3",
     async (job) => {
         const activities = await fetchActivities();
-        await scroll3("lMC8XN5Lanc", job.data, async (documents) => {
+        await scroll3("RDEklSXCD4C", job.data, async (documents) => {
             const allData = await fetchData(documents);
             const layering = generateLayering({
                 ...allData,
@@ -403,7 +414,7 @@ const worker = new Worker<QueryDslQueryContainer>(
                 trackedEntityInstances: documents,
                 activities,
             });
-            await indexBulk("layering2", layering);
+            await indexBulk("layering3", layering);
         });
     },
     { connection },

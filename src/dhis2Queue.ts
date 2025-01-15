@@ -6,6 +6,7 @@ import { layeringQueue } from "./layeringQueue";
 import { connection } from "./redis";
 import { processOrganisations, queryDHIS2Data } from "./utils";
 import { layering2Queue } from "./layering2Queue";
+import { layering3Queue } from "./layering3Queue";
 
 export const dhis2Queue = new Queue<
     {
@@ -34,7 +35,6 @@ const worker = new Worker<
                 password: process.env.DHIS2_PASSWORD ?? "",
             },
         });
-
         try {
             console.log("Fetching organisation units");
             const {
@@ -56,7 +56,7 @@ const worker = new Worker<
                 processedUnits,
                 api,
                 ...others,
-                callback: (data: string[]) => {
+                callback: async (data: string[]) => {
                     if (
                         generate &&
                         data.length > 0 &&
@@ -67,7 +67,11 @@ const worker = new Worker<
                                 "trackedEntityInstance.keyword": data,
                             },
                         };
-                        layeringQueue.add(
+                        await layeringQueue.add(
+                            String(new Date().getMilliseconds),
+                            query,
+                        );
+                        await layering3Queue.add(
                             String(new Date().getMilliseconds),
                             query,
                         );
@@ -81,7 +85,7 @@ const worker = new Worker<
                                 "trackedEntityInstance.keyword": data,
                             },
                         };
-                        layering2Queue.add(
+                        await layering2Queue.add(
                             String(new Date().getMilliseconds),
                             query,
                         );

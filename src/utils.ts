@@ -1104,15 +1104,25 @@ export const flattenInstances = (
         let processedAttributes = fromPairs(
             attributes.map(({ attribute, value }: any) => [attribute, value]),
         );
-        const allRelations = fromPairs(
-            relationships
-                .map((rel: any) => {
-                    return [
-                        rel["relationshipType"],
-                        rel.from?.trackedEntityInstance?.trackedEntityInstance,
-                    ];
-                })
-                .filter((a: any) => a[1] !== undefined),
+        const allRelations = relationships.reduce(
+            (acc: Record<string, string>, current: any) => {
+                const fromRel: string =
+                    current.from?.trackedEntityInstance?.trackedEntityInstance;
+                const toRel: string =
+                    current.to?.trackedEntityInstance?.trackedEntityInstance;
+
+                const type: string = current.relationshipType;
+
+                if (fromRel && toRel && type) {
+                    if (fromRel !== trackedEntityInstance) {
+                        acc[type] = fromRel;
+                    } else {
+                        acc[type] = toRel;
+                    }
+                }
+                return acc;
+            },
+            {},
         );
         if (enrollments.length > 0) {
             for (const {
