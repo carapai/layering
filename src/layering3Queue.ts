@@ -86,7 +86,7 @@ const generateLayering = (options: {
 
     for (const {
         HLKc2AKR9jW,
-        XzKmUgJRlRa,
+        jtpmu5rCeer,
         huFucxA3e5c,
         CfpoFtRmK1z,
         N1nMqKtYKvI,
@@ -120,8 +120,7 @@ const generateLayering = (options: {
                 Ah4eyDOBf51,
                 cYDK0qZSri9,
                 b76aEJUPnLy,
-                jtpmu5rCeer,
-            } = activities[XzKmUgJRlRa] ?? {
+            } = activities[jtpmu5rCeer] ?? {
                 bFnIjGJpf9t: "",
                 dqbuxC5GB1M: "",
                 D7wRx9mgwns: "",
@@ -383,7 +382,6 @@ const generateLayering = (options: {
                 cYDK0qZSri9,
                 b76aEJUPnLy,
                 jtpmu5rCeer,
-                XzKmUgJRlRa,
                 ...availableSessions,
                 ...availableSessions3,
                 ...availableSessions4,
