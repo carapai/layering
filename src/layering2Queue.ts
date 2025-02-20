@@ -64,8 +64,7 @@ const generateLayering = (options: {
     allSessions: { [key: string]: any[] };
     activities: any;
 }) => {
-    const { trackedEntityInstances, allSessions, periods, activities } =
-        options;
+    const { trackedEntityInstances, periods, activities } = options;
     let layering: any[] = [];
 
     const sessionMap = sessions.reduce<Record<string, string[]>>(

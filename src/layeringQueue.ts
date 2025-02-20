@@ -385,10 +385,10 @@ const generateLayering = (options: {
                 quarterEnd,
             );
 
-            const incomeGeneratingActivitiesB4Quarter = eventsBeforePeriod(
-                incomeGeneratingActivities,
-                quarterEnd,
-            );
+            // const incomeGeneratingActivitiesB4Quarter = eventsBeforePeriod(
+            //     incomeGeneratingActivities,
+            //     quarterEnd,
+            // );
             const incomeGeneratingActivitiesDuringQuarter = eventsWithinPeriod(
                 incomeGeneratingActivities,
                 quarterStart,
@@ -524,9 +524,7 @@ const generateLayering = (options: {
 
             const baselineRiskFactor =
                 nDUbdM2FjyP || firstHomeVisit?.["rQBaynepqjy"];
-            // const reasonForExit = currentHomeVisit?.["yiKbqQvYunj"] ?? "";
             const reasonForVisit = currentHomeVisit?.["t7kVwlLVBns"] ?? "";
-            // const householdExitReason = currentHomeVisit?.["Xy3kS6Jgd08"] ?? "";
             const VSLASavings = currentDirectBeneficiary?.["H5vsW6LYFhy"] ?? "";
             const VSLABorrowing =
                 currentDirectBeneficiary?.["s4w6hTytt5h"] ?? "";

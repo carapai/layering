@@ -50,7 +50,7 @@ export const COLUMNS: Array<{
         id: "householdExitReason",
     },
     { selected: true, display: "Member status", id: "memberStatus" },
-    { selected: true, display: "Reasons for Exit", id: "reasonForExit" },
+    { selected: true, display: "Member Reasons for Exit", id: "reasonForExit" },
     {
         selected: true,
         display: "District Relocated to",
