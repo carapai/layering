@@ -146,10 +146,10 @@ const fetchData = async (trackedEntityInstances: any[]) => {
     // const allGroupActivities = await fetchGroupActivities4Instances(
     //     trackedEntityInstances,
     // );
-    const allProtectionFunds = await scroll(
-        "pyT5GQSyHZG",
-        trackedEntityInstanceIds,
-    );
+    // const allProtectionFunds = await scroll(
+    //     "pyT5GQSyHZG",
+    //     trackedEntityInstanceIds,
+    // );
     const allIncomeGeneratingActivities = await scroll(
         "yF0ujXkemkw",
         trackedEntityInstanceIds,
@@ -179,7 +179,7 @@ const fetchData = async (trackedEntityInstances: any[]) => {
         previousLayering: previousLayer,
         // allDirectBeneficiaries,
         // allGroupActivities,
-        allProtectionFunds,
+        // allProtectionFunds,
         allIncomeGeneratingActivities,
         allSchoolMappings,
         allSchoolMonitoring,
@@ -203,7 +203,7 @@ const generateLayering = (options: {
     allMissedAppointments: { [key: string]: any[] };
     // allDirectBeneficiaries: { [key: string]: any[] };
     // allGroupActivities: { [key: string]: any[] };
-    allProtectionFunds: { [key: string]: any[] };
+    // allProtectionFunds: { [key: string]: any[] };
     allIncomeGeneratingActivities: { [key: string]: any[] };
     allSchoolMappings: { [key: string]: any[] };
     allSchoolMonitoring: { [key: string]: any[] };
@@ -225,7 +225,7 @@ const generateLayering = (options: {
         allMissedAppointments,
         // allDirectBeneficiaries,
         // allGroupActivities,
-        allProtectionFunds,
+        // allProtectionFunds,
         allIncomeGeneratingActivities,
         allSchoolMappings,
         allSchoolMonitoring,
@@ -285,10 +285,10 @@ const generateLayering = (options: {
         //     allDirectBeneficiaries,
         //     trackedEntityInstance,
         // );
-        const protectionFunds = getEvents(
-            allProtectionFunds,
-            trackedEntityInstance,
-        );
+        // const protectionFunds = getEvents(
+        //     allProtectionFunds,
+        //     trackedEntityInstance,
+        // );
         const incomeGeneratingActivities = getEvents(
             allIncomeGeneratingActivities,
             trackedEntityInstance,
