@@ -143,9 +143,9 @@ const fetchData = async (trackedEntityInstances: any[]) => {
     //     "Hg8f2oHcKvH",
     //     trackedEntityInstanceIds,
     // );
-    const allGroupActivities = await fetchGroupActivities4Instances(
-        trackedEntityInstances,
-    );
+    // const allGroupActivities = await fetchGroupActivities4Instances(
+    //     trackedEntityInstances,
+    // );
     const allProtectionFunds = await scroll(
         "pyT5GQSyHZG",
         trackedEntityInstanceIds,
@@ -178,7 +178,7 @@ const fetchData = async (trackedEntityInstances: any[]) => {
         indexCases,
         previousLayering: previousLayer,
         // allDirectBeneficiaries,
-        allGroupActivities,
+        // allGroupActivities,
         allProtectionFunds,
         allIncomeGeneratingActivities,
         allSchoolMappings,
@@ -202,7 +202,7 @@ const generateLayering = (options: {
     allGraduationAssessments: { [key: string]: any[] };
     allMissedAppointments: { [key: string]: any[] };
     // allDirectBeneficiaries: { [key: string]: any[] };
-    allGroupActivities: { [key: string]: any[] };
+    // allGroupActivities: { [key: string]: any[] };
     allProtectionFunds: { [key: string]: any[] };
     allIncomeGeneratingActivities: { [key: string]: any[] };
     allSchoolMappings: { [key: string]: any[] };
@@ -224,7 +224,7 @@ const generateLayering = (options: {
         allGraduationAssessments,
         allMissedAppointments,
         // allDirectBeneficiaries,
-        allGroupActivities,
+        // allGroupActivities,
         allProtectionFunds,
         allIncomeGeneratingActivities,
         allSchoolMappings,
