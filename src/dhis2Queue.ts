@@ -44,7 +44,7 @@ const worker = new Worker<
                 params: {
                     fields: "id,path,name,parent[name,parent[name]]",
                     paging: "false",
-                    level: 5,
+                    level: 4,
                 },
             });
             const processedUnits = processOrganisations(organisationUnits);
