@@ -158,10 +158,10 @@ const fetchData = async (trackedEntityInstances: any[]) => {
         "zAaPkLNSWwL",
         trackedEntityInstanceIds,
     );
-    const allSchoolMonitoring = await scroll(
-        "NwazREY6KZM",
-        trackedEntityInstanceIds,
-    );
+    // const allSchoolMonitoring = await scroll(
+    //     "NwazREY6KZM",
+    //     trackedEntityInstanceIds,
+    // );
     const allGBVScreening = await scroll(
         "SGChaH7CoMA",
         trackedEntityInstanceIds,
@@ -182,7 +182,7 @@ const fetchData = async (trackedEntityInstances: any[]) => {
         // allProtectionFunds,
         allIncomeGeneratingActivities,
         allSchoolMappings,
-        allSchoolMonitoring,
+        // allSchoolMonitoring,
         allGBVScreening,
         allIndividualGraduationAssessments,
     };
@@ -206,7 +206,7 @@ const generateLayering = (options: {
     // allProtectionFunds: { [key: string]: any[] };
     allIncomeGeneratingActivities: { [key: string]: any[] };
     allSchoolMappings: { [key: string]: any[] };
-    allSchoolMonitoring: { [key: string]: any[] };
+    // allSchoolMonitoring: { [key: string]: any[] };
     allGBVScreening: { [key: string]: any[] };
     allIndividualGraduationAssessments: { [key: string]: any[] };
 }) => {
@@ -228,7 +228,7 @@ const generateLayering = (options: {
         // allProtectionFunds,
         allIncomeGeneratingActivities,
         allSchoolMappings,
-        allSchoolMonitoring,
+        // allSchoolMonitoring,
         allGBVScreening,
         allIndividualGraduationAssessments,
     } = options;
@@ -297,10 +297,10 @@ const generateLayering = (options: {
             allSchoolMappings,
             trackedEntityInstance,
         );
-        const schoolMonitoring = getEvents(
-            allSchoolMonitoring,
-            trackedEntityInstance,
-        );
+        // const schoolMonitoring = getEvents(
+        //     allSchoolMonitoring,
+        //     trackedEntityInstance,
+        // );
         const GBVScreenings = getEvents(allGBVScreening, trackedEntityInstance);
         const hasEnrollment = !!enrollmentDate;
 
@@ -467,11 +467,11 @@ const generateLayering = (options: {
                 financialQuarterEnd,
             );
 
-            const schoolMonitoringDuringYear = eventsWithinPeriod(
-                schoolMonitoring,
-                financialQuarterStart,
-                financialQuarterEnd,
-            );
+            // const schoolMonitoringDuringYear = eventsWithinPeriod(
+            //     schoolMonitoring,
+            //     financialQuarterStart,
+            //     financialQuarterEnd,
+            // );
             // TODO pick a question from GBV tool
             const GBVScreeningDuringYear = eventsWithinPeriod(
                 GBVScreenings,
@@ -1160,14 +1160,14 @@ const generateLayering = (options: {
                 currentSchoolMapping,
             );
 
-            const monitoringAtSchool = eventsHasDataElements(
-                ["tKAa4KmRM7R"],
-                schoolMonitoringDuringYear,
-            );
-            const regularlyAttendingSchool = findAnyEventValue(
-                schoolMonitoringDuringYear,
-                "tKAa4KmRM7R",
-            );
+            // const monitoringAtSchool = eventsHasDataElements(
+            //     ["tKAa4KmRM7R"],
+            //     schoolMonitoringDuringYear,
+            // );
+            // const regularlyAttendingSchool = findAnyEventValue(
+            //     schoolMonitoringDuringYear,
+            //     "tKAa4KmRM7R",
+            // );
 
             const coreEducation = anyService([
                 // educationFund,
@@ -1674,7 +1674,7 @@ const generateLayering = (options: {
                 homeVisitor,
                 currentSchool,
                 currentClass,
-                monitoringAtSchool,
+                // monitoringAtSchool,
                 supportedToEnroll,
                 dreams,
                 vmmc,
@@ -1869,7 +1869,7 @@ const generateLayering = (options: {
                 microFranchise,
                 apprenticeship,
                 operatingAnIGA: convertSearchTo10(operatingAnIGA),
-                regularlyAttendingSchool,
+                // regularlyAttendingSchool,
                 districtOfRelocation,
                 subCountyOfRelocation,
                 CPas,
