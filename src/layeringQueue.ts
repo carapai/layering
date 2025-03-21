@@ -555,6 +555,7 @@ const generateLayering = (options: {
                 tbScreeningStatus,
                 motherBabyPair,
                 heiCode,
+                emtctStatus,
             ] = getAttributes(
                 [
                     "fIbdjZvdOHt",
@@ -580,6 +581,7 @@ const generateLayering = (options: {
                     "bBILr4VHj7B",
                     "ggCxBusYWSf",
                     "udCDAJdVI3H",
+                    "XpPKqAwwWIa",
                 ],
                 currentViralLoad,
             );
@@ -626,7 +628,6 @@ const generateLayering = (options: {
                 referralsDuringYear: referralsDuringQuarter,
                 hivStatus,
             });
-            // TODO add vsla
 
             const OVC_TST_ASSESS = currentRiskAssessment ? 1 : 0;
 
@@ -1868,6 +1869,7 @@ const generateLayering = (options: {
                 CPas,
                 isAtisk,
                 basicNeedsDirect,
+                emtctStatus,
             });
             layering.push(
                 fromPairs(

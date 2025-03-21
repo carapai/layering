@@ -33,6 +33,7 @@ export const COLUMNS: Array<{
     },
     { selected: true, display: "Current Risk Factor", id: "riskFactor" },
     { selected: true, display: "Other Risk Factors", id: "otherRiskFactor" },
+    { selected: true, display: "Pregnant/EMTCT status", id: "emtctStatus" },
     {
         selected: true,
         display: "Baseline Household Economic Status ",
@@ -69,12 +70,10 @@ export const COLUMNS: Array<{
     { selected: true, display: "Newly enrolled", id: "newlyEnrolledText" },
     { selected: true, display: "HIV_Status(+, /,?,  //+)", id: "hivStatus" },
     { selected: true, display: "OVC_TST ASSESS", id: "OVC_TST_ASSESS" },
-    // TODO get guidance from Julius
     // Look for HIV Risk screening question and if any of the questions has a yes from HIV/TB Risk assessment for both TB and HIV
     { selected: true, display: "OVC_TST RISK", id: "isAtRisk" },
     { selected: true, display: "OVC_TST REFER", id: "OVC_TST_REFER" },
     { selected: true, display: "OVC_TST REPORT", id: "OVC_TST_REPORT" },
-    // TODO if status is DK and not at risk
 
     // Look for HIV Risk screening question and all are no  the questions has a yes from HIV/TB Risk HIV
     {
@@ -197,11 +196,11 @@ export const COLUMNS: Array<{
         display: "Due date for HIV rapid Test",
         id: "hivTestDueDate",
     },
-    // {
-    //     selected: true,
-    //     display: "Date when HIV rapid test was done",
-    //     id: "dateHivTestDone",
-    // },
+    {
+        selected: true,
+        display: "Date when HIV rapid test was done",
+        id: "dateHivTestDone",
+    },
     { selected: true, display: "HIV test result", id: "hivTestResults" },
     { selected: true, display: "Final Outcome", id: "finalOutcome" },
     // { selected: true, display: "PCR Test", id: "pcr" },
