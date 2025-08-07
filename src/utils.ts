@@ -130,6 +130,44 @@ export const scroll = async (
     return groupBy(documents, "trackedEntityInstance");
 };
 
+export const scrollWithQuery = async (
+    index: string,
+    values: string[],
+    attribute: string,
+    columns?: string[],
+) => {
+    let query: SearchRequest = {
+        index: index.toLowerCase(),
+        query: {
+            bool: {
+                must: [
+                    {
+                        terms: {
+                            [`${attribute}.keyword`]: values,
+                        },
+                    },
+                    {
+                        match: {
+                            deleted: false,
+                        },
+                    },
+                ],
+            },
+        },
+        size: 1000,
+    };
+
+    if (columns) {
+        query = { ...query, _source: columns };
+    }
+    const scrollSearch = client.helpers.scrollSearch(query);
+    let documents: any[] = [];
+    for await (const result of scrollSearch) {
+        documents = documents.concat(result.documents);
+    }
+    return groupBy(documents, "trackedEntityInstance");
+};
+
 export const scroll2 = async (index: string) => {
     let query: SearchRequest = {
         index: index.toLowerCase(),

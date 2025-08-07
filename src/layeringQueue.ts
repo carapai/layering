@@ -52,6 +52,7 @@ import {
     removeEmptyKeys,
     scroll,
     scroll3,
+    scrollWithQuery,
 } from "./utils";
 
 dayjs.extend(isoWeek);
@@ -118,6 +119,11 @@ const fetchData = async (trackedEntityInstances: any[]) => {
         trackedEntityInstanceIds,
     );
     const allViralLoads = await scroll("kKlAyGUnCML", trackedEntityInstanceIds);
+    const actualHei = await scrollWithQuery(
+        "kKlAyGUnCML",
+        trackedEntityInstanceIds,
+        "udCDAJdVI3H",
+    );
     const allReferrals = await scroll("yz3zh5IFEZm", trackedEntityInstanceIds);
     const allServiceLinkages = await scroll(
         "SxnXrDtSJZp",
@@ -940,7 +946,13 @@ const generateLayering = (options: {
 
             const hivPrevention = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["WheJwufMW87", "KBFmrSAROjO", "HF7l5x4f3az", "GYxWuJCvCtc"],
+                [
+                    "WheJwufMW87",
+                    "KBFmrSAROjO",
+                    "HF7l5x4f3az",
+                    "GYxWuJCvCtc",
+                    "ZUnZGCcU21Y",
+                ],
             );
 
             const TFHealth =
@@ -964,7 +976,7 @@ const generateLayering = (options: {
 
             const covid19Education = eventsHasDataElements(
                 homeVisitsDuringQuarter,
-                ["s4nVMznUGUX", "P1uoG1r4NJc"],
+                ["s4nVMznUGUX", "P1uoG1r4NJc", "P1uoG1r4NJc"],
             );
 
             const immunization = anyEventWithAnyOfTheValue(
@@ -983,11 +995,15 @@ const generateLayering = (options: {
                 "YylRfk3iKiJ",
                 "amaCMIvRteg",
                 "e1uS7v9nbKW",
+                "j5JsyuKBU7d",
+                "wxhezysHrk2",
+                "P4a4a6BYTsY",
             ]);
 
             const treatedNets =
                 eventsHasDataElements(homeVisitsDuringQuarter, [
                     "qNp1oRUKxB1",
+                    "JHkA7KKPXFz",
                 ]) ||
                 anyEventWithAnyOfTheValue(
                     referralsDuringQuarter,
@@ -1892,12 +1908,6 @@ const worker = new Worker<QueryDslQueryContainer>(
             const layering = generateLayering({
                 ...allData,
                 periods: [
-                    // dayjs().subtract(12, "quarters"),
-                    // dayjs().subtract(11, "quarters"),
-                    // dayjs().subtract(10, "quarters"),
-                    // dayjs().subtract(9, "quarters"),
-                    // dayjs().subtract(8, "quarters"),
-                    // dayjs().subtract(7, "quarters"),
                     dayjs().subtract(6, "quarters"),
                     dayjs().subtract(5, "quarters"),
                     dayjs().subtract(4, "quarters"),
