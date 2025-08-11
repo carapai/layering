@@ -111,7 +111,7 @@ app.post(
             "scheduling",
             { lastUpdatedDuration },
             {
-                repeat: { every: 1000 * 60 * 60 },
+                repeat: { every: 1000 * 60 * 30 },
             },
         );
         return c.json(job);
