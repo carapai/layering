@@ -562,6 +562,7 @@ const generateLayering = (options: {
                 motherBabyPair,
                 heiCode,
                 emtctStatus,
+                adherenceLevel,
             ] = getAttributes(
                 [
                     "fIbdjZvdOHt",
@@ -588,6 +589,7 @@ const generateLayering = (options: {
                     "ggCxBusYWSf",
                     "udCDAJdVI3H",
                     "XpPKqAwwWIa",
+                    "nPoNUhr9I4Z",
                 ],
                 currentViralLoad,
             );
@@ -1886,6 +1888,7 @@ const generateLayering = (options: {
                 isAtisk,
                 basicNeedsDirect,
                 emtctStatus,
+								adherenceLevel
             });
             layering.push(
                 fromPairs(

@@ -110,6 +110,11 @@ export const COLUMNS: Array<{
         display: "Client member status ",
         id: "clientMemberStatus",
     },
+    {
+        selected: true,
+        display: "Current Adherence Level",
+        id: "adherenceLevel",
+    },
     { selected: true, display: "Regimen", id: "regimen" },
     {
         selected: true,
